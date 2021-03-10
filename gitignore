@@ -1,0 +1,16 @@
+Pods
+.DS_Store
+*.xcworkspace/
+Archive/
+BuildOutput/
+DerivedData/
+xcuserdata
+
+*DeveloperDefaults*
+.authentication
+*.env
+config/*.env
+*.bak
+*.gpx
+
+upload_dsym_results
