@@ -25,5 +25,10 @@ class ListTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    func update(with list: List) {
+        nameLabel.text = list.name
+        descriptionLabel.text = list.description
+        locationLabel.text = list.location
+        goalDateLabel.text = list.goalDate
+    }
 }

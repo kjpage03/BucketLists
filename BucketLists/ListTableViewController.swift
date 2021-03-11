@@ -9,34 +9,40 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
 
-
-    
+    var list : [List] = []
+    let defaultlist = [
+        List(name: "Go to Japan", description: "Plant a trip to visit Japan somday", location: "Japan", goalDate: "10/2/22", completed: false),
+        List(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: "12/3/22", completed: false)
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if list.isEmpty {
+            list = defaultlist
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return list.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
+        let newlist = list[indexPath.row]
+        
+        cell.update(with: newlist)
+        cell.showsReorderControl = true
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

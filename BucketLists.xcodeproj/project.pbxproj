@@ -17,6 +17,7 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
+		309AA53325FA824D00F65909 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA53225FA824D00F65909 /* List.swift */; };
 		30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30F6576125F9350D00E30B46 /* ListTableView.storyboard */; };
 		30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6576625F9364C00E30B46 /* ListTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		309AA53225FA824D00F65909 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		30F6576125F9350D00E30B46 /* ListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListTableView.storyboard; sourceTree = "<group>"; };
 		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
 				1E6818F025F91CA6003FC155 /* Main.storyboard */,
 				30F6576125F9350D00E30B46 /* ListTableView.storyboard */,
+				309AA53225FA824D00F65909 /* List.swift */,
 				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
 				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
@@ -273,6 +276,7 @@
 			files = (
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
+				309AA53325FA824D00F65909 /* List.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
