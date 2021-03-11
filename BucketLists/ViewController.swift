@@ -12,9 +12,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("Hello Chris")
+        
     }
-
+    @IBAction func pushbutton(_ sender: Any) {
+        present( UIStoryboard(name: "ListTableView", bundle: nil).instantiateViewController(withIdentifier: "ListTableView") as UIViewController, animated: true, completion: nil)
+    }
+    
 
 }
 
