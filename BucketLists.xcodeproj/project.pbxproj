@@ -55,6 +55,10 @@
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		30F6576125F9350D00E30B46 /* ListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListTableView.storyboard; sourceTree = "<group>"; };
 		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		1E9AC5EC25FA6B970071B59F /* InitialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialViewController.storyboard; sourceTree = "<group>"; };
+		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,10 @@
 				1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */,
 				1E6818EE25F91CA6003FC155 /* ViewController.swift */,
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
+				1E9AC5EC25FA6B970071B59F /* InitialViewController.storyboard */,
+				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
+				1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */,
+				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
 				1E6818F025F91CA6003FC155 /* Main.storyboard */,
 				30F6576125F9350D00E30B46 /* ListTableView.storyboard */,
 				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
@@ -240,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E9AC5ED25FA6B970071B59F /* InitialViewController.storyboard in Resources */,
 				1E6818F725F91CA6003FC155 /* LaunchScreen.storyboard in Resources */,
 				1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */,
 				30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */,
@@ -268,7 +277,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E9AC5F225FA6BAE0071B59F /* InitialViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
+				1E9AC5F725FA74770071B59F /* BucketCollectionViewCell.swift in Sources */,
+				1EC64C8A25FBCBBC00372BE4 /* HopefullyThisWorks.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
