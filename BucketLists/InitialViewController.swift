@@ -51,6 +51,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
 //        scrollLabel.text = "\(1)/\(bucketLists.count)"
         // Do any additional setup after loading the view.
+        print("")
     }
     
 //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
