@@ -16,9 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" segmentControlStyle="plain" selectedSegmentIndex="2" id="2pn-UF-VON">
-                            <rect key="frame" x="0.0" y="100" width="414" height="32"/>
+                        <view key="tableHeaderView" contentMode="center" id="MxI-L0-CzN">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZGd-5S-DCP">
+                                    <rect key="frame" x="0.0" y="2" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="2pn-UF-VON">
+                            <rect key="frame" x="0.0" y="148" width="414" height="32"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Completed"/>
                                 <segment title="Both"/>
@@ -30,7 +44,7 @@
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="44" id="gvs-Yi-BBw" customClass="ListTableViewCell" customModule="BucketLists" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="76" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gvs-Yi-BBw" id="MP7-kQ-rmc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -77,6 +91,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mySegmentedControl" destination="2pn-UF-VON" id="gmB-Y2-9a1"/>
+                        <outlet property="totalLabel" destination="ZGd-5S-DCP" id="bYy-fd-qmG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xz7-PZ-Z7W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

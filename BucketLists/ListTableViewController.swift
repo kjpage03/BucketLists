@@ -9,28 +9,33 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
 
+    @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
-    var list : [List] = []
-    var listCompleted : [List] = []
-    var bothList : [List] = []
+    var bucket : [BucketList] = []
+    var list : [Item] = []
+    var listCompleted : [Item] = []
+    var bothList : [Item] = []
+
     
     let defaultlist = [
-        List(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: "10/2/22", completed: false),
-        List(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: "10/2/26", completed: false)
+        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date()),
+        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date())
     ]
     let defaultlistCompleted = [
-        List(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: "12/3/22", completed: true),
-        List(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: "12/3/21", completed: true)
+        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date()),
+        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date())
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let testBucket = BucketList(owner: "John's list", items: list, color: "blue")
+        title = testBucket.owner
         if list.isEmpty {
             list = defaultlist
             listCompleted = defaultlistCompleted
             bothList = defaultlist + defaultlistCompleted
             print(bothList)
         }
+        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
 
     // MARK: - Table view data source
@@ -63,22 +68,22 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
-        let completedlist = listCompleted[indexPath.row]
-        let bothlist = bothList[indexPath.row]
-        let newlist = list[indexPath.row]
         let rowNumber = indexPath.row + 1
         
         switch(mySegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            cell.update(with: completedlist, rowNumber: rowNumber)
+            let completedlist = listCompleted[indexPath.row]
+            cell.update(with: completedlist, rowNumber: rowNumber, color: "green")
             break
         case 1:
-            cell.update(with: bothlist, rowNumber: rowNumber)
+            let bothlist = bothList[indexPath.row]
+            cell.update(with: bothlist, rowNumber: rowNumber, color: "white")
             break
             
         case 2:
-            cell.update(with: newlist, rowNumber: rowNumber)
+            let newlist = list[indexPath.row]
+            cell.update(with: newlist, rowNumber: rowNumber, color: "white")
             break
             
         default:

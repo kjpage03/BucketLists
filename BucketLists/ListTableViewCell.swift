@@ -12,6 +12,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var goalDateLabel: UILabel!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.borderColor = UIColor.black.cgColor
@@ -26,13 +27,18 @@ class ListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    func update(with list: List, rowNumber: Int) {
-        if list.completed == true {
+    func update(with list: Item, rowNumber: Int, color: String) {
+        //if list.completed == true {
+        //backgroundColor = UIColor.green
+        if color == "green" {
             backgroundColor = UIColor.green
-        } else {
-            backgroundColor = UIColor.white
         }
+        
+        let newformatter = DateFormatter()
+        newformatter.dateStyle = .short
+        let newDate = newformatter.string(from: list.goalDate)
+        goalDateLabel.text = "\(newDate)"
+        
         nameLabel.text = "\(rowNumber): \(list.name)"
-        goalDateLabel.text = list.goalDate
     }
 }
