@@ -10,10 +10,17 @@
 		1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EA25F91CA6003FC155 /* AppDelegate.swift */; };
 		1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */; };
 		1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EE25F91CA6003FC155 /* ViewController.swift */; };
+		1E6818F225F91CA6003FC155 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6818F025F91CA6003FC155 /* Main.storyboard */; };
 		1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6818F325F91CA6003FC155 /* Assets.xcassets */; };
 		1E6818F725F91CA6003FC155 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */; };
 		1E68190225F91CA6003FC155 /* BucketListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190125F91CA6003FC155 /* BucketListsTests.swift */; };
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
+		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
+		30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30F6576125F9350D00E30B46 /* ListTableView.storyboard */; };
+		30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6576625F9364C00E30B46 /* ListTableViewController.swift */; };
+		7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */; };
+		7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */; };
+		7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */; };
 		7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6588925F9342E00537BF4 /* CreateVC.storyboard */; };
 		7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */; };
 		7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589725FBB87700537BF4 /* CreateViewController.swift */; };
@@ -41,6 +48,7 @@
 		1E6818EA25F91CA6003FC155 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1E6818EE25F91CA6003FC155 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E6818F125F91CA6003FC155 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E6818F325F91CA6003FC155 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E6818F625F91CA6003FC155 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E6818F825F91CA6003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +58,12 @@
 		1E68190825F91CA6003FC155 /* BucketListsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BucketListsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListsUITests.swift; sourceTree = "<group>"; };
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
+		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
+		30F6576125F9350D00E30B46 /* ListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListTableView.storyboard; sourceTree = "<group>"; };
+		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		7CC6588925F9342E00537BF4 /* CreateVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateVC.storyboard; sourceTree = "<group>"; };
 		7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		7CC6589725FBB87700537BF4 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
@@ -107,8 +121,15 @@
 				1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */,
 				1E6818EE25F91CA6003FC155 /* ViewController.swift */,
 				7CC6588925F9342E00537BF4 /* CreateVC.storyboard */,
+				1E68192325F92D7E003FC155 /* BucketList.swift */,
 				7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */,
 				7CC6589725FBB87700537BF4 /* CreateViewController.swift */,
+				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
+				1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */,
+				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
+				1E6818F025F91CA6003FC155 /* Main.storyboard */,
+				30F6576125F9350D00E30B46 /* ListTableView.storyboard */,
+				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
 				1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
@@ -240,6 +261,8 @@
 				1E6818F725F91CA6003FC155 /* LaunchScreen.storyboard in Resources */,
 				7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */,
 				1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */,
+				30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */,
+				1E6818F225F91CA6003FC155 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +289,13 @@
 			files = (
 				7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
+				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
 				7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */,
+				7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */,
+				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
+				7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */,
+				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +332,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1E6818F025F91CA6003FC155 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E6818F125F91CA6003FC155 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
