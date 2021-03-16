@@ -33,11 +33,11 @@ class ColorPickerViewController: UIViewController, UIColorPickerViewControllerDe
     */
 }
 
-extension CreateViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        self.view.backgroundColor = viewController.selectedColor
-    }
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        self.view.backgroundColor = viewController.selectedColor
-    }
-}
+//extension CreateViewController: UIColorPickerViewControllerDelegate {
+//    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+//        self.view.backgroundColor = viewController.selectedColor
+//    }
+//    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+//        self.view.backgroundColor = viewController.selectedColor
+//    }
+//}

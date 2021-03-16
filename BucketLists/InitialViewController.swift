@@ -60,6 +60,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         guard let cell = animatedCell else { return }
         //fix all animations

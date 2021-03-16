@@ -56,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zb-Dr-bNn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="306" y="171"/>
+            <point key="canvasLocation" x="328" y="171"/>
         </scene>
         <!--Color Picker View Controller-->
         <scene sceneID="wSY-EG-jNt">
@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cem-au-EkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1130" y="171"/>
+            <point key="canvasLocation" x="999" y="171"/>
         </scene>
     </scenes>
     <resources>
