@@ -2,9 +2,8 @@
 //  BucketList.swift
 //  BucketLists
 //
-//  Created by Chris Harding on 3/10/21.
+//  Created by Kaleb Page on 3/10/21.
 //
-
 import Foundation
 
 struct BucketList: Hashable {
