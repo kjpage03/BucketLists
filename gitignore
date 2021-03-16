@@ -5,6 +5,7 @@ Archive/
 BuildOutput/
 DerivedData/
 xcuserdata
+*.xcuserstate
 
 *DeveloperDefaults*
 .authentication
