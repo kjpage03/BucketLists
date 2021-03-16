@@ -112,7 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="e1U-zO-Ue9"/>
                     <connections>
-                        <outlet property="collectionView" destination="bA1-wA-cCT" id="uaa-6A-qW8"/>
+                        <outlet property="collectionView" destination="bA1-wA-cCT" id="o6Y-sl-r55"/>
                         <outlet property="newListButton" destination="M8h-vg-Xst" id="9nb-ps-HUd"/>
                         <outlet property="segmentedControl" destination="fu7-av-UNt" id="JPr-Lg-wuB"/>
                         <segue destination="lVx-UH-h5R" kind="show" identifier="CreateVC" id="VHB-Ta-KGg"/>
