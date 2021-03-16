@@ -43,7 +43,30 @@ class ListTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            switch(mySegmentedControl.selectedSegmentIndex)
+            {
+            case 0:
+                listCompleted.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                break
+            case 1:
+                bothList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                break
+            case 2:
+                list.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                break
+            default:
+                break
+            }
+            
+        } else if editingStyle == .insert {
+            
+        }
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnValue = 0
                 
