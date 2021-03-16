@@ -116,11 +116,22 @@
                         <outlet property="newListButton" destination="M8h-vg-Xst" id="9nb-ps-HUd"/>
                         <outlet property="segmentedControl" destination="fu7-av-UNt" id="JPr-Lg-wuB"/>
                         <segue destination="lVx-UH-h5R" kind="show" identifier="CreateVC" id="VHB-Ta-KGg"/>
+                        <segue destination="uZI-xW-ZpJ" kind="show" identifier="ListTableView" id="vly-XJ-y3A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmP-sg-aIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1080" y="58"/>
+        </scene>
+        <!--listtableview-->
+        <scene sceneID="F2P-wt-5fy">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ListTableView" storyboardName="ListTableView" referencedIdentifier="listtableview" id="uZI-xW-ZpJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="16z-33-8Rv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPO-gR-R0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="482"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="013-3b-3dt">

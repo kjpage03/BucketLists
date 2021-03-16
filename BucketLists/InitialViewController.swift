@@ -118,7 +118,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                     //segue to edit vc
                 } else {
                     //segue to list
-                    self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
+                    self.performSegue(withIdentifier: "ListTableView", sender: self.bucketLists[indexPath.row])
                 }
             }
         }
