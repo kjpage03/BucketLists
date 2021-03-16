@@ -84,7 +84,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="vkQ-mo-ZCT">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="7IV-cP-TMY"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="7IV-cP-TMY">
+                            <connections>
+                                <action selector="backButton:" destination="w3x-pE-jN5" id="S95-jJ-TXV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="60o-rb-rbq">
                             <imageReference key="image" image="plus.app" catalog="system" symbolScale="large"/>
                         </barButtonItem>
