@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List Table View Controller-->
+        <!--Title-->
         <scene sceneID="b4e-QV-cc2">
             <objects>
-                <tableViewController id="w3x-pE-jN5" customClass="ListTableViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="listtableview" id="w3x-pE-jN5" customClass="ListTableViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QaS-oB-eJ7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,16 +83,18 @@
                             <outlet property="delegate" destination="w3x-pE-jN5" id="Yer-OC-Olx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vkQ-mo-ZCT">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="7IV-cP-TMY">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="d5s-93-7dB">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="GeK-p9-Fj8">
                             <connections>
-                                <action selector="backButton:" destination="w3x-pE-jN5" id="S95-jJ-TXV"/>
+                                <action selector="backButton:" destination="w3x-pE-jN5" id="Yrq-RW-xcp"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="60o-rb-rbq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="yvj-F3-SbP">
                             <imageReference key="image" image="plus.app" catalog="system" symbolScale="large"/>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mySegmentedControl" destination="2pn-UF-VON" id="gmB-Y2-9a1"/>
                         <outlet property="totalLabel" destination="ZGd-5S-DCP" id="bYy-fd-qmG"/>
@@ -105,7 +107,8 @@
         <!--Navigation Controller-->
         <scene sceneID="QTh-G8-Tsj">
             <objects>
-                <navigationController storyboardIdentifier="ListTableView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zUm-0u-9cc" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTt-XP-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zUm-0u-9cc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FnU-aV-cf0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -116,7 +119,6 @@
                         <segue destination="w3x-pE-jN5" kind="relationship" relationship="rootViewController" id="9Le-dN-ysU"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lTt-XP-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </scene>

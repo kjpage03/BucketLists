@@ -35,6 +35,7 @@ class ListTableViewController: UITableViewController {
             bothList = defaultlist + defaultlistCompleted
             print(bothList)
         }
+        navigationController?.setNavigationBarHidden(false, animated: false)
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
 
@@ -172,6 +173,6 @@ class ListTableViewController: UITableViewController {
     */
     //present( UIStoryboard(name: "ListTableView", bundle: nil).instantiateViewController(withIdentifier: "ListTableView") as UIViewController, animated: true, completion: nil)
     @IBAction func backButton(_ sender: Any) {
-        present( UIStoryboard(name: "ListTableView", bundle: nil).instantiateViewController(withIdentifier: "ListTableView") as UIViewController, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

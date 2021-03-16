@@ -19,6 +19,12 @@
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
 		30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30F6576125F9350D00E30B46 /* ListTableView.storyboard */; };
 		30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6576625F9364C00E30B46 /* ListTableViewController.swift */; };
+		7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */; };
+		7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */; };
+		7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */; };
+		7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6588925F9342E00537BF4 /* CreateVC.storyboard */; };
+		7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */; };
+		7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589725FBB87700537BF4 /* CreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +60,15 @@
 		1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListsUITests.swift; sourceTree = "<group>"; };
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
+		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
+		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
 		309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		30F6576125F9350D00E30B46 /* ListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListTableView.storyboard; sourceTree = "<group>"; };
 		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		7CC6588925F9342E00537BF4 /* CreateVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateVC.storyboard; sourceTree = "<group>"; };
+		7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		7CC6589725FBB87700537BF4 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +122,13 @@
 				1E6818EA25F91CA6003FC155 /* AppDelegate.swift */,
 				1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */,
 				1E6818EE25F91CA6003FC155 /* ViewController.swift */,
+				7CC6588925F9342E00537BF4 /* CreateVC.storyboard */,
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
+				7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */,
+				7CC6589725FBB87700537BF4 /* CreateViewController.swift */,
+				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
+				1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */,
+				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
 				1E6818F025F91CA6003FC155 /* Main.storyboard */,
 				30F6576125F9350D00E30B46 /* ListTableView.storyboard */,
 				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
@@ -244,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E6818F725F91CA6003FC155 /* LaunchScreen.storyboard in Resources */,
+				7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */,
 				1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */,
 				30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */,
 				1E6818F225F91CA6003FC155 /* Main.storyboard in Resources */,
@@ -271,10 +290,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
+				7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */,
+				7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
+				7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */,
+				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
 				309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */,
 			);
