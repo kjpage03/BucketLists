@@ -16,25 +16,9 @@ class ListTableViewController: UITableViewController {
     var listCompleted : [Item] = []
     var bothList : [Item] = []
 
-    
-    let defaultlist = [
-        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date()),
-        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date())
-    ]
-    let defaultlistCompleted = [
-        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date()),
-        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date())
-    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testBucket = BucketList(owner: "John's list", items: list, color: "blue")
-        title = testBucket.owner
-        if list.isEmpty {
-            list = defaultlist
-            listCompleted = defaultlistCompleted
-            bothList = defaultlist + defaultlistCompleted
-            print(bothList)
-        }
+
         navigationController?.setNavigationBarHidden(false, animated: false)
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
@@ -102,7 +86,11 @@ class ListTableViewController: UITableViewController {
             break
         case 1:
             let bothlist = bothList[indexPath.row]
-            cell.update(with: bothlist, rowNumber: rowNumber, color: "white")
+            if bothlist.isComplete {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: "green")
+            } else {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: "white")
+            }
             break
             
         case 2:
