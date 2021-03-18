@@ -32,6 +32,8 @@ class ListTableViewCell: UITableViewCell {
         //backgroundColor = UIColor.green
         if color == "green" {
             backgroundColor = UIColor.green
+        } else {
+            backgroundColor = .white
         }
         
         let newformatter = DateFormatter()
