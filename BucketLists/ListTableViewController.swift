@@ -27,7 +27,7 @@ class ListTableViewController: UITableViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testBucket = BucketList(owner: "John's list", items: list, color: "blue")
+        let testBucket = BucketList(owner: "John's list", items: list, color: .blue)
         title = testBucket.owner
         if list.isEmpty {
             list = defaultlist

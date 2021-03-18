@@ -5,11 +5,11 @@
 //  Created by Kaleb Page on 3/10/21.
 //
 import Foundation
-
+import UIKit
 struct BucketList: Hashable {
     var owner: String
     var items: [Item]
-    var color: String
+    var color: UIColor
 }
 
 struct Group {

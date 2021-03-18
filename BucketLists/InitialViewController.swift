@@ -27,7 +27,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     
-    var bucketLists: [BucketList] = [BucketList(owner: "Kaleb's List", items: [], color: "Red"), BucketList(owner: "Chris's List", items: [], color: "Blue"), BucketList(owner: "Jake's List", items: [], color: "Green"), BucketList(owner: "New List", items: [], color: "")]
+    var bucketLists: [BucketList] = [BucketList(owner: "Kaleb's List", items: [], color: .red), BucketList(owner: "Chris's List", items: [], color: .blue), BucketList(owner: "Jake's List", items: [], color: .green), BucketList(owner: "New List", items: [], color: .white)]
     
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
     
@@ -138,15 +138,6 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         dataSource.apply(updatedSnapshot)
         
     }
-    
-    
-    @IBAction func newListTapped(_ sender: Any) {
-        
-        //segue to create new here
-        
-    }
-    
-    
     @IBAction func segmentControlChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0: editingSwitchIsOn = false
@@ -157,6 +148,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             break
         }
     }
+    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
+
+
+}
+
     
     /*
      // MARK: - Navigation
