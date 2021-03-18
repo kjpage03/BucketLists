@@ -18,12 +18,12 @@ class ListTableViewController: UITableViewController {
 
     
     let defaultlist = [
-        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date()),
-        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date())
+        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date(), isComplete: false),
+        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date(), isComplete: false)
     ]
     let defaultlistCompleted = [
-        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date()),
-        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date())
+        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date(), isComplete: true),
+        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date(), isComplete: true)
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +50,22 @@ class ListTableViewController: UITableViewController {
             {
             case 0:
                 listCompleted.remove(at: indexPath.row)
+                bothList = list + listCompleted
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case 1:
                 bothList.remove(at: indexPath.row)
+                let newUncompletedlist = bothList.filter { $0.isComplete == false}
+                list = newUncompletedlist
+                
+                let newCompletedList = bothList.filter { $0.isComplete == true}
+                listCompleted = newCompletedList
+                
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             case 2:
                 list.remove(at: indexPath.row)
+                bothList = list + listCompleted
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 break
             default:
@@ -172,7 +180,45 @@ class ListTableViewController: UITableViewController {
     }
     */
     //present( UIStoryboard(name: "ListTableView", bundle: nil).instantiateViewController(withIdentifier: "ListTableView") as UIViewController, animated: true, completion: nil)
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        guard segue.identifier == "doneUnwind",
+        let sourceViewController = segue.source as?
+        AddListTableViewController,
+        let item = sourceViewController.item else {return}
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow
+        {
+            list[selectedIndexPath.row] = item
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+        } else {
+            let newIndexPath = IndexPath(row: list.count, section: 0)
+            list.append(item)
+            bothList = list + listCompleted
+            switch(mySegmentedControl.selectedSegmentIndex)
+            {
+            case 0:
+                
+                break
+            case 1:
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                break
+                
+            case 2:
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                break
+                
+            default:
+                break
+            }
+        }
+    }
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func newListButton(_ sender: Any) {
+        if let selectedRow = tableView.indexPathsForSelectedRows {
+            tableView.deselectRow(at: selectedRow[0], animated: false)
+        }
+        present( UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
 }

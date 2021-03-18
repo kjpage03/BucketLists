@@ -21,4 +21,5 @@ struct Item: Hashable {
     var description: String
     var location: String?
     var goalDate: Date
+    var isComplete: Bool
 }
