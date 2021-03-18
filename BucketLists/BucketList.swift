@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 
+
 struct BucketList: Hashable, Codable {
     
     var owner: String

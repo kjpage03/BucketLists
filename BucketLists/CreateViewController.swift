@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateViewController: UIViewController {
-
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bucketListItemImage: UIImageView!
     @IBOutlet weak var colorButton: UIButton!
@@ -22,12 +22,25 @@ class CreateViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
+        guard let name = nameTextField.text else { return }
+        guard let color = view.backgroundColor else { return }
+      
     }
     
     @IBAction func colorPickerButtonPressed(_ sender: UIButton) {
         print("Picking Color")
-//        performSegue(withIdentifier: "colorPIckerSegue", sender: nil)
         changeColor()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let LandingVC = segue.destination as? InitialViewController else { return }
+        guard let color = view.backgroundColor else { return }
+        if let name = nameTextField.text {
+            let bucketList: BucketList = BucketList(owner: name, items: [], color: Color(uiColor: color))
+            LandingVC.bucketLists.append(bucketList)
+            LandingVC.dataSource.apply(LandingVC.updatedSnapshot)
+           
+        }
+       
     }
     
     func changeColor() {

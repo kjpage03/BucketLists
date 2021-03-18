@@ -100,8 +100,7 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="New List +"/>
                                                 <connections>
-                                                    <action selector="newListTapped:" destination="P6U-Vt-NJf" eventType="touchUpInside" id="aGS-GW-FAt"/>
-                                                    <segue destination="xsk-Mu-B7e" kind="show" id="QYq-Al-Tff"/>
+                                                    <segue destination="xsk-Mu-B7e" kind="show" id="DZC-Bh-d7i"/>
                                                 </connections>
                                             </button>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-av-UNt">
@@ -198,7 +197,7 @@
                                 <rect key="frame" x="145" y="481" width="124" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="124" id="E6S-75-DtZ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="124" id="E6S-75-DtZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -210,26 +209,43 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket" translatesAutoresizingMaskIntoConstraints="NO" id="6LN-zg-GmU">
                                 <rect key="frame" x="91" y="206" width="232" height="217"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbH-Oq-6ua">
+                                <rect key="frame" x="145" y="588" width="124" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aHn-C1-QNi" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="zvP-TT-g9c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rwo-pa-yqk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="UbH-Oq-6ua" secondAttribute="trailing" constant="145" id="401-07-mdq"/>
                             <constraint firstItem="btf-Id-Qq9" firstAttribute="top" secondItem="6LN-zg-GmU" secondAttribute="bottom" constant="58" id="7Uk-V6-hK2"/>
                             <constraint firstItem="btf-Id-Qq9" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="8XS-KB-SzK"/>
+                            <constraint firstItem="Rwo-pa-yqk" firstAttribute="bottom" secondItem="UbH-Oq-6ua" secondAttribute="bottom" constant="244" id="NfO-1Q-RyD"/>
+                            <constraint firstItem="UbH-Oq-6ua" firstAttribute="top" secondItem="btf-Id-Qq9" secondAttribute="bottom" constant="77" id="ZN9-rq-PTv"/>
                             <constraint firstItem="6LN-zg-GmU" firstAttribute="top" secondItem="EpM-uO-NnK" secondAttribute="bottom" constant="45" id="azB-Yx-MN9"/>
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="EpM-uO-NnK" secondAttribute="trailing" constant="14" id="doY-wC-Qgp"/>
                             <constraint firstItem="EpM-uO-NnK" firstAttribute="top" secondItem="Rwo-pa-yqk" secondAttribute="top" constant="39" id="rgE-hq-yKU"/>
+                            <constraint firstItem="UbH-Oq-6ua" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="145" id="sAD-j5-oHa"/>
                             <constraint firstItem="6LN-zg-GmU" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="wB8-OW-I3b"/>
                             <constraint firstItem="EpM-uO-NnK" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="14" id="wuW-wk-lfE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New List" id="12u-VI-Fp0"/>
                     <connections>
+                        <outlet property="bucketListItemImage" destination="6LN-zg-GmU" id="R2i-HQ-f5N"/>
                         <outlet property="colorButton" destination="btf-Id-Qq9" id="5dP-gl-XGD"/>
                         <outlet property="nameTextField" destination="EpM-uO-NnK" id="b59-6M-iT8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itf-53-RIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="aHn-C1-QNi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1888" y="385"/>
         </scene>

@@ -28,7 +28,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     
+
     var bucketLists: [BucketList] = BucketList.testBucketLists
+
     
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
     
@@ -148,15 +150,6 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         dataSource.apply(updatedSnapshot)
         
     }
-    
-    
-    @IBAction func newListTapped(_ sender: Any) {
-        
-        //segue to create new here
-        
-    }
-    
-    
     @IBAction func segmentControlChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0: editingSwitchIsOn = false
@@ -167,6 +160,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             break
         }
     }
+    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
+
+
+}
+
     
 //      MARK: - Navigation
      

@@ -18,7 +18,6 @@ class ListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.setNavigationBarHidden(false, animated: false)
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
