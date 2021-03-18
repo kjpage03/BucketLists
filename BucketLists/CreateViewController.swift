@@ -35,7 +35,7 @@ class CreateViewController: UIViewController {
         guard let LandingVC = segue.destination as? InitialViewController else { return }
         guard let color = view.backgroundColor else { return }
         if let name = nameTextField.text {
-            let bucketList: BucketList = BucketList(owner: name, items: [], color: color)
+            let bucketList: BucketList = BucketList(owner: name, items: [], color: Color(uiColor: color))
             LandingVC.bucketLists.append(bucketList)
             LandingVC.dataSource.apply(LandingVC.updatedSnapshot)
            

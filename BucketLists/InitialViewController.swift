@@ -14,6 +14,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         case leftnright
     }
     
+    @IBOutlet weak var bucketListLabel: UILabel!
     @IBOutlet weak var newListButton: UIButton!
     //    @IBOutlet weak var scrollLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -27,10 +28,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     
-    var bucketLists: [BucketList] = [BucketList(owner: "Kaleb's List", items: [], color: .red), BucketList(owner: "Chris's List", items: [], color: .blue), BucketList(owner: "Jake's List", items: [], color: .green), BucketList(owner: "New List", items: [], color: .white)]
+
+    var bucketLists: [BucketList] = BucketList.testBucketLists
+
     
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
-    
     
     @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
     
@@ -45,20 +47,24 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     var editingSwitchIsOn: Bool = false
     var animatedCell: BucketCollectionViewCell?
+    var selectedItem: BucketList?
     
+    let dataController = DataController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        bucketLists = dataController.retrieveData()
+        
         newListButton.layer.cornerRadius = 4
         createDataSource()
         collectionView.collectionViewLayout = generateNewLayout()
         collectionView.delegate = self
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
         //        scrollLabel.text = "\(1)/\(bucketLists.count)"
         // Do any additional setup after loading the view.
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -70,6 +76,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.transform = CGAffineTransform.identity
         cell.imageView.transform = CGAffineTransform.identity
         cell.ownerLabel.isHidden = false
+        self.newListButton.isHidden = false
+        self.segmentedControl.isHidden = false
     }
     
     //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -85,9 +93,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     
     func generateNewLayout() -> UICollectionViewCompositionalLayout {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(308)))
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(308)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)), subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         
@@ -108,7 +116,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         let cell = collectionView.cellForItem(at: indexPath) as! BucketCollectionViewCell
         animatedCell = cell
         self.view.bringSubviewToFront(collectionView)
+        self.newListButton.isHidden = true
+        self.segmentedControl.isHidden = true
         cell.ownerLabel.isHidden = true
+        
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             cell.imageView.transform = rotateTransform
@@ -122,6 +133,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                     //segue to edit vc
                 } else {
                     //segue to list
+                    self.selectedItem = self.bucketLists[indexPath.row]
                     self.performSegue(withIdentifier: "ListTableView", sender: self.bucketLists[indexPath.row])
                 }
             }
@@ -154,14 +166,20 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
 }
 
     
-    /*
-     // MARK: - Navigation
+//      MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
+            listViewController.title = list.owner
+            for item in list.items {
+                if item.isComplete {
+                    listViewController.listCompleted.append(item)
+                } else {
+                    listViewController.list.append(item)
+                }
+                listViewController.bothList.append(item)
+            }
+        }
      }
-     */
     
 }
