@@ -41,6 +41,7 @@ struct Item: Hashable, Codable {
     var location: String?
     var goalDate: Date
     var isComplete: Bool
+
 }
 
 struct Color : Codable, Hashable {

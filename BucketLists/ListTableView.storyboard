@@ -92,6 +92,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="yvj-F3-SbP">
                             <imageReference key="image" image="plus.app" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="newListButton:" destination="w3x-pE-jN5" id="Eh2-P1-GRR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
