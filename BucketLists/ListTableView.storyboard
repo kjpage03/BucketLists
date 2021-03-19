@@ -20,28 +20,28 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZGd-5S-DCP">
-                                    <rect key="frame" x="0.0" y="2" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="2pn-UF-VON">
+                                    <rect key="frame" x="0.0" y="8" width="414" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Completed"/>
+                                        <segment title="Both"/>
+                                        <segment title="Uncompleted"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="segmentedControlAction:" destination="w3x-pE-jN5" eventType="valueChanged" id="Jkr-Dg-vLK"/>
+                                    </connections>
+                                </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="2pn-UF-VON">
-                            <rect key="frame" x="0.0" y="148" width="414" height="32"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Completed"/>
-                                <segment title="Both"/>
-                                <segment title="Uncompleted"/>
-                            </segments>
-                            <connections>
-                                <action selector="segmentedControlAction:" destination="w3x-pE-jN5" eventType="valueChanged" id="Jkr-Dg-vLK"/>
-                            </connections>
-                        </segmentedControl>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZGd-5S-DCP">
+                            <rect key="frame" x="0.0" y="148" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="44" id="gvs-Yi-BBw" customClass="ListTableViewCell" customModule="BucketLists" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="76" width="414" height="44"/>
@@ -110,7 +110,6 @@
         <!--Navigation Controller-->
         <scene sceneID="QTh-G8-Tsj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lTt-XP-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zUm-0u-9cc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FnU-aV-cf0">
@@ -122,6 +121,7 @@
                         <segue destination="w3x-pE-jN5" kind="relationship" relationship="rootViewController" id="9Le-dN-ysU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTt-XP-gyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </scene>
