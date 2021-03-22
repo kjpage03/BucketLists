@@ -87,24 +87,23 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ju1-Cy-stE">
-                                        <rect key="frame" x="145" y="643" width="124" height="91"/>
+                                        <rect key="frame" x="154.5" y="643" width="105" height="91"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-vg-Xst">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="105" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="9LD-7D-HWT"/>
-                                                    <constraint firstAttribute="width" constant="124" id="WYR-Ic-LCS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="New List +"/>
                                                 <connections>
-                                                    <segue destination="xsk-Mu-B7e" kind="show" id="DZC-Bh-d7i"/>
+                                                    <segue destination="xsk-Mu-B7e" kind="show" identifier="CreateVC" id="DZC-Bh-d7i"/>
                                                 </connections>
                                             </button>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-av-UNt">
-                                                <rect key="frame" x="0.0" y="60" width="124" height="32"/>
+                                                <rect key="frame" x="0.0" y="60" width="105" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="l6W-HN-aYs"/>
                                                 </constraints>
@@ -220,6 +219,15 @@
                                     <segue destination="aHn-C1-QNi" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="zvP-TT-g9c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDN-ab-jlP">
+                                <rect key="frame" x="145" y="662" width="124" height="30"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="xsk-Mu-B7e" eventType="touchUpInside" id="CK0-WW-c1J"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rwo-pa-yqk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -227,10 +235,14 @@
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="UbH-Oq-6ua" secondAttribute="trailing" constant="145" id="401-07-mdq"/>
                             <constraint firstItem="btf-Id-Qq9" firstAttribute="top" secondItem="6LN-zg-GmU" secondAttribute="bottom" constant="58" id="7Uk-V6-hK2"/>
                             <constraint firstItem="btf-Id-Qq9" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="8XS-KB-SzK"/>
+                            <constraint firstItem="oDN-ab-jlP" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="145" id="Bp6-G2-wOi"/>
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="bottom" secondItem="UbH-Oq-6ua" secondAttribute="bottom" constant="244" id="NfO-1Q-RyD"/>
+                            <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="oDN-ab-jlP" secondAttribute="trailing" constant="145" id="PbY-8f-wCW"/>
                             <constraint firstItem="UbH-Oq-6ua" firstAttribute="top" secondItem="btf-Id-Qq9" secondAttribute="bottom" constant="77" id="ZN9-rq-PTv"/>
                             <constraint firstItem="6LN-zg-GmU" firstAttribute="top" secondItem="EpM-uO-NnK" secondAttribute="bottom" constant="45" id="azB-Yx-MN9"/>
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="EpM-uO-NnK" secondAttribute="trailing" constant="14" id="doY-wC-Qgp"/>
+                            <constraint firstItem="oDN-ab-jlP" firstAttribute="top" secondItem="UbH-Oq-6ua" secondAttribute="bottom" constant="44" id="eqJ-IZ-Pe1"/>
+                            <constraint firstItem="Rwo-pa-yqk" firstAttribute="bottom" secondItem="oDN-ab-jlP" secondAttribute="bottom" constant="170" id="kFb-XB-Chx"/>
                             <constraint firstItem="EpM-uO-NnK" firstAttribute="top" secondItem="Rwo-pa-yqk" secondAttribute="top" constant="39" id="rgE-hq-yKU"/>
                             <constraint firstItem="UbH-Oq-6ua" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="145" id="sAD-j5-oHa"/>
                             <constraint firstItem="6LN-zg-GmU" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="wB8-OW-I3b"/>
@@ -257,6 +269,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

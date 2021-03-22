@@ -17,8 +17,12 @@ struct DataController {
         let archiveURL = documentsDirectory.appendingPathComponent(DataController.pathName).appendingPathExtension("plist")
         
         let propertyListEncoder = PropertyListEncoder()
-        let encodedLists = try? propertyListEncoder.encode(lists)
-        try? encodedLists?.write(to: archiveURL, options: .noFileProtection)
+        do {
+        let encodedLists = try propertyListEncoder.encode(lists)
+        try encodedLists.write(to: archiveURL, options: .noFileProtection)
+        } catch {
+            print("Error saving data")
+        }
     }
     
     func retrieveData() -> [BucketList] {
@@ -26,14 +30,16 @@ struct DataController {
         let archiveURL = documentsDirectory.appendingPathComponent(DataController.pathName).appendingPathExtension("plist")
         
         let propertyListDecoder = PropertyListDecoder()
-        
-        if let retrievedListData = try? Data(contentsOf: archiveURL), let decodedLists = try? propertyListDecoder.decode([BucketList].self, from: retrievedListData) {
+        do {
+        let retrievedListData = try Data(contentsOf: archiveURL)
+            let decodedLists = try propertyListDecoder.decode([BucketList].self, from: retrievedListData)
+            
             print(decodedLists)
             return decodedLists
-        } else {
+        } catch {
+            print("Error saving data")
             return []
         }
-        
     }
     
 }

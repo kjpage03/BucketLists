@@ -13,6 +13,7 @@ struct BucketList: Hashable, Codable {
     var owner: String
     var items: [Item]
     var color: Color
+    var id = UUID()
     
     static var testBucketLists = [BucketList(owner: "Kaleb's List", items: [
        

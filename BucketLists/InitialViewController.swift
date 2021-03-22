@@ -28,9 +28,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     
-
+    
     var bucketLists: [BucketList] = BucketList.testBucketLists
-
+    
     
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
     
@@ -54,8 +54,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        bucketLists = dataController.retrieveData()
-        
+        //        bucketLists = dataController.retrieveData()
+      
         newListButton.layer.cornerRadius = 4
         createDataSource()
         collectionView.collectionViewLayout = generateNewLayout()
@@ -131,6 +131,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             } completion: { (_) in
                 if self.editingSwitchIsOn {
                     //segue to edit vc
+                    self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
                 } else {
                     //segue to list
                     self.selectedItem = self.bucketLists[indexPath.row]
@@ -161,14 +162,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
-
-
-}
-
+    }
+    //      MARK: - Navigation
     
-//      MARK: - Navigation
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
             for item in list.items {
@@ -180,6 +177,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 listViewController.bothList.append(item)
             }
         }
-     }
+        if let createViewController = segue.destination as? CreateViewController, let list = selectedItem {
+            createViewController.bucketList = list
+        }
+    }
+    
+    
     
 }

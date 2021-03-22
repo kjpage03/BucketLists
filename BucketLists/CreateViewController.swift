@@ -12,7 +12,11 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bucketListItemImage: UIImageView!
     @IBOutlet weak var colorButton: UIButton!
+    let dataController = DataController()
     
+    
+    var bucketList: BucketList?
+    var indexOfList: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +28,12 @@ class CreateViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         guard let name = nameTextField.text else { return }
         guard let color = view.backgroundColor else { return }
-      
+        
+        
     }
     
+    @IBAction func nameBarButtonPressed(_ sender: UIBarButtonItem) {
+    }
     @IBAction func colorPickerButtonPressed(_ sender: UIButton) {
         print("Picking Color")
         changeColor()
@@ -38,6 +45,7 @@ class CreateViewController: UIViewController {
             let bucketList: BucketList = BucketList(owner: name, items: [], color: Color(uiColor: color))
             LandingVC.bucketLists.append(bucketList)
             LandingVC.dataSource.apply(LandingVC.updatedSnapshot)
+            dataController.saveData(lists: LandingVC.bucketLists)
            
         }
        
@@ -48,6 +56,20 @@ class CreateViewController: UIViewController {
         picker.selectedColor = self.view.backgroundColor!
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
+    }
+    func deleteItem(at indexPaths: IndexPath) {
+       
+        
+    }
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        var bucketLists = dataController.retrieveData()
+        
+        for (index, list) in bucketLists.enumerated() {
+            if list.id == bucketList!.id {
+                bucketLists.remove(at: index)
+            }
+        }
+        dataController.saveData(lists: bucketLists)
     }
     
     
