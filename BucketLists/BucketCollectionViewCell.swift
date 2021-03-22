@@ -11,10 +11,14 @@ class BucketCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var fill: UIView!
     //    @IBOutlet weak var imageView: UIButton!
     
-    func configure(label: String) {
+    func configure(label: String, percentage: Double, color: UIColor) {
         ownerLabel.text = label
+        fill.backgroundColor = color
+        
+//        fillHeight.constant = fillHeight.constant*CGFloat(percentage)
     }
     
 }

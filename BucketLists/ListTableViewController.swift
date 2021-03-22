@@ -15,11 +15,13 @@ class ListTableViewController: UITableViewController {
     var list : [Item] = []
     var listCompleted : [Item] = []
     var bothList : [Item] = []
+    var color: UIColor = UIColor()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
+        mySegmentedControl.selectedSegmentIndex = 1
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
 
@@ -90,20 +92,20 @@ class ListTableViewController: UITableViewController {
         {
         case 0:
             let completedlist = listCompleted[indexPath.row]
-            cell.update(with: completedlist, rowNumber: rowNumber, color: "green")
+            cell.update(with: completedlist, rowNumber: rowNumber, color: color)
             break
         case 1:
             let bothlist = bothList[indexPath.row]
             if bothlist.isComplete {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: "green")
+                cell.update(with: bothlist, rowNumber: rowNumber, color: color)
             } else {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: "white")
+                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
             }
             break
             
         case 2:
             let newlist = list[indexPath.row]
-            cell.update(with: newlist, rowNumber: rowNumber, color: "white")
+            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
             break
             
         default:
