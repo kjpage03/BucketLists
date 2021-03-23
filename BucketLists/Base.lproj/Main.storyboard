@@ -60,7 +60,7 @@
                                                             <rect key="frame" x="20" y="15" width="239" height="209"/>
                                                             <color key="backgroundColor" systemColor="systemTealColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="cfx-jH-zyw" secondAttribute="height" multiplier="8:7" id="Qo8-2z-RKo"/>
+                                                                <constraint firstAttribute="width" secondItem="cfx-jH-zyw" secondAttribute="height" multiplier="8:7" id="VFB-S9-e3k"/>
                                                             </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="46Y-YM-GU2">
@@ -77,8 +77,8 @@
                                                         <constraint firstAttribute="trailing" secondItem="46Y-YM-GU2" secondAttribute="trailing" constant="20" id="Syr-Ii-D5A"/>
                                                         <constraint firstAttribute="trailing" secondItem="IwD-Fw-9k4" secondAttribute="trailing" id="UPE-mz-L1R"/>
                                                         <constraint firstItem="IwD-Fw-9k4" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" id="WG9-XE-2jt"/>
+                                                        <constraint firstItem="cfx-jH-zyw" firstAttribute="height" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="0.874477" id="XiD-13-mYc"/>
                                                         <constraint firstItem="cfx-jH-zyw" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" constant="20" id="pzi-Vm-d3V"/>
-                                                        <constraint firstItem="cfx-jH-zyw" firstAttribute="height" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="0.874477" id="r0u-ly-bvJ"/>
                                                         <constraint firstItem="46Y-YM-GU2" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" constant="20" id="rod-c0-S2x"/>
                                                         <constraint firstAttribute="bottom" secondItem="IwD-Fw-9k4" secondAttribute="bottom" id="ru2-Ws-Iqn"/>
                                                         <constraint firstItem="IwD-Fw-9k4" firstAttribute="top" secondItem="46Y-YM-GU2" secondAttribute="bottom" id="vxl-gQ-htl"/>
@@ -88,6 +88,8 @@
                                                 <size key="customSize" width="279" height="308"/>
                                                 <connections>
                                                     <outlet property="fill" destination="cfx-jH-zyw" id="9VG-gf-5aX"/>
+                                                    <outlet property="fillHeight" destination="VFB-S9-e3k" id="p8H-US-Hyd"/>
+                                                    <outlet property="height" destination="XiD-13-mYc" id="lsv-Hs-5c7"/>
                                                     <outlet property="imageView" destination="46Y-YM-GU2" id="e6J-cX-2zk"/>
                                                     <outlet property="ownerLabel" destination="IwD-Fw-9k4" id="r7H-PR-4BQ"/>
                                                 </connections>
@@ -255,7 +257,6 @@
                                 </state>
                                 <connections>
                                     <action selector="deleteButtonTapped:" destination="xsk-Mu-B7e" eventType="touchUpInside" id="khu-sC-Ed4"/>
-                                    <segue destination="aHn-C1-QNi" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="BRL-NK-kSZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -286,12 +287,13 @@
                         <outlet property="doneButton" destination="UbH-Oq-6ua" id="FOD-fZ-Zwq"/>
                         <outlet property="fill" destination="IRY-EL-2m7" id="3cN-af-YPh"/>
                         <outlet property="nameTextField" destination="EpM-uO-NnK" id="b59-6M-iT8"/>
+                        <segue destination="aHn-C1-QNi" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindFromDeleteWithUnwindSegue:" id="tA6-ds-H2i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itf-53-RIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aHn-C1-QNi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1886.9565217391305" y="384.375"/>
+            <point key="canvasLocation" x="1877" y="384"/>
         </scene>
     </scenes>
     <resources>

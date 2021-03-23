@@ -27,19 +27,6 @@ struct BucketList: Hashable, Codable {
 //            * 100
     }
     
-//    func getPercentage(items: [Item]) -> Double {
-//        var completedItems: [Item] = []
-//
-//        items.forEach { (item) in
-//            if item.isComplete {
-//                completedItems.append(item)
-//            }
-//        }
-//        let decimalPercent = Double(completedItems.count) / Double(items.count)
-//        print(decimalPercent)
-//        return decimalPercent * 100
-//    }
-    
     static var testBucketLists = [BucketList(owner: "Kaleb's List", items: [
        
         Item(name: "Go to Canada", description: "See a hockey game, try some syrup, and ride a moose", location: nil, goalDate: Date(), isComplete: false),
