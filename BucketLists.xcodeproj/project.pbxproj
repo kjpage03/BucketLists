@@ -17,6 +17,8 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
+		308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A10882604E83600B6BBDF /* DetailListTableView.storyboard */; };
+		308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A10902604E93000B6BBDF /* DetailListTableViewController.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
 		30EA90ED26023FF200D6BF1D /* AddListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */; };
 		30EA90F22602405800D6BF1D /* AddListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EA90F12602405800D6BF1D /* AddListTableViewController.swift */; };
@@ -67,6 +69,8 @@
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
+		308A10882604E83600B6BBDF /* DetailListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListTableView.storyboard; sourceTree = "<group>"; };
+		308A10902604E93000B6BBDF /* DetailListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListTableViewController.swift; sourceTree = "<group>"; };
 		309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddListTableView.storyboard; sourceTree = "<group>"; };
 		30EA90F12602405800D6BF1D /* AddListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListTableViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
 				30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */,
 				30EA90F12602405800D6BF1D /* AddListTableViewController.swift */,
+				308A10882604E83600B6BBDF /* DetailListTableView.storyboard */,
+				308A10902604E93000B6BBDF /* DetailListTableViewController.swift */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
 				1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
@@ -273,6 +279,7 @@
 				1E6818F725F91CA6003FC155 /* LaunchScreen.storyboard in Resources */,
 				7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */,
 				30EA90ED26023FF200D6BF1D /* AddListTableView.storyboard in Resources */,
+				308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */,
 				1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */,
 				30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */,
 				1E6818F225F91CA6003FC155 /* Main.storyboard in Resources */,
@@ -302,6 +309,7 @@
 			files = (
 				7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */,
 				1E6D1B66260395C500D5427F /* DataController.swift in Sources */,
+				308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
 				30EA90F22602405800D6BF1D /* AddListTableViewController.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
