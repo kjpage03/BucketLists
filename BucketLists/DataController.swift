@@ -28,7 +28,7 @@ struct DataController {
         let propertyListDecoder = PropertyListDecoder()
         
         if let retrievedListData = try? Data(contentsOf: archiveURL), let decodedLists = try? propertyListDecoder.decode([BucketList].self, from: retrievedListData) {
-            print(decodedLists)
+//            print(decodedLists)
             return decodedLists
         } else {
             return []

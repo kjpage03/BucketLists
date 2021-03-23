@@ -9,11 +9,6 @@ import UIKit
 
 class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrollViewDelegate {
     
-    enum scrollDirection {
-        case upndown
-        case leftnright
-    }
-    
     @IBOutlet weak var bucketListLabel: UILabel!
     @IBOutlet weak var newListButton: UIButton!
     //    @IBOutlet weak var scrollLabel: UILabel!
@@ -47,7 +42,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        bucketLists = dataController.retrieveData()
+        //        bucketLists = dataController.retrieveData()
         
         newListButton.layer.cornerRadius = 4
         createDataSource()
@@ -121,7 +116,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
-            cell.imageView.transform = rotateTransform
+            collectionView.transform = rotateTransform
+            //            cell.imageView.transform = rotateTransform
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {
@@ -165,16 +161,20 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
         
-
+        
     }
-
+    
+    @IBAction func unwindFromDelete(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
     @IBAction func newListButtonTapped(_ sender: Any) {
         newListButtonWasTapped = true
     }
     
-//      MARK: - Navigation
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //      MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
             listViewController.color = list.color.uiColor
@@ -189,8 +189,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         } else  {
             if let createViewController = segue.destination as? CreateViewController, let list = selectedItem {
                 if newListButtonWasTapped {
-                        createViewController.title = "New List"
-                        createViewController.deleteButtonIsHidden = true
+                    createViewController.title = "New List"
+                    createViewController.deleteButtonIsHidden = true
                 } else {
                     createViewController.title = "Edit List"
                     createViewController.bucketList = list
@@ -199,5 +199,5 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 }
             }
         }
-     }
+    }
 }
