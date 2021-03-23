@@ -88,7 +88,29 @@ class ListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.row + 1
         
-        
+        switch(mySegmentedControl.selectedSegmentIndex)
+        {
+        case 0:
+            let completedlist = listCompleted[indexPath.row]
+            cell.update(with: completedlist, rowNumber: rowNumber, color: color)
+            break
+        case 1:
+            let bothlist = bothList[indexPath.row]
+            if bothlist.isComplete {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: color)
+            } else {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+            }
+            break
+            
+        case 2:
+            let newlist = list[indexPath.row]
+            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+            break
+            
+        default:
+            break
+        }
         cell.showsReorderControl = true
 
         return cell
