@@ -22,7 +22,7 @@ class ListTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
         mySegmentedControl.selectedSegmentIndex = 1
-        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
+        updateTotalLabel()
     }
 
     // MARK: - Table view data source
@@ -247,6 +247,7 @@ class ListTableViewController: UITableViewController {
             default:
                 break
             }
+            tableView.reloadData()
             updateTotalLabel()
         }
     }
