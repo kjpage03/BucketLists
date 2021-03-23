@@ -21,8 +21,12 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
+<<<<<<< HEAD
+        updateTotalLabel()
+=======
         mySegmentedControl.selectedSegmentIndex = 1
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
+>>>>>>> fd5ecfa2c4b997ea4465955a94d50566650dd7da
     }
 
     // MARK: - Table view data source

@@ -18,20 +18,13 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     @IBOutlet weak var newListButton: UIButton!
     //    @IBOutlet weak var scrollLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    var scrollingBehavior = scrollDirection.leftnright {
-        didSet {
-            if scrollingBehavior == .leftnright {
-                //scrolls left and right
-            } else {
-                //scrolls up and down
-            }
-        }
-    }
     
-
-    var bucketLists: [BucketList] = BucketList.testBucketLists
-
+    var newListButtonWasTapped: Bool = false
     
+    var bucketLists: [BucketList] = []
+    var indexOfSelectedRow: Int = 0
+    
+    @IBOutlet weak var stackView: UIStackView!
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
     
     @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
@@ -68,6 +61,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
+        newListButtonWasTapped = false
+        
+        bucketLists = dataController.retrieveData()
+        dataSource.apply(updatedSnapshot)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -115,10 +112,12 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         print("Cell \(indexPath.row) was selected.")
         let cell = collectionView.cellForItem(at: indexPath) as! BucketCollectionViewCell
         animatedCell = cell
+        self.view.sendSubviewToBack(stackView)
         self.view.bringSubviewToFront(collectionView)
         self.newListButton.isHidden = true
         self.segmentedControl.isHidden = true
         cell.ownerLabel.isHidden = true
+        self.selectedItem = self.bucketLists[indexPath.row]
         
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
@@ -131,9 +130,12 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             } completion: { (_) in
                 if self.editingSwitchIsOn {
                     //segue to edit vc
+                    self.indexOfSelectedRow = indexPath.row
+                    
+                    self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
+                    
                 } else {
                     //segue to list
-                    self.selectedItem = self.bucketLists[indexPath.row]
                     self.performSegue(withIdentifier: "ListTableView", sender: self.bucketLists[indexPath.row])
                 }
             }
@@ -143,7 +145,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
-            cell.configure(label: bucketList.owner)
+            cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
             cell.layoutIfNeeded()
             return cell
         })
@@ -160,17 +162,22 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             break
         }
     }
+    
     @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
+        
 
+    }
 
-}
-
+    @IBAction func newListButtonTapped(_ sender: Any) {
+        newListButtonWasTapped = true
+    }
     
 //      MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
+            listViewController.color = list.color.uiColor
             for item in list.items {
                 if item.isComplete {
                     listViewController.listCompleted.append(item)
@@ -179,7 +186,18 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 }
                 listViewController.bothList.append(item)
             }
+        } else  {
+            if let createViewController = segue.destination as? CreateViewController, let list = selectedItem {
+                if newListButtonWasTapped {
+                        createViewController.title = "New List"
+                        createViewController.deleteButtonIsHidden = true
+                } else {
+                    createViewController.title = "Edit List"
+                    createViewController.bucketList = list
+                    createViewController.deleteButtonIsHidden = false
+                    createViewController.indexInArray = indexOfSelectedRow
+                }
+            }
         }
      }
-    
 }
