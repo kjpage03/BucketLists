@@ -142,7 +142,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
             cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
-            cell.layoutIfNeeded()
+//            cell.layoutIfNeeded()
             return cell
         })
         dataSource.apply(updatedSnapshot)

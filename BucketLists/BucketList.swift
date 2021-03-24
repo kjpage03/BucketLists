@@ -15,7 +15,7 @@ struct BucketList: Hashable, Codable {
     var color: Color
     var percentCompleted: Double {
         var completedItems: [Item] = []
-        
+
         items.forEach { (item) in
             if item.isComplete {
                 completedItems.append(item)
@@ -24,7 +24,6 @@ struct BucketList: Hashable, Codable {
         let decimalPercent = Double(completedItems.count) / Double(items.count)
         print(decimalPercent)
         return decimalPercent
-//            * 100
     }
     
     static var testBucketLists = [BucketList(owner: "Kaleb's List", items: [
