@@ -8,25 +8,23 @@
 import UIKit
 
 class ListTableViewController: UITableViewController {
-    
+
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     var bucket : [BucketList] = []
     var list : [Item] = []
     var listCompleted : [Item] = []
     var bothList : [Item] = []
-    var color: UIColor = UIColor()
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
-        mySegmentedControl.selectedSegmentIndex = 1
-        updateTotalLabel()
+        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -57,33 +55,33 @@ class ListTableViewController: UITableViewController {
             default:
                 break
             }
-            updateTotalLabel()
+            
         } else if editingStyle == .insert {
             
         }
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnValue = 0
-        
-        switch(mySegmentedControl.selectedSegmentIndex)
-        {
-        case 0:
-            returnValue = listCompleted.count
-            break
-        case 1:
-            returnValue = bothList.count
-            break
-            
-        case 2:
-            returnValue = list.count
-            break
-            
-        default:
-            break
-        }
-        return returnValue
+                
+                switch(mySegmentedControl.selectedSegmentIndex)
+                {
+                case 0:
+                    returnValue = listCompleted.count
+                    break
+                case 1:
+                    returnValue = bothList.count
+                    break
+                    
+                case 2:
+                    returnValue = list.count
+                    break
+                    
+                default:
+                    break
+                }
+                return returnValue
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.row + 1
@@ -92,47 +90,39 @@ class ListTableViewController: UITableViewController {
         {
         case 0:
             let completedlist = listCompleted[indexPath.row]
-            cell.update(with: completedlist, rowNumber: rowNumber, color: color)
+            cell.update(with: completedlist, rowNumber: rowNumber, color: "green")
             break
         case 1:
             let bothlist = bothList[indexPath.row]
             if bothlist.isComplete {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: color)
+                cell.update(with: bothlist, rowNumber: rowNumber, color: "green")
             } else {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+                cell.update(with: bothlist, rowNumber: rowNumber, color: "white")
             }
             break
             
         case 2:
             let newlist = list[indexPath.row]
-            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+            cell.update(with: newlist, rowNumber: rowNumber, color: "white")
             break
             
         default:
             break
         }
         cell.showsReorderControl = true
-        
+
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+            return 0
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0;//Choose your custom row height
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        present( UIStoryboard(name: "DetailListTableView", bundle: nil).instantiateViewController(withIdentifier: "detailListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
     @IBAction func segmentedControlAction(_ sender: Any) {
         tableView.reloadData()
     }
     
-    
-    func updateTotalLabel() {
-        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -168,62 +158,21 @@ class ListTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-        if let indexPath = tableView.indexPathForSelectedRow {
-        let item = list[indexPath.row]
-        let navController = segue.destination as! UINavigationController
-        let detailTableViewController = navController.topViewController as! DetailListTableViewController
-        print(item)
-        
-        detailTableViewController.item = item
-        detailTableViewController.self.title = item.name
-        detailTableViewController.descriptionLabel.text = item.description
-        detailTableViewController.locationLabel.text = item.location
-        detailTableViewController.datePicker.date = item.goalDate
-        detailTableViewController.completionSwitch.isOn = item.isComplete
-            }
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-
+    */
+    //present( UIStoryboard(name: "ListTableView", bundle: nil).instantiateViewController(withIdentifier: "ListTableView") as UIViewController, animated: true, completion: nil)
     @IBAction func unwind(segue: UIStoryboardSegue) {
-        guard segue.identifier == "detailUnwind",
-        let detailViewController = segue.source as?
-        DetailListTableViewController,
-        let detailitem = detailViewController.item else {return}
-        if let selectedIndexPath = tableView.indexPathForSelectedRow{
-            bothList = list + listCompleted
-            tableView.reloadData()
-            switch(mySegmentedControl.selectedSegmentIndex)
-            {
-            case 0:
-                listCompleted[selectedIndexPath.row] = detailitem
-                bothList = list + listCompleted
-                break
-            case 1:
-                bothList[selectedIndexPath.row] = detailitem
-                let newUncompletedlist = bothList.filter { $0.isComplete == false}
-                list = newUncompletedlist
-                
-                let newCompletedList = bothList.filter { $0.isComplete == true}
-                listCompleted = newCompletedList
-                break
-            case 2:
-                list[selectedIndexPath.row] = detailitem
-                bothList = list + listCompleted
-                break
-            default:
-                break
-            }
-        }
-        
         guard segue.identifier == "doneUnwind",
-              let sourceViewController = segue.source as?
-                AddListTableViewController,
-              let item = sourceViewController.item else {return}
+        let sourceViewController = segue.source as?
+        AddListTableViewController,
+        let item = sourceViewController.item else {return}
         
         if let selectedIndexPath = tableView.indexPathForSelectedRow
         {
@@ -249,8 +198,6 @@ class ListTableViewController: UITableViewController {
             default:
                 break
             }
-            tableView.reloadData()
-            updateTotalLabel()
         }
     }
     @IBAction func backButton(_ sender: Any) {

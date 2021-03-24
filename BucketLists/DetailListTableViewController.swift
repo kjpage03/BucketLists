@@ -1,64 +1,83 @@
 //
-//  AddListTableViewController.swift
+//  DetailListTableViewController.swift
 //  BucketLists
 //
-//  Created by Chris Harding on 3/17/21.
+//  Created by Chris Harding on 3/19/21.
 //
 
 import UIKit
 
-class AddListTableViewController: UITableViewController {
+class DetailListTableViewController: UITableViewController {
 
-    var item: Item?
-    
+   
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var completionSwitch: UISwitch!
+    
+    var item: Item?
+    var editMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 1
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0;//Choose your custom row height
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        guard segue.identifier == "doneUnwind" else {return}
-        
+        guard segue.identifier == "detailUnwind" else {return}
         let name = nameLabel.text ?? ""
         let description = descriptionLabel.text ?? ""
         let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
-        item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: false)
+        let completed = completionSwitch.isOn
+        item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed)
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @IBAction func editButton(_ sender: Any) {
+        if editMode == false {
+            nameLabel.isUserInteractionEnabled = true
+            descriptionLabel.isUserInteractionEnabled = true
+            locationLabel.isUserInteractionEnabled = true
+            datePicker.isUserInteractionEnabled = true
+            
+            nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
+            descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
+            locationLabel.borderStyle = UITextField.BorderStyle.roundedRect
+
+            editMode = true
+        }
+        else if editMode == true {
+            nameLabel.isUserInteractionEnabled = false
+            descriptionLabel.isUserInteractionEnabled = false
+            locationLabel.isUserInteractionEnabled = false
+            datePicker.isUserInteractionEnabled = false
+            
+            nameLabel.borderStyle = UITextField.BorderStyle.none
+            descriptionLabel.borderStyle = UITextField.BorderStyle.none
+            locationLabel.borderStyle = UITextField.BorderStyle.none
+            
+            editMode = false
+        }
     }
-    */
+    
+     @IBAction func CompletionSwitch(_ sender: Any) {
+        
+     }
 
     /*
     // Override to support editing the table view.
@@ -96,5 +115,4 @@ class AddListTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
