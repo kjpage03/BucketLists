@@ -171,31 +171,24 @@ class ListTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
-        if let indexPath = tableView.indexPathForSelectedRow {
-        let item = bothList[indexPath.row]
-        let navController = segue.destination as! UINavigationController
-        let detailTableViewController = navController.topViewController as! DetailListTableViewController
-        print(item)
-        
-        detailTableViewController.updateItem(item: item)
-        //detailTableViewController.item = item
-        //detailTableViewController.self.title = item.name
-        //detailTableViewController.descriptionLabel.text = item.description
-        //detailTableViewController.locationLabel.text = item.location
-        //detailTableViewController.datePicker.date = item.goalDate
-        //detailTableViewController.completionSwitch.isOn = item.isComplete
-            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let item = bothList[indexPath.row]
+                let detailTableViewController = segue.destination as! DetailListTableViewController
+                print(item)
+                detailTableViewController.item = item
+                //detailTableViewController.updateItem(item: item)
             }
         }
     }
 
     @IBAction func unwind(segue: UIStoryboardSegue) {
         if segue.identifier == "detailUnwind" {
-        guard segue.identifier == "detailUnwind",
-        let detailViewController = segue.source as?
-        DetailListTableViewController,
-        let detailitem = detailViewController.item else {return}
-        if let selectedIndexPath = tableView.indexPathForSelectedRow{
+            guard segue.identifier == "detailUnwind",
+            let detailViewController = segue.source as?
+                DetailListTableViewController,
+            let detailitem = detailViewController.item else {return}
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
             bothList = list + listCompleted
             tableView.reloadData()
             switch(mySegmentedControl.selectedSegmentIndex)
@@ -222,16 +215,16 @@ class ListTableViewController: UITableViewController {
             }
         }
         else if segue.identifier == "doneUnwind" {
-        guard segue.identifier == "doneUnwind",
-        let sourceViewController = segue.source as?
-        AddListTableViewController,
-        let item = sourceViewController.item else {return}
+            guard segue.identifier == "doneUnwind",
+                  let sourceViewController = segue.source as?
+                    AddListTableViewController,
+            let item = sourceViewController.item else {return}
         
-        if let selectedIndexPath = tableView.indexPathForSelectedRow
-        {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow
+            {
             list[selectedIndexPath.row] = item
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
-        } else {
+            } else {
             let newIndexPath = IndexPath(row: list.count, section: 0)
             list.append(item)
             bothList = list + listCompleted
@@ -240,6 +233,7 @@ class ListTableViewController: UITableViewController {
             case 0:
                 
                 break
+                
             case 1:
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 break

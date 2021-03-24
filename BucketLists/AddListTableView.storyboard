@@ -142,7 +142,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="SOn-KT-4n9">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ts6-cK-8GV"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="ts6-cK-8GV">
+                            <connections>
+                                <segue destination="x6p-zp-7bu" kind="unwind" unwindAction="unwindWithSegue:" id="ZVF-Ab-SNi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="FMh-CG-0gZ">
                             <connections>
                                 <segue destination="x6p-zp-7bu" kind="unwind" identifier="doneUnwind" unwindAction="unwindWithSegue:" id="lh1-7D-Vy5"/>

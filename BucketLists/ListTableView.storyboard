@@ -108,10 +108,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="87.723214285714278"/>
         </scene>
-        <!--detailListTableViewNav-->
+        <!--detailListTableView-->
         <scene sceneID="kxP-Wn-RnX">
             <objects>
-                <viewControllerPlaceholder storyboardName="DetailListTableView" referencedIdentifier="detailListTableViewNav" id="RaZ-5V-7fC" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="DetailListTableView" referencedIdentifier="detailListTableView" id="RaZ-5V-7fC" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="pXC-Me-VGo"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m17-5z-sl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
