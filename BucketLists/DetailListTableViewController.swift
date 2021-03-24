@@ -36,6 +36,13 @@ class DetailListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    func updateItem(item: Item) {
+        nameLabel.text = item.name
+        descriptionLabel.text = item.description
+        locationLabel.text = item.location
+        datePicker.date = item.goalDate
+        completionSwitch.isOn = item.isComplete
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
