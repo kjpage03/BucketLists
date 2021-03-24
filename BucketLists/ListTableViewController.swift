@@ -122,8 +122,8 @@ class ListTableViewController: UITableViewController {
         return 48.0;//Choose your custom row height
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        present( UIStoryboard(name: "DetailListTableView", bundle: nil).instantiateViewController(withIdentifier: "detailListTableViewNav") as UIViewController, animated: true, completion: nil)
+        performSegue(withIdentifier: "detailSegue", sender: nil)
+        //present( UIStoryboard(name: "DetailListTableView", bundle: nil).instantiateViewController(withIdentifier: "detailListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
     @IBAction func segmentedControlAction(_ sender: Any) {
         tableView.reloadData()
@@ -172,29 +172,25 @@ class ListTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "" {
-        if let indexPath = tableView.indexPathForSelectedRow {
-        let item = list[indexPath.row]
-        let navController = segue.destination as! UINavigationController
-        let detailTableViewController = navController.topViewController as! DetailListTableViewController
-        print(item)
-        
-        detailTableViewController.item = item
-        detailTableViewController.self.title = item.name
-        detailTableViewController.descriptionLabel.text = item.description
-        detailTableViewController.locationLabel.text = item.location
-        detailTableViewController.datePicker.date = item.goalDate
-        detailTableViewController.completionSwitch.isOn = item.isComplete
+        if segue.identifier == "detailSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                
+                let item = bothList[indexPath.row]
+                let detailTableViewController = segue.destination as! DetailListTableViewController
+                print(item)
+                detailTableViewController.item = item
+                //detailTableViewController.updateItem(item: item)
             }
         }
     }
 
     @IBAction func unwind(segue: UIStoryboardSegue) {
-        guard segue.identifier == "detailUnwind",
-        let detailViewController = segue.source as?
-        DetailListTableViewController,
-        let detailitem = detailViewController.item else {return}
-        if let selectedIndexPath = tableView.indexPathForSelectedRow{
+        if segue.identifier == "detailUnwind" {
+            guard segue.identifier == "detailUnwind",
+            let detailViewController = segue.source as?
+                DetailListTableViewController,
+            let detailitem = detailViewController.item else {return}
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
             bothList = list + listCompleted
             tableView.reloadData()
             switch(mySegmentedControl.selectedSegmentIndex)
@@ -217,9 +213,10 @@ class ListTableViewController: UITableViewController {
                 break
             default:
                 break
+                }
             }
         }
-        
+        else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
               let sourceViewController = segue.source as?
                 AddListTableViewController,
@@ -229,7 +226,7 @@ class ListTableViewController: UITableViewController {
         {
             list[selectedIndexPath.row] = item
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
-        } else {
+            } else {
             let newIndexPath = IndexPath(row: list.count, section: 0)
             list.append(item)
             bothList = list + listCompleted
@@ -238,6 +235,7 @@ class ListTableViewController: UITableViewController {
             case 0:
                 
                 break
+                
             case 1:
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 break
@@ -251,6 +249,7 @@ class ListTableViewController: UITableViewController {
             }
             tableView.reloadData()
             updateTotalLabel()
+            }
         }
     }
     @IBAction func backButton(_ sender: Any) {

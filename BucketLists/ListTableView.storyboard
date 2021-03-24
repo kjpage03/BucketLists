@@ -101,11 +101,22 @@
                     <connections>
                         <outlet property="mySegmentedControl" destination="2pn-UF-VON" id="gmB-Y2-9a1"/>
                         <outlet property="totalLabel" destination="ZGd-5S-DCP" id="bYy-fd-qmG"/>
+                        <segue destination="RaZ-5V-7fC" kind="show" identifier="detailSegue" id="FxO-4A-sZm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xz7-PZ-Z7W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="87.723214285714278"/>
+        </scene>
+        <!--detailListTableView-->
+        <scene sceneID="kxP-Wn-RnX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DetailListTableView" referencedIdentifier="detailListTableView" id="RaZ-5V-7fC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="pXC-Me-VGo"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m17-5z-sl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QTh-G8-Tsj">
