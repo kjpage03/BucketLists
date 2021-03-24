@@ -38,10 +38,7 @@ class CreateViewController: UIViewController {
         if let list = bucketList {
             self.nameTextField.text = list.owner
             self.fill.backgroundColor = list.color.uiColor
-        }
-        //        guard let name = nameTextField.text else { return }
-        //        guard let color = view.backgroundColor else { return }
-        
+        }        
     }
     
     @IBAction func colorPickerButtonPressed(_ sender: UIButton) {
@@ -51,7 +48,6 @@ class CreateViewController: UIViewController {
             self.colorButton.transform = rotateTransform
         }
         
-        print("Picking Color")
         changeColor()
     }
     
@@ -65,10 +61,18 @@ class CreateViewController: UIViewController {
     
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        var bucketLists = dataController.retrieveData()
-        bucketLists.remove(at: indexInArray!)
-        dataController.saveData(lists: bucketLists)
-        deleteButtonWasTapped = true
+        let ac = UIAlertController(title: "Are you sure?", message: "Once you delete a list, you can't get it back.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            //don't delete
+            var bucketLists = self.dataController.retrieveData()
+            bucketLists.remove(at: self.indexInArray!)
+            self.dataController.saveData(lists: bucketLists)
+            self.deleteButtonWasTapped = true
+            self.performSegue(withIdentifier: "unwindFromDelete", sender: nil)
+        }))
+        present(ac, animated: true, completion: nil)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,7 +91,7 @@ class CreateViewController: UIViewController {
             bucketLists[index] = list
             dataController.saveData(lists: bucketLists)
             } else {
-                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Learn to play guitar", description: "", location: nil, goalDate: Date(), isComplete: true)], color: Color(uiColor: color))
+                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Do something", description: "", location: nil, goalDate: Date(), isComplete: true)], color: Color(uiColor: color))
                 //            LandingVC.bucketLists.append(bucketList)
 //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)

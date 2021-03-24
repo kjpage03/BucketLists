@@ -51,34 +51,31 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Owner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwD-Fw-9k4">
-                                                            <rect key="frame" x="0.0" y="239" width="279" height="69"/>
+                                                            <rect key="frame" x="0.0" y="223.5" width="279" height="84.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfx-jH-zyw">
-                                                            <rect key="frame" x="20" y="15" width="239" height="209"/>
+                                                            <rect key="frame" x="20" y="112" width="239" height="111.5"/>
                                                             <color key="backgroundColor" systemColor="systemTealColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="cfx-jH-zyw" secondAttribute="height" multiplier="8:7" id="Qo8-2z-RKo"/>
-                                                            </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="46Y-YM-GU2">
-                                                            <rect key="frame" x="20" y="0.0" width="239" height="239"/>
+                                                            <rect key="frame" x="20" y="0.0" width="239" height="223.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="1:1" id="rbV-na-Z6E"/>
+                                                                <constraint firstAttribute="width" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="232:217" id="rbV-na-Z6E"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="IwD-Fw-9k4" firstAttribute="top" secondItem="cfx-jH-zyw" secondAttribute="bottom" constant="15" id="7uc-xq-OQs"/>
+                                                        <constraint firstItem="cfx-jH-zyw" firstAttribute="bottom" secondItem="46Y-YM-GU2" secondAttribute="bottom" id="7uc-xq-OQs"/>
                                                         <constraint firstAttribute="trailing" secondItem="cfx-jH-zyw" secondAttribute="trailing" constant="20" id="Bu5-X3-CZ3"/>
                                                         <constraint firstItem="46Y-YM-GU2" firstAttribute="top" secondItem="FaZ-PQ-T03" secondAttribute="top" id="KV2-zq-dao"/>
                                                         <constraint firstAttribute="trailing" secondItem="46Y-YM-GU2" secondAttribute="trailing" constant="20" id="Syr-Ii-D5A"/>
                                                         <constraint firstAttribute="trailing" secondItem="IwD-Fw-9k4" secondAttribute="trailing" id="UPE-mz-L1R"/>
+                                                        <constraint firstItem="cfx-jH-zyw" firstAttribute="height" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="0.5" id="UVz-ms-PPc"/>
                                                         <constraint firstItem="IwD-Fw-9k4" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" id="WG9-XE-2jt"/>
                                                         <constraint firstItem="cfx-jH-zyw" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" constant="20" id="pzi-Vm-d3V"/>
-                                                        <constraint firstItem="cfx-jH-zyw" firstAttribute="height" secondItem="46Y-YM-GU2" secondAttribute="height" multiplier="0.874477" id="r0u-ly-bvJ"/>
                                                         <constraint firstItem="46Y-YM-GU2" firstAttribute="leading" secondItem="FaZ-PQ-T03" secondAttribute="leading" constant="20" id="rod-c0-S2x"/>
                                                         <constraint firstAttribute="bottom" secondItem="IwD-Fw-9k4" secondAttribute="bottom" id="ru2-Ws-Iqn"/>
                                                         <constraint firstItem="IwD-Fw-9k4" firstAttribute="top" secondItem="46Y-YM-GU2" secondAttribute="bottom" id="vxl-gQ-htl"/>
@@ -87,7 +84,9 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="customSize" width="279" height="308"/>
                                                 <connections>
+                                                    <outlet property="contentView" destination="FaZ-PQ-T03" id="m70-G1-A4W"/>
                                                     <outlet property="fill" destination="cfx-jH-zyw" id="9VG-gf-5aX"/>
+                                                    <outlet property="fillHeight" destination="UVz-ms-PPc" id="wNU-YR-drJ"/>
                                                     <outlet property="imageView" destination="46Y-YM-GU2" id="e6J-cX-2zk"/>
                                                     <outlet property="ownerLabel" destination="IwD-Fw-9k4" id="r7H-PR-4BQ"/>
                                                 </connections>
@@ -255,14 +254,12 @@
                                 </state>
                                 <connections>
                                     <action selector="deleteButtonTapped:" destination="xsk-Mu-B7e" eventType="touchUpInside" id="khu-sC-Ed4"/>
-                                    <segue destination="aHn-C1-QNi" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="BRL-NK-kSZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rwo-pa-yqk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="UbH-Oq-6ua" secondAttribute="trailing" constant="145" id="10N-la-1Q3"/>
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="bottom" secondItem="UbH-Oq-6ua" secondAttribute="bottom" constant="128" id="3kv-du-hqF"/>
                             <constraint firstItem="UbH-Oq-6ua" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="5xi-s5-iEp"/>
                             <constraint firstItem="btf-Id-Qq9" firstAttribute="centerX" secondItem="abW-Re-Vuv" secondAttribute="centerX" id="8XS-KB-SzK"/>
@@ -274,7 +271,6 @@
                             <constraint firstItem="Rwo-pa-yqk" firstAttribute="trailing" secondItem="EpM-uO-NnK" secondAttribute="trailing" constant="14" id="doY-wC-Qgp"/>
                             <constraint firstItem="6LN-zg-GmU" firstAttribute="top" secondItem="EpM-uO-NnK" secondAttribute="bottom" constant="47" id="k0w-QD-Y19"/>
                             <constraint firstItem="EpM-uO-NnK" firstAttribute="top" secondItem="Rwo-pa-yqk" secondAttribute="top" constant="39" id="rgE-hq-yKU"/>
-                            <constraint firstItem="UbH-Oq-6ua" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="145" id="uFj-3x-z4J"/>
                             <constraint firstItem="EpM-uO-NnK" firstAttribute="leading" secondItem="Rwo-pa-yqk" secondAttribute="leading" constant="14" id="wuW-wk-lfE"/>
                         </constraints>
                     </view>
@@ -286,12 +282,13 @@
                         <outlet property="doneButton" destination="UbH-Oq-6ua" id="FOD-fZ-Zwq"/>
                         <outlet property="fill" destination="IRY-EL-2m7" id="3cN-af-YPh"/>
                         <outlet property="nameTextField" destination="EpM-uO-NnK" id="b59-6M-iT8"/>
+                        <segue destination="aHn-C1-QNi" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindFromDeleteWithUnwindSegue:" id="tA6-ds-H2i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itf-53-RIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aHn-C1-QNi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1886.9565217391305" y="384.375"/>
+            <point key="canvasLocation" x="1877" y="384"/>
         </scene>
     </scenes>
     <resources>
