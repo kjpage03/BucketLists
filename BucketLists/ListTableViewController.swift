@@ -28,6 +28,11 @@ class ListTableViewController: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        bucketLists[indexOfList].items = bothList
+        dataController.saveData(lists: bucketLists)
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -145,6 +150,9 @@ class ListTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        bucketLists[indexOfList].items = bothList
+//        dataController.saveData(lists: bucketLists)
+        
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 
@@ -167,31 +175,19 @@ class ListTableViewController: UITableViewController {
                 DetailListTableViewController,
             let detailitem = detailViewController.item else {return}
             
-            if let selectedIndexPath = tableView.indexPathForSelectedRow{
-            bothList = list + listCompleted
-            tableView.reloadData()
-            switch(mySegmentedControl.selectedSegmentIndex)
-            {
-            case 0:
-                listCompleted[selectedIndexPath.row] = detailitem
-                bothList = list + listCompleted
-                break
-            case 1:
-                bothList[selectedIndexPath.row] = detailitem
-                let newUncompletedlist = bothList.filter { $0.isComplete == false}
-                list = newUncompletedlist
-                
-                let newCompletedList = bothList.filter { $0.isComplete == true}
-                listCompleted = newCompletedList
-                break
-            case 2:
-                list[selectedIndexPath.row] = detailitem
-                bothList = list + listCompleted
-                break
-            default:
-                break
+            bothList[selectedRow] = detailitem
+            list.removeAll()
+            listCompleted.removeAll()
+            
+            for item in bothList {
+                if item.isComplete {
+                    listCompleted.append(item)
+                } else {
+                    list.append(item)
                 }
             }
+            
+            tableView.reloadData()
             
         }
         else if segue.identifier == "doneUnwind" {
@@ -208,35 +204,6 @@ class ListTableViewController: UITableViewController {
             
             tableView.reloadData()
             updateTotalLabel()
-            
-//        if let selectedIndexPath = tableView.indexPathForSelectedRow
-//        {
-//            list[selectedIndexPath.row] = item
-//            tableView.reloadRows(at: [selectedIndexPath], with: .none)
-//            } else {
-//            let newIndexPath = IndexPath(row: list.count, section: 0)
-//            list.append(item)
-//            bothList = list + listCompleted
-//            switch(mySegmentedControl.selectedSegmentIndex)
-//            {
-//            case 0:
-//
-//                break
-//
-//            case 1:
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                break
-//
-//            case 2:
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                break
-//
-//            default:
-//                break
-//            }
-//            tableView.reloadData()
-//            updateTotalLabel()
-//            }
         }
     }
     @IBAction func backButton(_ sender: Any) {

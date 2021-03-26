@@ -59,8 +59,8 @@ class DetailListTableViewController: UITableViewController {
         let goalDate = datePicker.date
         let completed = completionSwitch.isOn
         item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed)
-        bucketLists[indexOfBucketList].items[indexOfItem] = item!
-        dataController.saveData(lists: bucketLists)
+//        bucketLists[indexOfBucketList].items[indexOfItem] = item!
+//        dataController.saveData(lists: bucketLists)
         
     }
     @IBAction func editButton(_ sender: Any) {

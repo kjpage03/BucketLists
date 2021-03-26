@@ -7,7 +7,17 @@
 
 import UIKit
 
-class CreateViewController: UIViewController {
+class CreateViewController: UIViewController, UIScrollViewDelegate {
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateVCView")
+//        return cell!
+//    }
+    
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bucketListItemImage: UIImageView!
@@ -15,6 +25,9 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var fill: UIView!
+    @IBOutlet var scrollView: UIScrollView!
+//    @IBOutlet var tableView: UITableView!
+    
     var prevTransform: CGFloat = .pi
     var bucketList: BucketList?
     var deleteButtonIsHidden: Bool = true
@@ -22,8 +35,14 @@ class CreateViewController: UIViewController {
     let dataController = DataController()
     var deleteButtonWasTapped: Bool = false
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.delegate = self
+        scrollView.isScrollEnabled = true
+//        tableView.delegate = self
+//        tableView.dataSource = self
         // Do any additional setup after loading the view.
         navigationController?.setNavigationBarHidden(false, animated: false)
         

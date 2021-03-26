@@ -10,6 +10,7 @@ import UIKit
 
 struct BucketList: Hashable, Codable {
     
+    var id = UUID()
     var owner: String
     var items: [Item]
     var color: Color
@@ -50,6 +51,7 @@ struct Group: Codable {
 }
 
 struct Item: Hashable, Codable {
+    var id = UUID()
     var name: String
     var description: String
     var location: String?

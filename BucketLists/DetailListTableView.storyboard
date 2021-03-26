@@ -114,7 +114,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Completion" id="xeo-gR-D5I">
+                            <tableViewSection headerTitle="Mark As Completed" id="xeo-gR-D5I">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="qp0-if-jsx">
                                         <rect key="frame" x="0.0" y="541" width="414" height="64"/>
