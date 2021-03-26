@@ -11,13 +11,14 @@ class ListTableViewController: UITableViewController {
     
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
-    let dataController = DataController()
-    var bucketlist : [BucketList] = []
+    var bucketLists : [BucketList] = []
+    var indexOfList: Int = Int()
     var list : [Item] = []
     var listCompleted : [Item] = []
     var bothList : [Item] = []
     var color: UIColor = UIColor()
-    
+    var dataController = DataController()
+    var selectedRow: Int = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ListTableViewController: UITableViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         mySegmentedControl.selectedSegmentIndex = 1
         updateTotalLabel()
+        
     }
 
     
@@ -62,6 +64,8 @@ class ListTableViewController: UITableViewController {
                 break
             }
             updateTotalLabel()
+            bucketLists[indexOfList].items.remove(at: indexPath.row)
+            dataController.saveData(lists: bucketLists)
         } else if editingStyle == .insert {
             
         }
@@ -126,6 +130,8 @@ class ListTableViewController: UITableViewController {
         return 48.0;//Choose your custom row height
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        
         performSegue(withIdentifier: "detailSegue", sender: nil)
         //present( UIStoryboard(name: "DetailListTableView", bundle: nil).instantiateViewController(withIdentifier: "detailListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
@@ -137,40 +143,6 @@ class ListTableViewController: UITableViewController {
     func updateTotalLabel() {
         totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
 
@@ -183,6 +155,9 @@ class ListTableViewController: UITableViewController {
                 let detailTableViewController = segue.destination as! DetailListTableViewController
                 print(item)
                 detailTableViewController.item = item
+                detailTableViewController.bucketLists = bucketLists
+                detailTableViewController.indexOfBucketList = indexOfList
+                detailTableViewController.indexOfItem = selectedRow
                 //detailTableViewController.updateItem(item: item)
             }
         }
@@ -194,6 +169,7 @@ class ListTableViewController: UITableViewController {
             let detailViewController = segue.source as?
                 DetailListTableViewController,
             let detailitem = detailViewController.item else {return}
+            
             if let selectedIndexPath = tableView.indexPathForSelectedRow{
             bothList = list + listCompleted
             tableView.reloadData()
@@ -226,35 +202,44 @@ class ListTableViewController: UITableViewController {
               let sourceViewController = segue.source as?
                 AddListTableViewController,
               let item = sourceViewController.item else {return}
-        
-        if let selectedIndexPath = tableView.indexPathForSelectedRow
-        {
-            list[selectedIndexPath.row] = item
-            tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            } else {
-            let newIndexPath = IndexPath(row: list.count, section: 0)
+            bothList.append(item)
             list.append(item)
-            bothList = list + listCompleted
-            switch(mySegmentedControl.selectedSegmentIndex)
-            {
-            case 0:
-                
-                break
-                
-            case 1:
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-                break
-                
-            case 2:
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-                break
-                
-            default:
-                break
-            }
+            bucketLists[indexOfList].items.append(item)
+            dataController.saveData(lists: bucketLists)
+            
+            //update table view with new data
+            
             tableView.reloadData()
             updateTotalLabel()
-            }
+            
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow
+//        {
+//            list[selectedIndexPath.row] = item
+//            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+//            } else {
+//            let newIndexPath = IndexPath(row: list.count, section: 0)
+//            list.append(item)
+//            bothList = list + listCompleted
+//            switch(mySegmentedControl.selectedSegmentIndex)
+//            {
+//            case 0:
+//
+//                break
+//
+//            case 1:
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
+//                break
+//
+//            case 2:
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
+//                break
+//
+//            default:
+//                break
+//            }
+//            tableView.reloadData()
+//            updateTotalLabel()
+//            }
         }
     }
     @IBAction func backButton(_ sender: Any) {
