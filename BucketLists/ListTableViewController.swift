@@ -11,7 +11,8 @@ class ListTableViewController: UITableViewController {
     
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
-    var bucket : [BucketList] = []
+    let dataController = DataController()
+    var bucketlist : [BucketList] = []
     var list : [Item] = []
     var listCompleted : [Item] = []
     var bothList : [Item] = []
@@ -20,10 +21,13 @@ class ListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    // Loading the bucket list
+        
         navigationController?.setNavigationBarHidden(false, animated: false)
         mySegmentedControl.selectedSegmentIndex = 1
         updateTotalLabel()
     }
+
     
     // MARK: - Table view data source
     
@@ -215,6 +219,7 @@ class ListTableViewController: UITableViewController {
                 break
                 }
             }
+            
         }
         else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
@@ -253,6 +258,7 @@ class ListTableViewController: UITableViewController {
         }
     }
     @IBAction func backButton(_ sender: Any) {
+        
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func newListButton(_ sender: Any) {

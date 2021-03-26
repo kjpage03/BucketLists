@@ -138,11 +138,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="cUi-VU-8bd">
-                                        <rect key="frame" x="0.0" y="605" width="414" height="64"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="256" id="cUi-VU-8bd">
+                                        <rect key="frame" x="0.0" y="605" width="414" height="256"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cUi-VU-8bd" id="H7G-b2-pB1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -168,6 +168,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="completionCell" destination="cUi-VU-8bd" id="fZo-Hj-UpR"/>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
                         <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>

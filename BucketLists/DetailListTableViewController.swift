@@ -15,6 +15,7 @@ class DetailListTableViewController: UITableViewController {
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var completionSwitch: UISwitch!
+    @IBOutlet weak var completionCell: UITableViewCell!
     
     var item: Item?
     var editMode: Bool = false
@@ -85,7 +86,19 @@ class DetailListTableViewController: UITableViewController {
     }
     
      @IBAction func CompletionSwitch(_ sender: Any) {
-        
+        tableView.reloadData()
      }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var cellheight: CGFloat = 48
+        if indexPath.row == 1{
+            if completionSwitch.isOn {
+                cellheight = 256
+                return cellheight
+            } else if !completionSwitch.isOn {
+                cellheight = 48
+            }
+        }
+        return cellheight
+    }
 
 }
