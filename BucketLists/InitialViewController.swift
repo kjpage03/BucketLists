@@ -113,7 +113,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         self.segmentedControl.isHidden = true
         cell.ownerLabel.isHidden = true
         self.selectedItem = self.bucketLists[indexPath.row]
-        
+        self.indexOfSelectedRow = indexPath.row
+
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             collectionView.transform = rotateTransform
@@ -126,7 +127,6 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             } completion: { (_) in
                 if self.editingSwitchIsOn {
                     //segue to edit vc
-                    self.indexOfSelectedRow = indexPath.row
                     
                     self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
                     
@@ -178,6 +178,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
             listViewController.color = list.color.uiColor
+            listViewController.indexOfList = indexOfSelectedRow
+            listViewController.bucketLists = bucketLists
+            
             for item in list.items {
                 if item.isComplete {
                     listViewController.listCompleted.append(item)
@@ -201,3 +204,5 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
 }
+
+

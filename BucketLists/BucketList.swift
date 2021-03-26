@@ -14,6 +14,8 @@ struct BucketList: Hashable, Codable {
     var items: [Item]
     var color: Color
     var percentCompleted: Double {
+        guard items.count != 0 else { return 0}
+        
         var completedItems: [Item] = []
 
         items.forEach { (item) in
