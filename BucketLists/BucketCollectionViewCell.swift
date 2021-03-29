@@ -17,11 +17,16 @@ class BucketCollectionViewCell: UICollectionViewCell {
 
     
     func configure(label: String, percentage: Double, color: UIColor) {
+        var newPercentage = percentage
+        if percentage == 0 {
+            fill.backgroundColor = .white
+            newPercentage = 1
+        } else {
         ownerLabel.text = label
         fill.backgroundColor = color
-        
+        }
         //ADJUST FILL HEIGHT BASED ON PERCENTAGE
-        let newConstraint = fillHeight.constraintWithMultiplier(CGFloat(percentage))
+        let newConstraint = fillHeight.constraintWithMultiplier(CGFloat(newPercentage))
         
         self.contentView.removeConstraint(fillHeight)
         self.contentView.addConstraint(newConstraint)

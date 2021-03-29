@@ -112,7 +112,7 @@
                                                 <state key="normal" title="New List +"/>
                                                 <connections>
                                                     <action selector="newListButtonTapped:" destination="P6U-Vt-NJf" eventType="touchUpInside" id="gma-Mc-cDJ"/>
-                                                    <segue destination="NC7-uY-QdK" kind="show" identifier="CreateVC" id="PPp-Sg-Rr3"/>
+                                                    <segue destination="1lD-9Q-NQD" kind="show" identifier="CreateVC" id="8di-pS-hJu"/>
                                                 </connections>
                                             </button>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-av-UNt">
@@ -173,7 +173,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPO-gR-R0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1888" y="-114"/>
+            <point key="canvasLocation" x="1845" y="-114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rT0-sV-7tS">
@@ -297,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itf-53-RIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="781"/>
+            <point key="canvasLocation" x="174" y="761"/>
         </scene>
         <!--New List-->
         <scene sceneID="S6r-Rv-xFK">
@@ -314,12 +314,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="500"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="271-gU-cCk">
-                                                <rect key="frame" x="8" y="111" width="374" height="34"/>
+                                                <rect key="frame" x="8" y="67" width="374" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaE-oD-B9n">
-                                                <rect key="frame" x="79" y="321" width="232" height="66"/>
+                                                <rect key="frame" x="79" y="277" width="232" height="66"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="XW5-CM-KQ0">
                                                         <rect key="frame" x="0.0" y="-151" width="232" height="217"/>
@@ -342,9 +342,6 @@
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="Colorwheel-removebg-preview"/>
-                                                <connections>
-                                                    <action selector="colorPickerButtonPressed:" destination="NC7-uY-QdK" eventType="touchUpInside" id="5gp-Dg-6oI"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -386,30 +383,32 @@
                                                 <state key="normal" title="Delete">
                                                     <color key="titleColor" systemColor="systemRedColor"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="deleteButtonTapped:" destination="NC7-uY-QdK" eventType="touchUpInside" id="UIb-UL-oIG"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5S3-EH-N2h" secondAttribute="trailing" id="3hQ-hp-epQ"/>
+                                    <constraint firstAttribute="height" constant="844" id="6l4-7y-AJ9"/>
                                     <constraint firstItem="PDF-UC-MLo" firstAttribute="centerX" secondItem="NqE-nA-sdo" secondAttribute="centerX" id="9Sy-tX-mWJ"/>
+                                    <constraint firstItem="PDF-UC-MLo" firstAttribute="top" secondItem="F2g-1r-3Hh" secondAttribute="bottom" constant="131" id="ExW-ey-eYS"/>
                                     <constraint firstItem="5S3-EH-N2h" firstAttribute="leading" secondItem="kkD-CK-559" secondAttribute="leading" id="HLd-uN-gaY"/>
-                                    <constraint firstItem="kkD-CK-559" firstAttribute="bottom" secondItem="PDF-UC-MLo" secondAttribute="bottom" constant="131" id="tx5-Vn-yFd"/>
                                     <constraint firstItem="5S3-EH-N2h" firstAttribute="width" secondItem="NqE-nA-sdo" secondAttribute="width" id="w7C-SC-IxF"/>
                                     <constraint firstAttribute="bottom" secondItem="5S3-EH-N2h" secondAttribute="bottom" id="x3c-At-6Yd"/>
                                     <constraint firstItem="5S3-EH-N2h" firstAttribute="top" secondItem="NqE-nA-sdo" secondAttribute="top" id="yTz-dv-blP"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="yMj-Q6-nFX"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="kkD-CK-559"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z1Y-oo-BvZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="NqE-nA-sdo" secondAttribute="bottom" id="VKT-dW-pLm"/>
                             <constraint firstItem="NqE-nA-sdo" firstAttribute="top" secondItem="mtt-g7-BYN" secondAttribute="top" id="fAX-FJ-he8"/>
                             <constraint firstItem="NqE-nA-sdo" firstAttribute="leading" secondItem="Z1Y-oo-BvZ" secondAttribute="leading" id="gPf-fF-Ul9"/>
                             <constraint firstItem="NqE-nA-sdo" firstAttribute="trailing" secondItem="Z1Y-oo-BvZ" secondAttribute="trailing" id="tga-vp-GU5"/>
@@ -417,24 +416,128 @@
                     </view>
                     <navigationItem key="navigationItem" title="New List" id="RdC-pH-LB0"/>
                     <size key="freeformSize" width="390" height="844"/>
-                    <connections>
-                        <outlet property="bucketListItemImage" destination="XW5-CM-KQ0" id="GF6-Gu-iJi"/>
-                        <outlet property="colorButton" destination="F2g-1r-3Hh" id="DE7-4G-CLz"/>
-                        <outlet property="deleteButton" destination="Tt3-Gm-hqX" id="BiA-YX-CrY"/>
-                        <outlet property="doneButton" destination="Q79-n7-uh7" id="Qif-XA-6J6"/>
-                        <outlet property="fill" destination="SaE-oD-B9n" id="mKL-7k-5gU"/>
-                        <outlet property="nameTextField" destination="271-gU-cCk" id="p7B-ow-I99"/>
-                        <outlet property="scrollView" destination="NqE-nA-sdo" id="PxJ-GC-W9V"/>
-                        <segue destination="qI1-kL-QsZ" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindFromDeleteWithUnwindSegue:" id="hCg-p8-0XH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6r-ve-nt0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="qI1-kL-QsZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1887.6923076923076" y="379.62085308056868"/>
+            <point key="canvasLocation" x="925" y="742"/>
+        </scene>
+        <!--New List-->
+        <scene sceneID="EMC-d4-Asd">
+            <objects>
+                <viewController id="1lD-9Q-NQD" customClass="CreateViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O4V-bE-DjJ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-Jl-Svr">
+                                <rect key="frame" x="10" y="113" width="370" height="672"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-QF-bBn" userLabel="Input Stack">
+                                        <rect key="frame" x="10" y="0.0" width="350" height="495"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-3b-w2z" userLabel="Container">
+                                                <rect key="frame" x="23.666666666666657" y="0.0" width="303" height="287"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-ht-xho" userLabel="Fill">
+                                                        <rect key="frame" x="4" y="27" width="303" height="287"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-PS-mzb">
+                                                        <rect key="frame" x="-6" y="22" width="324" height="297"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Paf-cM-0df">
+                                                <rect key="frame" x="135" y="334" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="ZdT-AO-wdg"/>
+                                                    <constraint firstAttribute="width" constant="80" id="qB3-Gm-Wq8"/>
+                                                </constraints>
+                                                <state key="normal" image="Color_Wheel-removebg-preview"/>
+                                                <connections>
+                                                    <action selector="colorPickerButtonPressed:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="dOi-3T-JuT"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
+                                                <rect key="frame" x="0.0" y="461" width="350" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="DW4-dm-wqQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="0f9-QF-bBn" secondAttribute="leading" id="Vwd-3U-6n9"/>
+                                            <constraint firstAttribute="trailing" secondItem="QWF-FA-Yf6" secondAttribute="trailing" id="fKd-mR-gea"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-7G-mgp" userLabel="Done/Delete Stack">
+                                        <rect key="frame" x="154" y="566" width="62" height="106"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lF-av-ofg">
+                                                <rect key="frame" x="0.0" y="0.0" width="62" height="40"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="eCl-yj-F6h" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="nxT-eT-lGC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrS-7q-MQP">
+                                                <rect key="frame" x="0.0" y="66" width="62" height="40"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="ubB-As-IIJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0f9-QF-bBn" firstAttribute="centerX" secondItem="fyJ-Jl-Svr" secondAttribute="centerX" id="13K-1w-C0a"/>
+                                    <constraint firstItem="0f9-QF-bBn" firstAttribute="leading" secondItem="fyJ-Jl-Svr" secondAttribute="leading" constant="10" id="CMI-C1-CKe"/>
+                                    <constraint firstAttribute="trailing" secondItem="0f9-QF-bBn" secondAttribute="trailing" constant="10" id="wPR-Pm-7N0"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGl-gv-10Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fyJ-Jl-Svr" firstAttribute="leading" secondItem="tGl-gv-10Q" secondAttribute="leading" constant="10" id="1Td-ES-6yU"/>
+                            <constraint firstItem="fyJ-Jl-Svr" firstAttribute="top" secondItem="tGl-gv-10Q" secondAttribute="top" constant="25" id="4ZD-Re-ceZ"/>
+                            <constraint firstItem="tGl-gv-10Q" firstAttribute="bottom" secondItem="fyJ-Jl-Svr" secondAttribute="bottom" constant="25" id="IzN-uE-VfR"/>
+                            <constraint firstItem="QiM-3b-w2z" firstAttribute="width" secondItem="O4V-bE-DjJ" secondAttribute="height" multiplier="303:844" id="Pl1-Se-mpQ"/>
+                            <constraint firstItem="tGl-gv-10Q" firstAttribute="trailing" secondItem="fyJ-Jl-Svr" secondAttribute="trailing" constant="10" id="T4P-OQ-ilC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New List" id="lgN-Af-xn7"/>
+                    <connections>
+                        <outlet property="bucketListItemImage" destination="1qq-PS-mzb" id="7jM-b3-R92"/>
+                        <outlet property="colorButton" destination="Paf-cM-0df" id="gku-uN-lAf"/>
+                        <outlet property="deleteButton" destination="vrS-7q-MQP" id="UOA-wb-yPX"/>
+                        <outlet property="doneButton" destination="0lF-av-ofg" id="uZx-WA-cgP"/>
+                        <outlet property="fill" destination="Vi4-ht-xho" id="sp4-pT-uB6"/>
+                        <outlet property="nameTextField" destination="QWF-FA-Yf6" id="OIJ-9b-cTm"/>
+                        <segue destination="eCl-yj-F6h" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindFromDeleteWithUnwindSegue:" id="peW-Xu-aId"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TcY-4K-0n5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="eCl-yj-F6h" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1835" y="377"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Color_Wheel-removebg-preview" width="225" height="225"/>
         <image name="Colorwheel-removebg-preview" width="562" height="444"/>
         <image name="bucket3" width="232" height="217"/>
         <systemColor name="systemBackgroundColor">
@@ -442,6 +545,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

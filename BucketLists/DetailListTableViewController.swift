@@ -15,6 +15,7 @@ class DetailListTableViewController: UITableViewController {
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var completionSwitch: UISwitch!
+    @IBOutlet var doneLabel: UIBarButtonItem!
     var bucketLists: [BucketList] = []
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
@@ -93,5 +94,14 @@ class DetailListTableViewController: UITableViewController {
      @IBAction func CompletionSwitch(_ sender: Any) {
         
      }
-
+    
+    
+    @IBAction func editingChanged(_ sender: Any) {
+        if nameLabel.text?.count != 0 {
+            doneLabel.isEnabled = true
+        } else {
+            doneLabel.isEnabled = false
+        }
+    }
+    
 }

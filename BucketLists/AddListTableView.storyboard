@@ -27,7 +27,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw3-K4-z0B">
                                                     <rect key="frame" x="24" y="15" width="366" height="14"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -55,6 +55,9 @@
                                                     <rect key="frame" x="24" y="4" width="374" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="PdB-SR-wQm" eventType="editingChanged" id="DvX-ie-TYV"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -156,6 +159,7 @@
                     <connections>
                         <outlet property="datePicker" destination="aHc-sU-kbj" id="q3I-Ef-828"/>
                         <outlet property="descriptionLabel" destination="kYz-ls-3YK" id="LMh-KB-hN2"/>
+                        <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
                         <outlet property="locationLabel" destination="xrp-Sc-76n" id="uY7-J3-KKO"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
                     </connections>

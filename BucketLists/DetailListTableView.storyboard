@@ -27,8 +27,11 @@
                                             <subviews>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Item Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SpS-20-u3Y">
                                                     <rect key="frame" x="20" y="11" width="374" height="42"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editingChanged:" destination="sUt-y4-VRI" eventType="editingChanged" id="crp-UQ-CUJ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -171,6 +174,7 @@
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
                         <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>
+                        <outlet property="doneLabel" destination="CfV-mk-lLQ" id="G2h-ma-OKf"/>
                         <outlet property="locationLabel" destination="lmv-i9-uSP" id="7de-uP-2LM"/>
                         <outlet property="nameLabel" destination="SpS-20-u3Y" id="hJI-0L-tMg"/>
                     </connections>

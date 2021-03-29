@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateViewController: UIViewController, UIScrollViewDelegate {
+class CreateViewController: UIViewController {
     
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        1
@@ -25,7 +25,6 @@ class CreateViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var fill: UIView!
-    @IBOutlet var scrollView: UIScrollView!
 //    @IBOutlet var tableView: UITableView!
     
     var prevTransform: CGFloat = .pi
@@ -39,8 +38,7 @@ class CreateViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.delegate = self
-        scrollView.isScrollEnabled = true
+
 //        tableView.delegate = self
 //        tableView.dataSource = self
         // Do any additional setup after loading the view.
