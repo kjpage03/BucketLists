@@ -61,8 +61,8 @@ class DetailListTableViewController: UITableViewController {
         let goalDate = datePicker.date
         let completed = completionSwitch.isOn
         item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed)
-        bucketLists[indexOfBucketList].items[indexOfItem] = item!
-        dataController.saveData(lists: bucketLists)
+        //bucketLists[indexOfBucketList].items[indexOfItem] = item!
+        //dataController.saveData(lists: bucketLists)
         
     }
     @IBAction func editButton(_ sender: Any) {
@@ -96,13 +96,13 @@ class DetailListTableViewController: UITableViewController {
         tableView.reloadData()
      }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var cellheight: CGFloat = 48
+        var cellheight: CGFloat = 52
         if indexPath.row == 1{
             if completionSwitch.isOn {
                 cellheight = 256
                 return cellheight
             } else if !completionSwitch.isOn {
-                cellheight = 48
+                cellheight = 52
             }
         }
         return cellheight

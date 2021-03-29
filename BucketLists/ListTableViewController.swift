@@ -22,14 +22,34 @@ class ListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    // Loading the bucket list
+        //loadBucketList()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         mySegmentedControl.selectedSegmentIndex = 1
         updateTotalLabel()
         
     }
-
+    func saveBucketList(){
+        print("Bucket List Saved")
+        var newBucketList = dataController.retrieveData()
+        let filteredBucketList = newBucketList.filter { $0.owner == title}
+        var newBucket = filteredBucketList[0]
+        newBucket.items = bothList
+        if let bucketIndex = newBucketList.firstIndex(of: newBucket){
+            newBucketList[bucketIndex] = newBucket
+            dataController.saveData(lists: newBucketList)
+        }
+    }
+    func loadBucketList() {
+        let newBucketList = dataController.retrieveData()
+        let filteredBucketList = newBucketList.filter { $0.owner == title}
+        let newBucket = filteredBucketList[0]
+        bothList = newBucket.items
+        let newUncompletedlist = bothList.filter { $0.isComplete == false}
+        list = newUncompletedlist
+        let newCompletedList = bothList.filter { $0.isComplete == true}
+        listCompleted = newCompletedList
+    }
     
     // MARK: - Table view data source
     
@@ -171,9 +191,9 @@ class ListTableViewController: UITableViewController {
             let detailitem = detailViewController.item else {return}
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow{
-            bothList = list + listCompleted
-            tableView.reloadData()
-            switch(mySegmentedControl.selectedSegmentIndex)
+                bothList[selectedIndexPath.row] = detailitem
+                tableView.reloadData()
+                switch(mySegmentedControl.selectedSegmentIndex)
             {
             case 0:
                 listCompleted[selectedIndexPath.row] = detailitem
@@ -193,53 +213,55 @@ class ListTableViewController: UITableViewController {
                 break
             default:
                 break
-                }
+               }
             }
-            
+            saveBucketList()
+            tableView.reloadData()
         }
         else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
               let sourceViewController = segue.source as?
                 AddListTableViewController,
               let item = sourceViewController.item else {return}
-            bothList.append(item)
-            list.append(item)
-            bucketLists[indexOfList].items.append(item)
-            dataController.saveData(lists: bucketLists)
+            //bothList.append(item)
+            //list.append(item)
+            //bothList = list + listCompleted
+            //bucketLists[indexOfList].items.append(item)
+            //dataController.saveData(lists: bucketLists)
             
             //update table view with new data
-            
             tableView.reloadData()
             updateTotalLabel()
             
-//        if let selectedIndexPath = tableView.indexPathForSelectedRow
-//        {
-//            list[selectedIndexPath.row] = item
-//            tableView.reloadRows(at: [selectedIndexPath], with: .none)
-//            } else {
-//            let newIndexPath = IndexPath(row: list.count, section: 0)
-//            list.append(item)
-//            bothList = list + listCompleted
-//            switch(mySegmentedControl.selectedSegmentIndex)
-//            {
-//            case 0:
-//
-//                break
-//
-//            case 1:
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                break
-//
-//            case 2:
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//                break
-//
-//            default:
-//                break
-//            }
-//            tableView.reloadData()
-//            updateTotalLabel()
-//            }
+        if let selectedIndexPath = tableView.indexPathForSelectedRow
+        {
+            list[selectedIndexPath.row] = item
+           tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+            let newIndexPath = IndexPath(row: list.count, section: 0)
+            list.append(item)
+            bothList = list + listCompleted
+            switch(mySegmentedControl.selectedSegmentIndex)
+            {
+            case 0:
+
+                break
+
+            case 1:
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                break
+
+            case 2:
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                break
+
+            default:
+                break
+            }
+            saveBucketList()
+            tableView.reloadData()
+            updateTotalLabel()
+            }
         }
     }
     @IBAction func backButton(_ sender: Any) {

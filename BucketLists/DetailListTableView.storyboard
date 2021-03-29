@@ -138,12 +138,26 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="256" id="cUi-VU-8bd">
-                                        <rect key="frame" x="0.0" y="605" width="414" height="256"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="512" id="cUi-VU-8bd">
+                                        <rect key="frame" x="0.0" y="605" width="414" height="512"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cUi-VU-8bd" id="H7G-b2-pB1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="512"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Test Test" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbR-UW-d7p">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="512"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xbR-UW-d7p" firstAttribute="top" secondItem="H7G-b2-pB1" secondAttribute="top" id="TVF-jq-iLi"/>
+                                                <constraint firstAttribute="bottom" secondItem="xbR-UW-d7p" secondAttribute="bottom" id="bda-fA-OQk"/>
+                                                <constraint firstItem="xbR-UW-d7p" firstAttribute="leading" secondItem="H7G-b2-pB1" secondAttribute="leading" id="dEM-Ab-jYJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="xbR-UW-d7p" secondAttribute="trailing" id="fCJ-VU-B5f"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
