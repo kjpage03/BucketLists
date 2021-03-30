@@ -18,11 +18,11 @@ class BucketCollectionViewCell: UICollectionViewCell {
     
     func configure(label: String, percentage: Double, color: UIColor) {
         var newPercentage = percentage
+        ownerLabel.text = label
         if percentage == 0 {
             fill.backgroundColor = .white
             newPercentage = 1
         } else {
-        ownerLabel.text = label
         fill.backgroundColor = color
         }
         //ADJUST FILL HEIGHT BASED ON PERCENTAGE

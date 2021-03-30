@@ -59,6 +59,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         newListButtonWasTapped = false
         
         bucketLists = dataController.retrieveData()
+        
         dataSource.apply(updatedSnapshot)
     }
     
@@ -141,6 +142,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
+            
             cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
 //            cell.layoutIfNeeded()
             return cell

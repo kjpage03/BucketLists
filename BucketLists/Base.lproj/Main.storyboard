@@ -430,93 +430,105 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-Jl-Svr">
-                                <rect key="frame" x="10" y="113" width="370" height="672"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-QF-bBn" userLabel="Input Stack">
+                                <rect key="frame" x="10" y="97.999999999999972" width="370" height="439.33333333333326"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-QF-bBn" userLabel="Input Stack">
-                                        <rect key="frame" x="10" y="0.0" width="350" height="495"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-3b-w2z" userLabel="Container">
-                                                <rect key="frame" x="23.666666666666657" y="0.0" width="303" height="287"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-ht-xho" userLabel="Fill">
-                                                        <rect key="frame" x="4" y="27" width="303" height="287"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                                    </view>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-PS-mzb">
-                                                        <rect key="frame" x="-6" y="22" width="324" height="297"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Paf-cM-0df">
-                                                <rect key="frame" x="135" y="334" width="80" height="80"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="ZdT-AO-wdg"/>
-                                                    <constraint firstAttribute="width" constant="80" id="qB3-Gm-Wq8"/>
-                                                </constraints>
-                                                <state key="normal" image="Color_Wheel-removebg-preview"/>
-                                                <connections>
-                                                    <action selector="colorPickerButtonPressed:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="dOi-3T-JuT"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
-                                                <rect key="frame" x="0.0" y="461" width="350" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="DW4-dm-wqQ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
                                         <constraints>
-                                            <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="0f9-QF-bBn" secondAttribute="leading" id="Vwd-3U-6n9"/>
-                                            <constraint firstAttribute="trailing" secondItem="QWF-FA-Yf6" secondAttribute="trailing" id="fKd-mR-gea"/>
+                                            <constraint firstAttribute="height" constant="34" id="DW4-dm-wqQ"/>
                                         </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-7G-mgp" userLabel="Done/Delete Stack">
-                                        <rect key="frame" x="154" y="566" width="62" height="106"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiM-3b-w2z" userLabel="Container">
+                                        <rect key="frame" x="33.666666666666657" y="55" width="303" height="283.33333333333331"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lF-av-ofg">
-                                                <rect key="frame" x="0.0" y="0.0" width="62" height="40"/>
-                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                                <state key="normal" title="Done">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="eCl-yj-F6h" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="nxT-eT-lGC"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrS-7q-MQP">
-                                                <rect key="frame" x="0.0" y="66" width="62" height="40"/>
-                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                                <state key="normal" title="Delete">
-                                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="deleteButtonTapped:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="ubB-As-IIJ"/>
-                                                </connections>
-                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-ht-xho" userLabel="Fill">
+                                                <rect key="frame" x="0.0" y="0.0" width="303" height="283.33333333333331"/>
+                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                            </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-PS-mzb">
+                                                <rect key="frame" x="0.0" y="0.0" width="303" height="283.33333333333331"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1qq-PS-mzb" secondAttribute="height" multiplier="232:217" id="IiU-gR-jwq"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="1qq-PS-mzb" secondAttribute="trailing" id="bAJ-fg-4A2"/>
+                                            <constraint firstItem="Vi4-ht-xho" firstAttribute="bottom" secondItem="1qq-PS-mzb" secondAttribute="bottom" id="dbt-o0-hBv"/>
+                                            <constraint firstAttribute="bottom" secondItem="1qq-PS-mzb" secondAttribute="bottom" id="jKz-wa-FsT"/>
+                                            <constraint firstItem="1qq-PS-mzb" firstAttribute="leading" secondItem="QiM-3b-w2z" secondAttribute="leading" id="kec-hV-Gee"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vi4-ht-xho" secondAttribute="trailing" id="rXw-jz-VxL"/>
+                                            <constraint firstItem="Vi4-ht-xho" firstAttribute="leading" secondItem="QiM-3b-w2z" secondAttribute="leading" id="sL5-94-6of"/>
+                                            <constraint firstItem="1qq-PS-mzb" firstAttribute="top" secondItem="QiM-3b-w2z" secondAttribute="top" id="v7g-j6-Tbd"/>
+                                            <constraint firstItem="Vi4-ht-xho" firstAttribute="top" secondItem="1qq-PS-mzb" secondAttribute="top" id="zvV-Kk-a6E"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Paf-cM-0df">
+                                        <rect key="frame" x="145" y="359.33333333333331" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="ZdT-AO-wdg"/>
+                                            <constraint firstAttribute="width" constant="80" id="qB3-Gm-Wq8"/>
+                                        </constraints>
+                                        <state key="normal" image="Color_Wheel-removebg-preview"/>
+                                        <connections>
+                                            <action selector="colorPickerButtonPressed:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="dOi-3T-JuT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="0f9-QF-bBn" firstAttribute="centerX" secondItem="fyJ-Jl-Svr" secondAttribute="centerX" id="13K-1w-C0a"/>
-                                    <constraint firstItem="0f9-QF-bBn" firstAttribute="leading" secondItem="fyJ-Jl-Svr" secondAttribute="leading" constant="10" id="CMI-C1-CKe"/>
-                                    <constraint firstAttribute="trailing" secondItem="0f9-QF-bBn" secondAttribute="trailing" constant="10" id="wPR-Pm-7N0"/>
+                                    <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="0f9-QF-bBn" secondAttribute="leading" id="Vwd-3U-6n9"/>
+                                    <constraint firstAttribute="trailing" secondItem="QWF-FA-Yf6" secondAttribute="trailing" id="fKd-mR-gea"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-7G-mgp" userLabel="Done/Delete Stack">
+                                <rect key="frame" x="0.0" y="621.66666666666663" width="390" height="168.33333333333337"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lF-av-ofg">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="122.33333333333333"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="eCl-yj-F6h" kind="unwind" unwindAction="unwindToListWithUnwindSegue:" id="nxT-eT-lGC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrS-7q-MQP">
+                                        <rect key="frame" x="0.0" y="128.33333333333337" width="390" height="40"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="ubB-As-IIJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAs-kl-i5s">
+                                <rect key="frame" x="0.0" y="537.33333333333337" width="390" height="84.333333333333371"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tGl-gv-10Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fyJ-Jl-Svr" firstAttribute="leading" secondItem="tGl-gv-10Q" secondAttribute="leading" constant="10" id="1Td-ES-6yU"/>
-                            <constraint firstItem="fyJ-Jl-Svr" firstAttribute="top" secondItem="tGl-gv-10Q" secondAttribute="top" constant="25" id="4ZD-Re-ceZ"/>
-                            <constraint firstItem="tGl-gv-10Q" firstAttribute="bottom" secondItem="fyJ-Jl-Svr" secondAttribute="bottom" constant="25" id="IzN-uE-VfR"/>
-                            <constraint firstItem="QiM-3b-w2z" firstAttribute="width" secondItem="O4V-bE-DjJ" secondAttribute="height" multiplier="303:844" id="Pl1-Se-mpQ"/>
-                            <constraint firstItem="tGl-gv-10Q" firstAttribute="trailing" secondItem="fyJ-Jl-Svr" secondAttribute="trailing" constant="10" id="T4P-OQ-ilC"/>
+                            <constraint firstItem="QiM-3b-w2z" firstAttribute="width" secondItem="O4V-bE-DjJ" secondAttribute="height" multiplier="303:844" id="0f6-7S-BHX"/>
+                            <constraint firstItem="dZ9-7G-mgp" firstAttribute="bottom" secondItem="tGl-gv-10Q" secondAttribute="bottom" constant="-20" id="5as-wN-wLC"/>
+                            <constraint firstItem="0f9-QF-bBn" firstAttribute="top" secondItem="tGl-gv-10Q" secondAttribute="top" constant="10" id="5fG-IT-hlg"/>
+                            <constraint firstItem="dZ9-7G-mgp" firstAttribute="centerX" secondItem="O4V-bE-DjJ" secondAttribute="centerX" id="B7h-fK-HSf"/>
+                            <constraint firstItem="qAs-kl-i5s" firstAttribute="leading" secondItem="tGl-gv-10Q" secondAttribute="leading" id="H9i-pi-EfP"/>
+                            <constraint firstItem="0f9-QF-bBn" firstAttribute="leading" secondItem="tGl-gv-10Q" secondAttribute="leading" constant="10" id="Huo-nh-uYe"/>
+                            <constraint firstItem="dZ9-7G-mgp" firstAttribute="top" secondItem="qAs-kl-i5s" secondAttribute="bottom" id="JeU-NG-Y2m"/>
+                            <constraint firstItem="tGl-gv-10Q" firstAttribute="trailing" secondItem="dZ9-7G-mgp" secondAttribute="trailing" id="LpC-Sd-l1a"/>
+                            <constraint firstItem="qAs-kl-i5s" firstAttribute="trailing" secondItem="tGl-gv-10Q" secondAttribute="trailing" id="SC0-lA-rNc"/>
+                            <constraint firstItem="dZ9-7G-mgp" firstAttribute="leading" secondItem="tGl-gv-10Q" secondAttribute="leading" id="X4X-wc-zTd"/>
+                            <constraint firstItem="qAs-kl-i5s" firstAttribute="height" secondItem="O4V-bE-DjJ" secondAttribute="height" multiplier="0.1" id="k22-Y8-40d"/>
+                            <constraint firstItem="tGl-gv-10Q" firstAttribute="trailing" secondItem="0f9-QF-bBn" secondAttribute="trailing" constant="10" id="uyP-jt-AVd"/>
+                            <constraint firstItem="qAs-kl-i5s" firstAttribute="top" secondItem="0f9-QF-bBn" secondAttribute="bottom" id="vTA-dA-37p"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New List" id="lgN-Af-xn7"/>
@@ -533,7 +545,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcY-4K-0n5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="eCl-yj-F6h" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1835" y="377"/>
+            <point key="canvasLocation" x="1833.8461538461538" y="376.77725118483409"/>
         </scene>
     </scenes>
     <resources>

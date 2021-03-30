@@ -67,6 +67,7 @@ class ListTableViewController: UITableViewController {
             }
             updateTotalLabel()
             bucketLists[indexOfList].items.remove(at: indexPath.row)
+            tableView.reloadData()
             dataController.saveData(lists: bucketLists)
         } else if editingStyle == .insert {
             
