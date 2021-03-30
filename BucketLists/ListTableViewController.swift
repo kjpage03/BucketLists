@@ -214,6 +214,16 @@ class ListTableViewController: UITableViewController {
         if let selectedRow = tableView.indexPathsForSelectedRows {
             tableView.deselectRow(at: selectedRow[0], animated: false)
         }
-        present( UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Single Item", style: .default, handler: { (action) in
+            //single item vc
+            self.present(UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
+        }))
+        ac.addAction(UIAlertAction(title: "Multi-Step Item", style: .default, handler: { (action) in
+            //multiple item vc
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(ac, animated: true, completion: nil)
+        
     }
 }

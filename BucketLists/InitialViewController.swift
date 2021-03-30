@@ -21,7 +21,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     @IBOutlet weak var stackView: UIStackView!
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
-    
+    var viewHasDisappeared: Bool = false
     @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
     
     var updatedSnapshot: NSDiffableDataSourceSnapshot<String, BucketList> {
@@ -61,16 +61,24 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         bucketLists = dataController.retrieveData()
         
         dataSource.apply(updatedSnapshot)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        guard let cell = animatedCell else { return }
-        //fix all animations
-        collectionView.transform = CGAffineTransform.identity
-        cell.imageView.transform = CGAffineTransform.identity
-        cell.ownerLabel.isHidden = false
-        self.newListButton.isHidden = false
-        self.segmentedControl.isHidden = false
+        
+        //OPTIONAL ZOOM OUT
+        
+        if viewHasDisappeared {
+            UIView.animate(withDuration: 0.5) { [self] in
+                collectionView.transform.a /= 50
+                collectionView.transform.d /= 50
+            } completion: { (_) in
+                self.animatedCell!.ownerLabel.isHidden = false
+                self.newListButton.isHidden = false
+                self.segmentedControl.isHidden = false
+                UIView.animate(withDuration: 0.5) {
+                    self.collectionView.transform = CGAffineTransform.identity
+                }
+            }
+            print(collectionView.transform)
+            viewHasDisappeared = false
+        }
     }
     
     //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -115,6 +123,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         cell.ownerLabel.isHidden = true
         self.selectedItem = self.bucketLists[indexPath.row]
         self.indexOfSelectedRow = indexPath.row
+        self.viewHasDisappeared = true
 
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
@@ -123,12 +132,13 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {
-                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
-                collectionView.transform = scaleTransform
+//                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
+//                collectionView.transform = scaleTransform
+                collectionView.transform.a *= 50
+                collectionView.transform.d *= 50
             } completion: { (_) in
                 if self.editingSwitchIsOn {
                     //segue to edit vc
-                    
                     self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
                     
                 } else {
