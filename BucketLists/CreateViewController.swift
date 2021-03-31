@@ -9,12 +9,24 @@ import UIKit
 
 class CreateViewController: UIViewController {
     
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateVCView")
+//        return cell!
+//    }
+    
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bucketListItemImage: UIImageView!
     @IBOutlet weak var colorButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var fill: UIView!
+//    @IBOutlet var tableView: UITableView!
+    
     var prevTransform: CGFloat = .pi
     var bucketList: BucketList?
     var deleteButtonIsHidden: Bool = true
@@ -22,13 +34,19 @@ class CreateViewController: UIViewController {
     let dataController = DataController()
     var deleteButtonWasTapped: Bool = false
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        tableView.delegate = self
+//        tableView.dataSource = self
         // Do any additional setup after loading the view.
         navigationController?.setNavigationBarHidden(false, animated: false)
         
         doneButton.layer.cornerRadius = 4
-        
+        nameTextField.delegate = self
+        initializeHideKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +109,7 @@ class CreateViewController: UIViewController {
             bucketLists[index] = list
             dataController.saveData(lists: bucketLists)
             } else {
-                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Do something", description: "", location: nil, goalDate: Date(), isComplete: true)], color: Color(uiColor: color))
+                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true)], color: Color(uiColor: color))
                 //            LandingVC.bucketLists.append(bucketList)
 //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)
@@ -117,5 +135,36 @@ extension CreateViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         //        self.view.backgroundColor = viewController.selectedColor
         self.fill.backgroundColor = viewController.selectedColor
+    }
+}
+
+extension CreateViewController {
+    func initializeHideKeyboard(){
+            //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+                target: self,
+                action: #selector(dismissMyKeyboard))
+            
+            //Add this tap gesture recognizer to the parent view
+            view.addGestureRecognizer(tap)
+        }
+        
+        @objc func dismissMyKeyboard(){
+            //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
+            //In short- Dismiss the active keyboard.
+            view.endEditing(true)
+        }
+}
+
+extension CreateViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //Check if there is any other text-field in the view whose tag is +1 greater than the current text-field on which the return key was pressed. If yes → then move the cursor to that next text-field. If No → Dismiss the keyboard
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 }

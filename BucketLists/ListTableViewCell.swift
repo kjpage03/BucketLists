@@ -43,6 +43,6 @@ class ListTableViewCell: UITableViewCell {
         let newDate = newformatter.string(from: list.goalDate)
         goalDateLabel.text = "\(newDate)"
         
-        nameLabel.text = "\(rowNumber): \(list.name)"
+        nameLabel.text = "\(rowNumber). \(list.name)"
     }
 }

@@ -10,10 +10,12 @@ import UIKit
 
 struct BucketList: Hashable, Codable {
     
+    var id = UUID()
     var owner: String
     var items: [Item]
     var color: Color
     var percentCompleted: Double {
+        guard items.count != 0 else { return 0 }
         var completedItems: [Item] = []
 
         items.forEach { (item) in
@@ -48,11 +50,13 @@ struct Group: Codable {
 }
 
 struct Item: Hashable, Codable {
+    var id = UUID()
     var name: String
     var description: String
     var location: String?
     var goalDate: Date
     var isComplete: Bool
+  
 
 }
 

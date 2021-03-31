@@ -16,8 +16,11 @@ class DetailListTableViewController: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var completionCell: CompletionTableViewCell!
     @IBOutlet weak var completionSwitch: UISwitch!
-    @IBOutlet weak var CompletionView: UIView!
-    
+    @IBOutlet var doneLabel: UIBarButtonItem!
+    var bucketLists: [BucketList] = []
+    var indexOfBucketList: Int = 0
+    var indexOfItem: Int = 0
+    var dataController = DataController()
     var item: Item?
     var editMode: Bool = false
     
@@ -62,6 +65,9 @@ class DetailListTableViewController: UITableViewController {
         let goalDate = datePicker.date
         let completed = completionSwitch.isOn
         item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed)
+//        bucketLists[indexOfBucketList].items[indexOfItem] = item!
+//        dataController.saveData(lists: bucketLists)
+        
     }
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
@@ -99,5 +105,14 @@ class DetailListTableViewController: UITableViewController {
      @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
      }
-
+    
+    
+    @IBAction func editingChanged(_ sender: Any) {
+        if nameLabel.text?.count != 0 {
+            doneLabel.isEnabled = true
+        } else {
+            doneLabel.isEnabled = false
+        }
+    }
+    
 }

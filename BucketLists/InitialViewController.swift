@@ -21,7 +21,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     @IBOutlet weak var stackView: UIStackView!
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
-    
+    var viewHasDisappeared: Bool = false
     @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
     
     var updatedSnapshot: NSDiffableDataSourceSnapshot<String, BucketList> {
@@ -59,17 +59,26 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         newListButtonWasTapped = false
         
         bucketLists = dataController.retrieveData()
+        
         dataSource.apply(updatedSnapshot)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        guard let cell = animatedCell else { return }
-        //fix all animations
-        collectionView.transform = CGAffineTransform.identity
-        cell.imageView.transform = CGAffineTransform.identity
-        cell.ownerLabel.isHidden = false
-        self.newListButton.isHidden = false
-        self.segmentedControl.isHidden = false
+        
+        //OPTIONAL ZOOM OUT
+        
+        if viewHasDisappeared {
+            UIView.animate(withDuration: 0.5) { [self] in
+                collectionView.transform.a /= 50
+                collectionView.transform.d /= 50
+            } completion: { (_) in
+                self.animatedCell!.ownerLabel.isHidden = false
+                self.newListButton.isHidden = false
+                self.segmentedControl.isHidden = false
+                UIView.animate(withDuration: 0.5) {
+                    self.collectionView.transform = CGAffineTransform.identity
+                }
+            }
+            print(collectionView.transform)
+            viewHasDisappeared = false
+        }
     }
     
     //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -113,7 +122,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         self.segmentedControl.isHidden = true
         cell.ownerLabel.isHidden = true
         self.selectedItem = self.bucketLists[indexPath.row]
-        
+        self.indexOfSelectedRow = indexPath.row
+        self.viewHasDisappeared = true
+
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             collectionView.transform = rotateTransform
@@ -121,13 +132,13 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {
-                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
-                collectionView.transform = scaleTransform
+//                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
+//                collectionView.transform = scaleTransform
+                collectionView.transform.a *= 50
+                collectionView.transform.d *= 50
             } completion: { (_) in
                 if self.editingSwitchIsOn {
                     //segue to edit vc
-                    self.indexOfSelectedRow = indexPath.row
-                    
                     self.performSegue(withIdentifier: "CreateVC", sender: self.bucketLists[indexPath.row])
                     
                 } else {
@@ -141,6 +152,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
+            
             cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
 //            cell.layoutIfNeeded()
             return cell
@@ -178,6 +190,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
             listViewController.color = list.color.uiColor
+            listViewController.indexOfList = indexOfSelectedRow
+            listViewController.bucketLists = bucketLists
+            
             for item in list.items {
                 if item.isComplete {
                     listViewController.listCompleted.append(item)
@@ -201,3 +216,5 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
 }
+
+
