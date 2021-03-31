@@ -140,20 +140,20 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="Uvo-3g-hWv">
+                            <tableViewSection headerTitle="Details" id="Uvo-3g-hWv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completionCell" rowHeight="512" id="HlE-7R-MiZ" customClass="CompletionTableViewCell" customModule="BucketLists" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="661" width="414" height="512"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completionCell" rowHeight="64" id="HlE-7R-MiZ" customClass="CompletionTableViewCell" customModule="BucketLists" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="661" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HlE-7R-MiZ" id="8jp-bc-g8f">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="512"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL7-6k-3JM">
-                                                    <rect key="frame" x="20" y="11" width="374" height="490"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="42"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yST-BB-r1m">
-                                                            <rect key="frame" x="0.0" y="461" width="374" height="21"/>
+                                                            <rect key="frame" x="0.0" y="13" width="374" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>

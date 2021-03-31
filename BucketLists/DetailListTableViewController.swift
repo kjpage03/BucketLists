@@ -33,7 +33,11 @@ class DetailListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        if completionSwitch.isOn == true {
+            return 6
+        } else {
+        return  5
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,13 +89,13 @@ class DetailListTableViewController: UITableViewController {
             editMode = false
         }
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 6 {
-            return 512
-        } else{
-            return 64
-        }
-    }
+   // override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       // if indexPath.row == 2 {
+       //     return 512
+       // } else{
+       //     return UITableView.automaticDimension
+       // }
+   // }
      @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
      }
