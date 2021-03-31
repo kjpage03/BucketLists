@@ -14,7 +14,9 @@ class DetailListTableViewController: UITableViewController {
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var completionCell: CompletionTableViewCell!
     @IBOutlet weak var completionSwitch: UISwitch!
+    @IBOutlet weak var CompletionView: UIView!
     
     var item: Item?
     var editMode: Bool = false
@@ -31,7 +33,7 @@ class DetailListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,9 +85,15 @@ class DetailListTableViewController: UITableViewController {
             editMode = false
         }
     }
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 6 {
+            return 512
+        } else{
+            return 64
+        }
+    }
      @IBAction func CompletionSwitch(_ sender: Any) {
-        
+        tableView.reloadData()
      }
 
 }

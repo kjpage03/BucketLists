@@ -138,12 +138,41 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="cUi-VU-8bd">
-                                        <rect key="frame" x="0.0" y="605" width="414" height="64"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="Uvo-3g-hWv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completionCell" rowHeight="512" id="HlE-7R-MiZ" customClass="CompletionTableViewCell" customModule="BucketLists" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="661" width="414" height="512"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cUi-VU-8bd" id="H7G-b2-pB1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HlE-7R-MiZ" id="8jp-bc-g8f">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="512"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL7-6k-3JM">
+                                                    <rect key="frame" x="20" y="11" width="374" height="490"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yST-BB-r1m">
+                                                            <rect key="frame" x="0.0" y="461" width="374" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="yST-BB-r1m" secondAttribute="bottom" constant="8" id="RSS-bf-q6z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="yST-BB-r1m" secondAttribute="trailing" id="SXz-96-DIE"/>
+                                                        <constraint firstItem="yST-BB-r1m" firstAttribute="leading" secondItem="qL7-6k-3JM" secondAttribute="leading" id="yJf-Jt-xgW"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qL7-6k-3JM" secondAttribute="bottom" id="1G9-t4-2Bf"/>
+                                                <constraint firstItem="qL7-6k-3JM" firstAttribute="top" secondItem="8jp-bc-g8f" secondAttribute="topMargin" id="WBX-jI-G5f"/>
+                                                <constraint firstItem="qL7-6k-3JM" firstAttribute="leading" secondItem="8jp-bc-g8f" secondAttribute="leadingMargin" id="ZDt-mo-d3y"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qL7-6k-3JM" secondAttribute="trailing" id="gbh-Fm-Dv1"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -168,6 +197,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="CompletionView" destination="qL7-6k-3JM" id="fND-Sx-zsH"/>
+                        <outlet property="completionCell" destination="HlE-7R-MiZ" id="01a-Jh-3OT"/>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
                         <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>
