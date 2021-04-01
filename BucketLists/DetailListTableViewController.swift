@@ -54,7 +54,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
         updateItem(item: item)
         
-        if let image = UIImage(systemName: "calendar") {
+        if let image = UIImage(systemName: "") {
         imageArray.append(image)
           
         }
@@ -63,11 +63,13 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
         descriptionTextField.clipsToBounds = true
         descriptionTextField.layer.cornerRadius = 10.0
+        descriptionTextField.layer.borderWidth = 1
+        descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
         if descriptionTextField.text == "Describe your experience" {
-            descriptionTextField.backgroundColor = UIColor.lightGray
+            descriptionTextField.layer.borderWidth = 1
             descriptionTextField.isUserInteractionEnabled = true
         } else {
-            descriptionTextField.backgroundColor = UIColor.white
+            descriptionTextField.layer.borderWidth = 0
             descriptionTextField.isUserInteractionEnabled = false
 
         }
@@ -93,6 +95,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         locationLabel.text = item.location
         datePicker.date = item.goalDate
         completionSwitch.isOn = item.isComplete
+        descriptionTextField.text = item.details
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,7 +107,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
         let completed = completionSwitch.isOn
-        item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed)
+        let details = descriptionTextField.text ?? ""
+        item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed, details: details)
 //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
 //        dataController.saveData(lists: bucketLists)
         
@@ -120,7 +124,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
             descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
             locationLabel.borderStyle = UITextField.BorderStyle.roundedRect
-            descriptionTextField.backgroundColor = UIColor.lightGray
+            descriptionTextField.layer.borderWidth = 1
 
             editMode = true
         }
@@ -134,7 +138,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.borderStyle = UITextField.BorderStyle.none
             descriptionLabel.borderStyle = UITextField.BorderStyle.none
             locationLabel.borderStyle = UITextField.BorderStyle.none
-            descriptionTextField.backgroundColor = UIColor.white
+            descriptionTextField.layer.borderWidth = 0
 
             
             editMode = false

@@ -155,7 +155,7 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe your experience" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mol-yJ-5EX">
                                                     <rect key="frame" x="20" y="19" width="374" height="210"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="210" id="RNS-XU-Jbe"/>
                                                     </constraints>

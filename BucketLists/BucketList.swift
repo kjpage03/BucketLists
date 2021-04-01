@@ -30,17 +30,17 @@ struct BucketList: Hashable, Codable {
     
     static var testBucketLists = [BucketList(owner: "Kaleb's List", items: [
        
-        Item(name: "Go to Canada", description: "See a hockey game, try some syrup, and ride a moose", location: nil, goalDate: Date(), isComplete: false),
-        Item(name: "Go Skydiving", description: "Jump off a plane", location: nil, goalDate: Date(), isComplete: false),
-        Item(name: "Go to California", description: "Beaches n stuff", location: nil, goalDate: Date(), isComplete: true),
-        Item(name: "Purchase a sports car", description: "Probably a Corvette C8", location: nil, goalDate: Date(), isComplete: false)
+        Item(name: "Go to Canada", description: "See a hockey game, try some syrup, and ride a moose", location: nil, goalDate: Date(), isComplete: false, details: ""),
+        Item(name: "Go Skydiving", description: "Jump off a plane", location: nil, goalDate: Date(), isComplete: false, details: ""),
+        Item(name: "Go to California", description: "Beaches n stuff", location: nil, goalDate: Date(), isComplete: true, details: ""),
+        Item(name: "Purchase a sports car", description: "Probably a Corvette C8", location: nil, goalDate: Date(), isComplete: false, details: "")
         
     ], color: Color(uiColor: .red)), BucketList(owner: "Chris's List", items: [
                                    
-        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date(), isComplete: false),
-        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date(), isComplete: false),
-        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date(), isComplete: true),
-        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date(), isComplete: true)],
+                                                    Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date(), isComplete: false, details: ""),
+                                                    Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date(), isComplete: false, details: ""),
+                                                    Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date(), isComplete: true, details: ""),
+                                                    Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date(), isComplete: true, details: "")],
                                  
        color: Color(uiColor: .blue)), BucketList(owner: "Jake's List", items: [], color: Color(uiColor: .yellow))]
 }
@@ -56,8 +56,7 @@ struct Item: Hashable, Codable {
     var location: String?
     var goalDate: Date
     var isComplete: Bool
-  
-
+    var details: String
 }
 
 struct Color : Codable, Hashable {
