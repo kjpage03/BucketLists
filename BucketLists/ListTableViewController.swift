@@ -7,10 +7,12 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var mySegmentedControl: UISegmentedControl!
+//    @IBOutlet weak var totalLabel: UILabel!
+    
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var percentLabel: UILabel!
     var bucketLists : [BucketList] = []
     var indexOfList: Int = Int()
     var list : [Item] = []
@@ -19,13 +21,21 @@ class ListTableViewController: UITableViewController {
     var color: UIColor = UIColor()
     var dataController = DataController()
     var selectedRow: Int = Int()
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         navigationController?.setNavigationBarHidden(false, animated: false)
-        mySegmentedControl.selectedSegmentIndex = 1
-        updateTotalLabel()
-        
+        segmentedControl.selectedSegmentIndex = 1
+        updatePercentLabel()
+    }
+    
+    func updatePercentLabel() {
+        if bothList.count > 0 {
+            percentLabel.text = "\(Int(bucketLists[indexOfList].percentCompleted*100))%"
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,12 +45,13 @@ class ListTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            switch(mySegmentedControl.selectedSegmentIndex)
+            switch(segmentedControl.selectedSegmentIndex)
             {
             case 0:
                 listCompleted.remove(at: indexPath.row)
@@ -65,7 +76,7 @@ class ListTableViewController: UITableViewController {
             default:
                 break
             }
-            updateTotalLabel()
+            updatePercentLabel()
             bucketLists[indexOfList].items.remove(at: indexPath.row)
             tableView.reloadData()
             dataController.saveData(lists: bucketLists)
@@ -73,10 +84,11 @@ class ListTableViewController: UITableViewController {
             
         }
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnValue = 0
         
-        switch(mySegmentedControl.selectedSegmentIndex)
+        switch(segmentedControl.selectedSegmentIndex)
         {
         case 0:
             returnValue = listCompleted.count
@@ -95,11 +107,11 @@ class ListTableViewController: UITableViewController {
         return returnValue
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.row + 1
         
-        switch(mySegmentedControl.selectedSegmentIndex)
+        switch(segmentedControl.selectedSegmentIndex)
         {
         case 0:
             let completedlist = listCompleted[indexPath.row]
@@ -126,13 +138,13 @@ class ListTableViewController: UITableViewController {
         
         return cell
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0;//Choose your custom row height
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRow = indexPath.row
         
         performSegue(withIdentifier: "detailSegue", sender: nil)
@@ -143,9 +155,9 @@ class ListTableViewController: UITableViewController {
     }
     
     
-    func updateTotalLabel() {
-        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
-    }
+//    func updateTotalLabel() {
+//        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
+//    }
 
     // MARK: - Navigation
 
@@ -204,7 +216,7 @@ class ListTableViewController: UITableViewController {
             //update table view with new data
             
             tableView.reloadData()
-            updateTotalLabel()
+            updatePercentLabel()
         }
     }
     @IBAction func backButton(_ sender: Any) {
@@ -214,16 +226,16 @@ class ListTableViewController: UITableViewController {
         if let selectedRow = tableView.indexPathsForSelectedRows {
             tableView.deselectRow(at: selectedRow[0], animated: false)
         }
-        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Single Item", style: .default, handler: { (action) in
-            //single item vc
-            self.present(UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
-        }))
-        ac.addAction(UIAlertAction(title: "Multi-Step Item", style: .default, handler: { (action) in
-            //multiple item vc
-        }))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(ac, animated: true, completion: nil)
-        
+//        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        ac.addAction(UIAlertAction(title: "Single Item", style: .default, handler: { (action) in
+//            //single item vc
+//
+//        }))
+//        ac.addAction(UIAlertAction(title: "Multi-Step Item", style: .default, handler: { (action) in
+//            //multiple item vc
+//        }))
+//        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(ac, animated: true, completion: nil)
+        self.present(UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
 }

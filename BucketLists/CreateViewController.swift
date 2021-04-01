@@ -98,7 +98,7 @@ class CreateViewController: UIViewController {
         guard let name = nameTextField.text else { return }
         var bucketLists = dataController.retrieveData()
 
-        //        guard let LandingVC = segue.destination as? InitialViewController else { return }
+        guard let LandingVC = segue.destination as? InitialViewController else { return }
         if !deleteButtonWasTapped {
             
             //Edit the bucket list that was passed in and save it
@@ -118,6 +118,12 @@ class CreateViewController: UIViewController {
             //Create a new bucket list and save it
             
                 
+        } else {
+            LandingVC.viewHasDisappeared = false
+            LandingVC.collectionView.transform = CGAffineTransform.identity
+            LandingVC.animatedCell?.ownerLabel.isHidden = false
+            LandingVC.segmentedControl.isHidden = false
+            LandingVC.newListButton.isHidden = false
         }
     }
 }

@@ -54,17 +54,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Example text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0P5-XZ-cQx">
-                                                    <rect key="frame" x="20" y="11" width="374" height="106"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Example Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QOO-Qv-SZt">
+                                                    <rect key="frame" x="10" y="10" width="394" height="108"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="top" secondItem="r4f-XX-YPv" secondAttribute="topMargin" id="9Eg-Zg-75C"/>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="leading" secondItem="r4f-XX-YPv" secondAttribute="leadingMargin" id="BjH-OO-nPv"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="0P5-XZ-cQx" secondAttribute="bottom" id="EFj-Ud-tMH"/>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="trailing" secondItem="r4f-XX-YPv" secondAttribute="trailingMargin" id="zdx-WF-9L8"/>
+                                                <constraint firstAttribute="bottom" secondItem="QOO-Qv-SZt" secondAttribute="bottom" constant="10" id="Jka-f8-LgL"/>
+                                                <constraint firstItem="QOO-Qv-SZt" firstAttribute="leading" secondItem="r4f-XX-YPv" secondAttribute="leading" constant="10" id="Wn8-B7-97W"/>
+                                                <constraint firstAttribute="trailing" secondItem="QOO-Qv-SZt" secondAttribute="trailing" constant="10" id="jwM-FR-mMv"/>
+                                                <constraint firstItem="QOO-Qv-SZt" firstAttribute="top" secondItem="r4f-XX-YPv" secondAttribute="top" constant="10" id="ucc-9Y-ucL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -248,8 +250,8 @@
                     <connections>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
-                        <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>
-                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="lNN-zL-qoU"/>
+                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="1vV-tr-gpS"/>
+                        <outlet property="descriptionTextView" destination="QOO-Qv-SZt" id="rhS-pH-EJO"/>
                         <outlet property="doneLabel" destination="CfV-mk-lLQ" id="G2h-ma-OKf"/>
                         <outlet property="imageCollectionView" destination="Dqj-1T-ZFr" id="c0b-Da-3e6"/>
                         <outlet property="locationLabel" destination="lmv-i9-uSP" id="7de-uP-2LM"/>
