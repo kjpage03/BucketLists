@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qvv-1x-guW">
-                                <rect key="frame" x="0.0" y="136" width="414" height="685"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="726"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="44" id="yoY-CA-9PD" customClass="ListTableViewCell" customModule="BucketLists" customModuleProvider="target">
@@ -63,7 +63,6 @@
                                         <connections>
                                             <outlet property="goalDateLabel" destination="1Y4-BE-xYb" id="xgT-hb-DIe"/>
                                             <outlet property="nameLabel" destination="DbG-El-uSk" id="lCf-93-fEy"/>
-                                            <segue destination="RaZ-5V-7fC" kind="presentation" id="dEF-t1-y3c"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -78,16 +77,15 @@
                                 <rect key="frame" x="375" y="829" width="19" height="22"/>
                                 <state key="normal" image="square.and.arrow.up" catalog="system"/>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="voc-j2-aCf">
-                                <rect key="frame" x="0.0" y="97" width="414" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bkY-IJ-joy">
+                                <rect key="frame" x="10" y="54" width="394" height="32"/>
                                 <segments>
                                     <segment title="Completed"/>
                                     <segment title="Both"/>
                                     <segment title="Uncompleted"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segmentedControlAction:" destination="R1E-6V-2IH" eventType="valueChanged" id="LlL-66-48I"/>
+                                    <action selector="segmentedControlAction:" destination="R1E-6V-2IH" eventType="valueChanged" id="dWz-fn-GEf"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -99,9 +97,12 @@
                             <constraint firstItem="dgx-By-VMX" firstAttribute="bottom" secondItem="c4p-WN-UaU" secondAttribute="bottom" constant="-10" id="P97-Sd-FgD"/>
                             <constraint firstItem="qvv-1x-guW" firstAttribute="trailing" secondItem="c4p-WN-UaU" secondAttribute="trailing" id="bnm-qM-hap"/>
                             <constraint firstItem="qvv-1x-guW" firstAttribute="leading" secondItem="c4p-WN-UaU" secondAttribute="leading" id="cIi-Ak-9io"/>
+                            <constraint firstItem="bkY-IJ-joy" firstAttribute="top" secondItem="c4p-WN-UaU" secondAttribute="top" constant="10" id="eJ3-dE-g95"/>
                             <constraint firstItem="snY-DX-qp4" firstAttribute="top" secondItem="qvv-1x-guW" secondAttribute="bottom" constant="8" symbolic="YES" id="fQ6-yu-q3I"/>
+                            <constraint firstItem="c4p-WN-UaU" firstAttribute="trailing" secondItem="bkY-IJ-joy" secondAttribute="trailing" constant="10" id="lli-TA-q2r"/>
                             <constraint firstItem="dgx-By-VMX" firstAttribute="top" secondItem="qvv-1x-guW" secondAttribute="bottom" constant="10" id="lrh-FR-Y4O"/>
-                            <constraint firstItem="qvv-1x-guW" firstAttribute="top" secondItem="voc-j2-aCf" secondAttribute="bottom" constant="8" symbolic="YES" id="rVL-hx-LEx"/>
+                            <constraint firstItem="qvv-1x-guW" firstAttribute="top" secondItem="bkY-IJ-joy" secondAttribute="bottom" constant="10" id="qYJ-N3-NZ3"/>
+                            <constraint firstItem="bkY-IJ-joy" firstAttribute="leading" secondItem="c4p-WN-UaU" secondAttribute="leading" constant="10" id="w34-oH-Mp8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List Name" id="Dy6-Fi-6Zm">
@@ -119,8 +120,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="percentLabel" destination="dgx-By-VMX" id="FKR-La-8eg"/>
-                        <outlet property="segmentedControl" destination="voc-j2-aCf" id="JjE-VE-Mss"/>
+                        <outlet property="segmentedControl" destination="bkY-IJ-joy" id="xu8-M2-uZS"/>
                         <outlet property="tableView" destination="qvv-1x-guW" id="I46-fw-NRk"/>
+                        <segue destination="RaZ-5V-7fC" kind="show" identifier="detailSegue" id="oYb-kw-Oh0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2PI-vR-3Ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

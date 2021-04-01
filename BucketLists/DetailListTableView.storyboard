@@ -250,12 +250,8 @@
                     <connections>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
-<<<<<<< HEAD
+                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="1vV-tr-gpS"/>
                         <outlet property="descriptionTextView" destination="QOO-Qv-SZt" id="rhS-pH-EJO"/>
-=======
-                        <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>
-                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="lNN-zL-qoU"/>
->>>>>>> dc70db7f6ee51b2946556843862ae7b8a7878a1b
                         <outlet property="doneLabel" destination="CfV-mk-lLQ" id="G2h-ma-OKf"/>
                         <outlet property="imageCollectionView" destination="Dqj-1T-ZFr" id="c0b-Da-3e6"/>
                         <outlet property="locationLabel" destination="lmv-i9-uSP" id="7de-uP-2LM"/>
