@@ -17,7 +17,6 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
-		3086E8BB26121B1300520008 /* CompletionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086E8BA26121B1300520008 /* CompletionTableViewCell.swift */; };
 		308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A10882604E83600B6BBDF /* DetailListTableView.storyboard */; };
 		308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A10902604E93000B6BBDF /* DetailListTableViewController.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
@@ -73,7 +72,6 @@
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
-		3086E8BA26121B1300520008 /* CompletionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionTableViewCell.swift; sourceTree = "<group>"; };
 		308A10882604E83600B6BBDF /* DetailListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListTableView.storyboard; sourceTree = "<group>"; };
 		308A10902604E93000B6BBDF /* DetailListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListTableViewController.swift; sourceTree = "<group>"; };
 		309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				30EA90F12602405800D6BF1D /* AddListTableViewController.swift */,
 				308A10882604E83600B6BBDF /* DetailListTableView.storyboard */,
 				308A10902604E93000B6BBDF /* DetailListTableViewController.swift */,
-				3086E8BA26121B1300520008 /* CompletionTableViewCell.swift */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
 				1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
@@ -321,7 +318,6 @@
 			files = (
 				7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */,
 				1E6D1B66260395C500D5427F /* DataController.swift in Sources */,
-				3086E8BB26121B1300520008 /* CompletionTableViewCell.swift in Sources */,
 				308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
 				7C2FF111260E21780058454C /* InfoViewController.swift in Sources */,
