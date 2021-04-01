@@ -11,7 +11,7 @@ class DetailListTableViewController: UITableViewController {
 
    
     @IBOutlet weak var nameLabel: UITextField!
-    @IBOutlet weak var descriptionLabel: UITextField!
+    @IBOutlet var descriptionTextView: UITextView!
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var completionSwitch: UISwitch!
@@ -28,7 +28,7 @@ class DetailListTableViewController: UITableViewController {
         tableView.allowsSelection = false
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+        descriptionTextView.isUserInteractionEnabled = false
         updateItem(item: item)
     }
 
@@ -44,7 +44,7 @@ class DetailListTableViewController: UITableViewController {
     func updateItem(item: Item?) {
         guard let item = item else {return}
         nameLabel.text = item.name
-        descriptionLabel.text = item.description
+        descriptionTextView.text = item.description
         locationLabel.text = item.location
         datePicker.date = item.goalDate
         completionSwitch.isOn = item.isComplete
@@ -55,7 +55,7 @@ class DetailListTableViewController: UITableViewController {
 
         guard segue.identifier == "detailUnwind" else {return}
         let name = nameLabel.text ?? ""
-        let description = descriptionLabel.text ?? ""
+        let description = descriptionTextView.text ?? ""
         let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
         let completed = completionSwitch.isOn
@@ -67,24 +67,24 @@ class DetailListTableViewController: UITableViewController {
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
             nameLabel.isUserInteractionEnabled = true
-            descriptionLabel.isUserInteractionEnabled = true
+            descriptionTextView.isUserInteractionEnabled = true
             locationLabel.isUserInteractionEnabled = true
             datePicker.isUserInteractionEnabled = true
             
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
-            descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
+//            descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
             locationLabel.borderStyle = UITextField.BorderStyle.roundedRect
 
             editMode = true
         }
         else if editMode == true {
             nameLabel.isUserInteractionEnabled = false
-            descriptionLabel.isUserInteractionEnabled = false
+            descriptionTextView.isUserInteractionEnabled = false
             locationLabel.isUserInteractionEnabled = false
             datePicker.isUserInteractionEnabled = false
             
             nameLabel.borderStyle = UITextField.BorderStyle.none
-            descriptionLabel.borderStyle = UITextField.BorderStyle.none
+//            descriptionLabel.borderStyle = UITextField.BorderStyle.none
             locationLabel.borderStyle = UITextField.BorderStyle.none
             
             editMode = false
@@ -92,7 +92,7 @@ class DetailListTableViewController: UITableViewController {
     }
     
      @IBAction func CompletionSwitch(_ sender: Any) {
-        
+        tableView.reloadData()
      }
     
     
