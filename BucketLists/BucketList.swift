@@ -16,7 +16,6 @@ struct BucketList: Hashable, Codable {
     var color: Color
     var percentCompleted: Double {
         guard items.count != 0 else { return 0 }
-        
         var completedItems: [Item] = []
 
         items.forEach { (item) in
@@ -57,6 +56,7 @@ struct Item: Hashable, Codable {
     var location: String?
     var goalDate: Date
     var isComplete: Bool
+  
 
 }
 
