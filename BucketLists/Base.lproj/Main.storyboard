@@ -201,10 +201,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-QF-bBn" userLabel="Input Stack">
                                 <rect key="frame" x="10" y="97.999999999999972" width="370" height="439.33333333333326"/>
-
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
@@ -325,16 +323,16 @@
             <objects>
                 <viewController id="lZb-1B-cqa" customClass="InfoViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IRl-pR-OO6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Describe your experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7w7-hN-OqL">
-                                <rect key="frame" x="10" y="69" width="394" height="193"/>
+                                <rect key="frame" x="10" y="69" width="370" height="141"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yht-7k-Djh">
-                                <rect key="frame" x="0.0" y="287" width="414" height="128"/>
+                                <rect key="frame" x="0.0" y="235" width="390" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c6I-0b-ugm">
                                     <size key="itemSize" width="128" height="128"/>
@@ -372,7 +370,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-GL-uZV">
-                                <rect key="frame" x="170" y="433" width="74" height="30"/>
+                                <rect key="frame" x="158" y="407" width="74" height="30"/>
                                 <state key="normal" title="Add Image"/>
                                 <connections>
                                     <action selector="addImageButton:" destination="lZb-1B-cqa" eventType="touchUpInside" id="hdq-KZ-gsc"/>
@@ -402,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySI-Q2-3AC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2766.666666666667" y="139.28571428571428"/>
+            <point key="canvasLocation" x="2625" y="458"/>
         </scene>
     </scenes>
     <resources>
