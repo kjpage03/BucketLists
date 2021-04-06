@@ -155,7 +155,31 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-//    func updateTotalLabel() {
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        
+        
+        var myList: [String] = ["My List: "]
+        
+        for (index, item) in bothList.enumerated() {
+            
+            if index == bothList.count-1 {
+                myList.append("\(item.name)")
+            } else {
+            myList.append("\(item.name),")
+            }
+        }
+        
+        let ac = UIActivityViewController(activityItems: myList, applicationActivities: nil)
+        
+        present(ac, animated: true, completion: nil)
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return "My Bucket List"
+    }
+    
+    //    func updateTotalLabel() {
 //        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
 //    }
 
@@ -202,8 +226,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             tableView.reloadData()
             
-        }
-        else if segue.identifier == "doneUnwind" {
+        } else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
               let sourceViewController = segue.source as?
                 AddListTableViewController,

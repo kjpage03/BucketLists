@@ -17,6 +17,7 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
+		1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C36C261B554D00073F72 /* MapViewController.swift */; };
 		308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A10882604E83600B6BBDF /* DetailListTableView.storyboard */; };
 		308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A10902604E93000B6BBDF /* DetailListTableViewController.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
@@ -69,6 +70,7 @@
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		1E6D1B65260395C500D5427F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1E77C36C261B554D00073F72 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */,
 				7C2FF11A260E3C530058454C /* App.swift */,
 				30F6576125F9350D00E30B46 /* ListTableView.storyboard */,
+				1E77C36C261B554D00073F72 /* MapViewController.swift */,
 				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
 				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
 				30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */,
@@ -329,6 +332,7 @@
 				7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */,
 				7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
+				1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */,
 				7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */,
 				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
