@@ -18,6 +18,7 @@
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
 		1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C36C261B554D00073F72 /* MapViewController.swift */; };
+		1E77C394261CAADD00073F72 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */; };
 		308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A10882604E83600B6BBDF /* DetailListTableView.storyboard */; };
 		308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A10902604E93000B6BBDF /* DetailListTableViewController.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
@@ -71,6 +72,7 @@
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		1E6D1B65260395C500D5427F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		1E77C36C261B554D00073F72 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				30EA90F12602405800D6BF1D /* AddListTableViewController.swift */,
 				308A10882604E83600B6BBDF /* DetailListTableView.storyboard */,
 				308A10902604E93000B6BBDF /* DetailListTableViewController.swift */,
+				1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
 				1E6818F525F91CA6003FC155 /* LaunchScreen.storyboard */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
@@ -323,6 +326,7 @@
 				1E6D1B66260395C500D5427F /* DataController.swift in Sources */,
 				308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
+				1E77C394261CAADD00073F72 /* LocationSearchTableViewController.swift in Sources */,
 				7C2FF111260E21780058454C /* InfoViewController.swift in Sources */,
 				7C9DABBF2612118200722DC5 /* ImageCollectionViewCell.swift in Sources */,
 				30EA90F22602405800D6BF1D /* AddListTableViewController.swift in Sources */,

@@ -104,18 +104,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xrp-Sc-76n">
-                                                    <rect key="frame" x="24" y="4" width="374" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdE-3d-6LJ">
+                                                    <rect key="frame" x="192" y="7" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="xrp-Sc-76n" firstAttribute="leading" secondItem="R2z-q9-dLL" secondAttribute="leadingMargin" constant="4" id="6bX-oZ-pt7"/>
-                                                <constraint firstItem="xrp-Sc-76n" firstAttribute="top" secondItem="R2z-q9-dLL" secondAttribute="top" constant="4" id="P4t-Hn-czO"/>
-                                                <constraint firstAttribute="bottom" secondItem="xrp-Sc-76n" secondAttribute="bottom" constant="4" id="V1K-I2-XfE"/>
-                                                <constraint firstItem="xrp-Sc-76n" firstAttribute="trailing" secondItem="R2z-q9-dLL" secondAttribute="trailingMargin" constant="4" id="ZIv-eX-LSe"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -164,7 +157,6 @@
                         <outlet property="datePicker" destination="aHc-sU-kbj" id="q3I-Ef-828"/>
                         <outlet property="descriptionLabel" destination="kYz-ls-3YK" id="LMh-KB-hN2"/>
                         <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
-                        <outlet property="locationLabel" destination="xrp-Sc-76n" id="uY7-J3-KKO"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
                     </connections>
                 </tableViewController>
@@ -189,7 +181,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wk-WS-NHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240.57971014492756" y="144.64285714285714"/>
+            <point key="canvasLocation" x="330" y="145"/>
         </scene>
     </scenes>
     <resources>
