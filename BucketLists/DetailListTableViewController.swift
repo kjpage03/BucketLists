@@ -21,9 +21,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var setLocationButton: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet var mapView: MKMapView!
-    
+    var matchingItems:[MKMapItem] = []
+    var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
-    
     var bucketLists: [BucketList] = []
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
@@ -203,7 +203,25 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBAction func setLocationButtonClicked(_ sender: Any) {
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Current Location", style: .default, handler: { (action) in
-            //do stuff
+            if CLLocationManager.locationServicesEnabled() {
+                switch CLLocationManager().authorizationStatus {
+                case .authorizedWhenInUse:
+                    self.mapView.showsUserLocation = true
+                case .denied:
+                     break
+                case .notDetermined:
+                    self.locationManager.requestWhenInUseAuthorization()
+                    self.mapView.showsUserLocation = true
+                case .restricted:
+                    break
+                case .authorizedAlways:
+                    break
+                default:
+                    break
+                }
+            } else {
+                // Alert
+            }
         }))
         ac.addAction(UIAlertAction(title: "Find a Location", style: .default, handler: { (action) in
             //do stuff

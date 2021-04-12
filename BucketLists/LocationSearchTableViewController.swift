@@ -18,7 +18,7 @@ class LocationSearchTableViewController: UITableViewController {
     var mapView: MKMapView? = nil
     var resultSearchController: UISearchController? = nil
     var selectedPin: MKPlacemark? = nil
-    var handleMapSearchDelegate:HandleMapSearch? = nil
+    var handleMapSearchDelegate: HandleMapSearch? = nil
 
     
     override func viewDidLoad() {
