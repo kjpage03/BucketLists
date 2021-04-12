@@ -169,6 +169,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             collectionView.transform = rotateTransform
             //            cell.imageView.transform = rotateTransform
+            cell.fill.layer.borderWidth = 0
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {

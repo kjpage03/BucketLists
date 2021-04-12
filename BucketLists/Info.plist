@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use of location is required in order to use the map.</string>
+	<string>Your location is needed to determine completion locations of your items</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to your photo library is required in order to add photos to your collages.</string>
 	<key>NSCameraUsageDescription</key>

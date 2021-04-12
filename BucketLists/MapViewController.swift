@@ -2,52 +2,53 @@
 //  MapViewController.swift
 //  BucketLists
 //
-//  Created by Jake Olsen on 4/1/21.
+//  Created by Kaleb Page on 4/5/21.
 //
 
 import UIKit
 import MapKit
- 
+
 class MapViewController: UIViewController {
-    @IBOutlet weak var mapView: MKMapView!
-    let locationManager = CLLocationManager()
     
+    @IBOutlet var mapView: MKMapView!
+    
+    let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if CLLocationManager.locationServicesEnabled() {
-            // continue to implement here
-        } else {
-            let locationAlert = UIAlertController(title: "Please turn on Location Services.", message: "Please enable location services to use the map.", preferredStyle: .alert)
-            locationAlert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
-            }
-            // Do any additional setup after loading the view.
-        }
-    func checkLocationServices() {
-        switch CLLocationManager().authorizationStatus {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-        case .denied:
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            mapView.showsUserLocation = true
-        case .restricted:
-        break
-        case .authorizedAlways:
-        break
-        @unknown default:
-            break
-        }
+        
+        
+        mapView.centerToLocation(initialLocation)
+        let location = BucketItemLocation(coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
+        mapView.addAnnotation(location)
+        
+        // Do any additional setup after loading the view.
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+}
+
+private extension MKMapView {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        
+        let coordinateRegion = MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: regionRadius,
+            longitudinalMeters: regionRadius)
+        setRegion(coordinateRegion, animated: true)
+    }
     
 }
+
+class BucketItemLocation: NSObject, MKAnnotation {
+    let coordinate: CLLocationCoordinate2D
+
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        
+        self.coordinate = coordinate
+        super.init()
+    }
+}
+
+

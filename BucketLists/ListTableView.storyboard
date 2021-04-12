@@ -19,6 +19,35 @@
             </objects>
             <point key="canvasLocation" x="4563.768115942029" y="87.723214285714278"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="pf7-pR-yaM">
+            <objects>
+                <viewController id="QJR-Yv-K3P" customClass="MapViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HHO-XV-Zab">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LWQ-FP-uRP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tTl-JS-lUK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LWQ-FP-uRP" firstAttribute="bottom" secondItem="tTl-JS-lUK" secondAttribute="bottom" id="Esh-KU-9jp"/>
+                            <constraint firstItem="LWQ-FP-uRP" firstAttribute="top" secondItem="tTl-JS-lUK" secondAttribute="top" id="H1F-bl-7nk"/>
+                            <constraint firstItem="tTl-JS-lUK" firstAttribute="trailing" secondItem="LWQ-FP-uRP" secondAttribute="trailing" id="ogM-SK-6xt"/>
+                            <constraint firstItem="LWQ-FP-uRP" firstAttribute="leading" secondItem="tTl-JS-lUK" secondAttribute="leading" id="xen-Wh-5Wq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="LWQ-FP-uRP" id="lIl-xI-4wc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wIB-bZ-mLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3924.6376811594205" y="803.57142857142856"/>
+        </scene>
         <!--List Name-->
         <scene sceneID="eU5-oY-oxp">
             <objects>
@@ -76,6 +105,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snY-DX-qp4">
                                 <rect key="frame" x="375" y="829" width="19" height="22"/>
                                 <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="R1E-6V-2IH" eventType="touchUpInside" id="6uU-3X-bRf"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bkY-IJ-joy">
                                 <rect key="frame" x="10" y="54" width="394" height="32"/>
@@ -88,10 +120,18 @@
                                     <action selector="segmentedControlAction:" destination="R1E-6V-2IH" eventType="valueChanged" id="dWz-fn-GEf"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPf-2H-VNN">
+                                <rect key="frame" x="20" y="829" width="22" height="22"/>
+                                <state key="normal" image="map" catalog="system"/>
+                                <connections>
+                                    <segue destination="QJR-Yv-K3P" kind="presentation" id="imB-xZ-jQ2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c4p-WN-UaU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yPf-2H-VNN" firstAttribute="top" secondItem="qvv-1x-guW" secondAttribute="bottom" constant="8" symbolic="YES" id="C4L-6Z-LKW"/>
                             <constraint firstItem="dgx-By-VMX" firstAttribute="centerX" secondItem="PHc-0m-GEL" secondAttribute="centerX" id="DPc-3y-Zld"/>
                             <constraint firstItem="c4p-WN-UaU" firstAttribute="trailing" secondItem="snY-DX-qp4" secondAttribute="trailing" constant="20" id="P2p-6K-BC5"/>
                             <constraint firstItem="dgx-By-VMX" firstAttribute="bottom" secondItem="c4p-WN-UaU" secondAttribute="bottom" constant="-10" id="P97-Sd-FgD"/>
@@ -99,6 +139,7 @@
                             <constraint firstItem="qvv-1x-guW" firstAttribute="leading" secondItem="c4p-WN-UaU" secondAttribute="leading" id="cIi-Ak-9io"/>
                             <constraint firstItem="bkY-IJ-joy" firstAttribute="top" secondItem="c4p-WN-UaU" secondAttribute="top" constant="10" id="eJ3-dE-g95"/>
                             <constraint firstItem="snY-DX-qp4" firstAttribute="top" secondItem="qvv-1x-guW" secondAttribute="bottom" constant="8" symbolic="YES" id="fQ6-yu-q3I"/>
+                            <constraint firstItem="yPf-2H-VNN" firstAttribute="leading" secondItem="c4p-WN-UaU" secondAttribute="leading" constant="20" id="fYX-UY-d9g"/>
                             <constraint firstItem="c4p-WN-UaU" firstAttribute="trailing" secondItem="bkY-IJ-joy" secondAttribute="trailing" constant="10" id="lli-TA-q2r"/>
                             <constraint firstItem="dgx-By-VMX" firstAttribute="top" secondItem="qvv-1x-guW" secondAttribute="bottom" constant="10" id="lrh-FR-Y4O"/>
                             <constraint firstItem="qvv-1x-guW" firstAttribute="top" secondItem="bkY-IJ-joy" secondAttribute="bottom" constant="10" id="qYJ-N3-NZ3"/>
@@ -131,6 +172,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">

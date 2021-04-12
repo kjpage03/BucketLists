@@ -25,9 +25,10 @@ class BucketCollectionViewCell: UICollectionViewCell {
         } else {
         fill.backgroundColor = color
         }
+//        fill.layer.borderWidth = 1.6
+//        fill.layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
         //ADJUST FILL HEIGHT BASED ON PERCENTAGE
         let newConstraint = fillHeight.constraintWithMultiplier(CGFloat(newPercentage))
-        
         self.contentView.removeConstraint(fillHeight)
         self.contentView.addConstraint(newConstraint)
         self.contentView.layoutIfNeeded()
