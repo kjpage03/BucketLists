@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use of location is required in order to use the map.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to your photo library is required in order to add photos to your collages.</string>
 	<key>NSCameraUsageDescription</key>

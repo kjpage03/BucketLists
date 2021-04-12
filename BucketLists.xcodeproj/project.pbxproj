@@ -33,6 +33,7 @@
 		7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6588925F9342E00537BF4 /* CreateVC.storyboard */; };
 		7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */; };
 		7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589725FBB87700537BF4 /* CreateViewController.swift */; };
+		7CE6F9BC26161441002FE0A3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE6F9BB26161441002FE0A3 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		7CC6588925F9342E00537BF4 /* CreateVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateVC.storyboard; sourceTree = "<group>"; };
 		7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		7CC6589725FBB87700537BF4 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		7CE6F9BB26161441002FE0A3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				1E6818EE25F91CA6003FC155 /* ViewController.swift */,
 				7CC6588925F9342E00537BF4 /* CreateVC.storyboard */,
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
+				7CE6F9BB26161441002FE0A3 /* MapViewController.swift */,
 				7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */,
 				7CC6589725FBB87700537BF4 /* CreateViewController.swift */,
 				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
@@ -329,6 +332,7 @@
 				7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */,
 				7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
+				7CE6F9BC26161441002FE0A3 /* MapViewController.swift in Sources */,
 				7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */,
 				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,

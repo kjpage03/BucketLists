@@ -18,7 +18,8 @@ class InfoViewController: UIViewController, UIImagePickerControllerDelegate , UI
                         return cell
     }
     
-    @IBOutlet weak var descriptionTextField: UITextField!
+   
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     var sections = [Section]()
     
@@ -31,7 +32,7 @@ class InfoViewController: UIViewController, UIImagePickerControllerDelegate , UI
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let image = UIImage(systemName: "calendar") {
+        if let image = UIImage(systemName: "camera") {
         imageArray.append(image)
           
         }
