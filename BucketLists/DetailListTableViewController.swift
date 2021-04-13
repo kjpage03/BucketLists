@@ -10,7 +10,6 @@ import MapKit
 
 class DetailListTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet var descriptionTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -86,7 +85,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //
         //        }
         
-        
     }
     
     // MARK: - Table view data source
@@ -108,12 +106,31 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         nameLabel.text = item.name
         descriptionTextView.text = item.description
         //        locationLabel.text = item.location
+        if let coordinate = item.location {
+//            dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate[0])!, longitude: CLLocationDegrees(coordinate[1])!)))
+            dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate.latitude)!, longitude: CLLocationDegrees(coordinate.longitude)!)), location: coordinate.location)
+        }
         datePicker.date = item.goalDate
         completionSwitch.isOn = item.isComplete
         descriptionTextField.text = item.details
         item.photos?.forEach({ (photoData) in
             imageArray.append(UIImage(data: photoData) ?? UIImage())
         })
+    }
+    
+    func dropPinZoomIn(placemark: MKPlacemark, location: String) {
+//        selectedPin = placemark
+        
+        mapView!.removeAnnotations(mapView!.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = "\(location)"
+        
+//        annotation.subtitle = "\(location)"
+        mapView?.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView!.setRegion(region, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,6 +144,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             let name = nameLabel.text ?? ""
             let description = descriptionTextView.text ?? ""
             //        let location = locationLabel.text ?? ""
+            
+//            let location = mapView.annotations.first?.coordinate
             let goalDate = datePicker.date
             let completed = completionSwitch.isOn
             var photos: [Data] = []
@@ -134,7 +153,13 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             imageArray.forEach { (image) in
                 photos.append(image.pngData() ?? Data())
             }
-            item = Item( name: name, description: description, location: "location", goalDate: goalDate, isComplete: completed, photos: photos, details: details)
+            if let location = mapView.annotations.first {
+                
+                item = Item( name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details)
+            } else {
+                item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details)
+            }
+            
             //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
             //        dataController.saveData(lists: bucketLists)
         default :
@@ -213,6 +238,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
 //            }
 //
 //            nav.popViewController(animated: true)
+            
+            
             self.performSegue(withIdentifier: "LocationSearchVC", sender: nil)
             
 

@@ -37,10 +37,10 @@ struct BucketList: Hashable, Codable {
         
     ], color: Color(uiColor: .red)), BucketList(owner: "Chris's List", items: [
                                    
-        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: "Japan", goalDate: Date(), isComplete: false),
-        Item(name: "Go to Germany", description: "Take a trip to Germany", location: "Germany", goalDate: Date(), isComplete: false),
-        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: "Grand Canyon", goalDate: Date(), isComplete: true),
-        Item(name: "Finish school", description: "Finish going to school", location: "Grand Canyon", goalDate: Date(), isComplete: true)],
+        Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: nil, goalDate: Date(), isComplete: false),
+        Item(name: "Go to Germany", description: "Take a trip to Germany", location: nil, goalDate: Date(), isComplete: false),
+        Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: nil, goalDate: Date(), isComplete: true),
+        Item(name: "Finish school", description: "Finish going to school", location: nil, goalDate: Date(), isComplete: true)],
                                  
        color: Color(uiColor: .blue)), BucketList(owner: "Jake's List", items: [], color: Color(uiColor: .yellow))]
 }
@@ -53,11 +53,17 @@ struct Item: Hashable, Codable {
     var id = UUID()
     var name: String
     var description: String
-    var location: String?
+    var location: Location?
     var goalDate: Date
     var isComplete: Bool
     var photos: [Data]?
     var details: String?
+}
+
+struct Location: Codable, Hashable {
+    var latitude: String
+    var longitude: String
+    var location: String
 }
 
 struct Color : Codable, Hashable {

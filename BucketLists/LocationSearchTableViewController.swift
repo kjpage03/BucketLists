@@ -36,7 +36,6 @@ class LocationSearchTableViewController: UITableViewController {
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         locationSearchTable.mapView = mapView
-        
         locationSearchTable.handleMapSearchDelegate = self
  
     }
@@ -81,9 +80,18 @@ extension LocationSearchTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
         handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
-        dismiss(animated: true, completion: nil)
+
+        //HELP
         
-        performSegue(withIdentifier: "searchUnwind", sender: nil)
+        self.definesPresentationContext = true
+        navigationItem.searchController = nil
+        resultSearchController?.dismiss(animated: true, completion: {
+
+        })
+        resultSearchController = nil
+        //idk
+        resultSearchController?.removeFromParent()
+        self.performSegue(withIdentifier: "unwindFromSearch", sender: nil)
         
     }
     
@@ -91,7 +99,6 @@ extension LocationSearchTableViewController {
         let detailView = segue.destination as! DetailListTableViewController
         detailView.mapView = self.mapView
     }
-    
 }
 
 extension LocationSearchTableViewController: HandleMapSearch {
