@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -256,12 +257,76 @@
                         <outlet property="imageCollectionView" destination="Dqj-1T-ZFr" id="c0b-Da-3e6"/>
                         <outlet property="locationLabel" destination="lmv-i9-uSP" id="7de-uP-2LM"/>
                         <outlet property="nameLabel" destination="SpS-20-u3Y" id="hJI-0L-tMg"/>
+                        <segue destination="LbV-2N-EwM" kind="presentation" identifier="imageSegue" id="XYi-OV-Iea"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxf-4A-uU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="vwY-ah-IZq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="555.07246376811599" y="40.848214285714285"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="87U-ld-uzs">
+            <objects>
+                <viewController id="LbV-2N-EwM" customClass="ImageViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vsK-L2-XW3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="hNL-HI-emQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYw-ml-AL7">
+                                        <rect key="frame" x="181" y="0.0" width="52" height="201"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButton:" destination="LbV-2N-EwM" eventType="touchUpInside" id="ErT-CK-70q"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HpG-vA-UDk">
+                                        <rect key="frame" x="0.0" y="235" width="414" height="414"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HpG-vA-UDk" secondAttribute="height" multiplier="1:1" id="lQE-yO-yQM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGo-dY-ekH">
+                                        <rect key="frame" x="173.5" y="683" width="67" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteImage:" destination="LbV-2N-EwM" eventType="touchUpInside" id="m7I-LO-3R0"/>
+                                            <segue destination="Zu7-Ye-4QC" kind="unwind" identifier="deleteImage" unwindAction="unwindWithSegue:" id="r6s-II-SBy"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aof-jg-etB">
+                                        <rect key="frame" x="182" y="758" width="50" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RmF-iu-wBX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="top" secondItem="RmF-iu-wBX" secondAttribute="top" id="eEo-y2-qQh"/>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="leading" secondItem="RmF-iu-wBX" secondAttribute="leading" id="mjN-qb-1tz"/>
+                            <constraint firstItem="RmF-iu-wBX" firstAttribute="bottom" secondItem="hNL-HI-emQ" secondAttribute="bottom" id="t7L-2A-WQU"/>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="trailing" secondItem="RmF-iu-wBX" secondAttribute="trailing" id="vQb-zG-O6Z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="HpG-vA-UDk" id="Aik-j9-9uR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwj-q0-bzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Zu7-Ye-4QC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="7"/>
         </scene>
     </scenes>
     <resources>
