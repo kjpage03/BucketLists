@@ -98,7 +98,7 @@ class CreateViewController: UIViewController {
         guard let name = nameTextField.text else { return }
         var bucketLists = dataController.retrieveData()
 
-        //        guard let LandingVC = segue.destination as? InitialViewController else { return }
+        guard let LandingVC = segue.destination as? InitialViewController else { return }
         if !deleteButtonWasTapped {
             
             //Edit the bucket list that was passed in and save it
@@ -109,7 +109,7 @@ class CreateViewController: UIViewController {
             bucketLists[index] = list
             dataController.saveData(lists: bucketLists)
             } else {
-                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true)], color: Color(uiColor: color))
+                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true, details: "", imageArray: [])], color: Color(uiColor: color))
                 //            LandingVC.bucketLists.append(bucketList)
 //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)
@@ -118,6 +118,12 @@ class CreateViewController: UIViewController {
             //Create a new bucket list and save it
             
                 
+        } else {
+            LandingVC.viewHasDisappeared = false
+            LandingVC.collectionView.transform = CGAffineTransform.identity
+            LandingVC.animatedCell?.ownerLabel.isHidden = false
+            LandingVC.segmentedControl.isHidden = false
+            LandingVC.newListButton.isHidden = false
         }
     }
 }

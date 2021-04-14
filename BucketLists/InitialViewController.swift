@@ -49,10 +49,50 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.collectionViewLayout = generateNewLayout()
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
         //        scrollLabel.text = "\(1)/\(bucketLists.count)"
         // Do any additional setup after loading the view.
+        //        let emitter = CAEmitterLayer()
+        //        emitter.emitterPosition = CGPoint(x: self.view.frame.size.width / 2, y: -10)
+        //
+        //        emitter.emitterShape = CAEmitterLayerEmitterShape.line
+        //        emitter.emitterSize = CGSize(width: self.view.frame.size.width, height: 2.0)
+        //        emitter.emitterCells = generateEmitterCells()
+        //        self.view.layer.addSublayer(emitter)
+        //    }
     }
+    //
+    //    private func generateEmitterCells() -> [CAEmitterCell] {
+    //        var cells: [CAEmitterCell] = [CAEmitterCell]()
+    //        for index in 0..<16 {
+    //        let cell = CAEmitterCell()
+    //        cell.birthRate = 4.0
+    //        cell.lifetime = 14.0
+    //        cell.lifetimeRange = 0
+    //        cell.velocity = CGFloat.random(in: 0...100)
+    //        cell.velocityRange = 0
+    //        cell.emissionLongitude = CGFloat(Double.pi)
+    //        cell.emissionRange = 0.5
+    //        cell.spin = 3.5
+    //        cell.spinRange = 0
+    //        cell.color = getNextColor(i: index)
+    //        cell.contents = UIImage(named: "bucketNoBG")
+    //        cell.scaleRange = 0.25
+    //        cell.scale = 0.1
+    //        cells.append(cell)
+    //        }
+    //        return cells
+    //    }
+    //
+    //    func getNextColor(i: Any) -> CGColor {
+    //        let colors: [CGColor] = [UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor]
+    //
+    //        return colors[i as! Int]
+    //    }
     
+    //    func getNextImage(i: Any) -> UIImage {
+    //
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -124,7 +164,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         self.selectedItem = self.bucketLists[indexPath.row]
         self.indexOfSelectedRow = indexPath.row
         self.viewHasDisappeared = true
-
+        
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             collectionView.transform = rotateTransform
@@ -132,8 +172,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {
-//                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
-//                collectionView.transform = scaleTransform
+                //                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
+                //                collectionView.transform = scaleTransform
                 collectionView.transform.a *= 50
                 collectionView.transform.d *= 50
             } completion: { (_) in
@@ -154,7 +194,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
             
             cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
-//            cell.layoutIfNeeded()
+            //            cell.layoutIfNeeded()
             return cell
         })
         dataSource.apply(updatedSnapshot)
@@ -184,9 +224,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         newListButtonWasTapped = true
     }
     
-    //      MARK: - Navigation
+    //MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let listViewController = segue.destination as? ListTableViewController, let list = selectedItem {
             listViewController.title = list.owner
             listViewController.color = list.color.uiColor

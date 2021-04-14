@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,17 +55,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Example text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0P5-XZ-cQx">
-                                                    <rect key="frame" x="20" y="11" width="374" height="106"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Example Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QOO-Qv-SZt">
+                                                    <rect key="frame" x="10" y="10" width="394" height="108"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="top" secondItem="r4f-XX-YPv" secondAttribute="topMargin" id="9Eg-Zg-75C"/>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="leading" secondItem="r4f-XX-YPv" secondAttribute="leadingMargin" id="BjH-OO-nPv"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="0P5-XZ-cQx" secondAttribute="bottom" id="EFj-Ud-tMH"/>
-                                                <constraint firstItem="0P5-XZ-cQx" firstAttribute="trailing" secondItem="r4f-XX-YPv" secondAttribute="trailingMargin" id="zdx-WF-9L8"/>
+                                                <constraint firstAttribute="bottom" secondItem="QOO-Qv-SZt" secondAttribute="bottom" constant="10" id="Jka-f8-LgL"/>
+                                                <constraint firstItem="QOO-Qv-SZt" firstAttribute="leading" secondItem="r4f-XX-YPv" secondAttribute="leading" constant="10" id="Wn8-B7-97W"/>
+                                                <constraint firstAttribute="trailing" secondItem="QOO-Qv-SZt" secondAttribute="trailing" constant="10" id="jwM-FR-mMv"/>
+                                                <constraint firstItem="QOO-Qv-SZt" firstAttribute="top" secondItem="r4f-XX-YPv" secondAttribute="top" constant="10" id="ucc-9Y-ucL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -155,7 +158,7 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe your experience" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mol-yJ-5EX">
                                                     <rect key="frame" x="20" y="19" width="374" height="210"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="210" id="RNS-XU-Jbe"/>
                                                     </constraints>
@@ -248,18 +251,82 @@
                     <connections>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
-                        <outlet property="descriptionLabel" destination="0P5-XZ-cQx" id="N40-l4-nDT"/>
-                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="lNN-zL-qoU"/>
+                        <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="1vV-tr-gpS"/>
+                        <outlet property="descriptionTextView" destination="QOO-Qv-SZt" id="rhS-pH-EJO"/>
                         <outlet property="doneLabel" destination="CfV-mk-lLQ" id="G2h-ma-OKf"/>
                         <outlet property="imageCollectionView" destination="Dqj-1T-ZFr" id="c0b-Da-3e6"/>
                         <outlet property="locationLabel" destination="lmv-i9-uSP" id="7de-uP-2LM"/>
                         <outlet property="nameLabel" destination="SpS-20-u3Y" id="hJI-0L-tMg"/>
+                        <segue destination="LbV-2N-EwM" kind="presentation" identifier="imageSegue" id="XYi-OV-Iea"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxf-4A-uU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="vwY-ah-IZq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="555.07246376811599" y="40.848214285714285"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="87U-ld-uzs">
+            <objects>
+                <viewController id="LbV-2N-EwM" customClass="ImageViewController" customModule="BucketLists" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vsK-L2-XW3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="hNL-HI-emQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYw-ml-AL7">
+                                        <rect key="frame" x="181" y="0.0" width="52" height="201"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backButton:" destination="LbV-2N-EwM" eventType="touchUpInside" id="ErT-CK-70q"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HpG-vA-UDk">
+                                        <rect key="frame" x="0.0" y="235" width="414" height="414"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HpG-vA-UDk" secondAttribute="height" multiplier="1:1" id="lQE-yO-yQM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGo-dY-ekH">
+                                        <rect key="frame" x="173.5" y="683" width="67" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteImage:" destination="LbV-2N-EwM" eventType="touchUpInside" id="m7I-LO-3R0"/>
+                                            <segue destination="Zu7-Ye-4QC" kind="unwind" identifier="deleteImage" unwindAction="unwindWithSegue:" id="r6s-II-SBy"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aof-jg-etB">
+                                        <rect key="frame" x="182" y="758" width="50" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RmF-iu-wBX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="top" secondItem="RmF-iu-wBX" secondAttribute="top" id="eEo-y2-qQh"/>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="leading" secondItem="RmF-iu-wBX" secondAttribute="leading" id="mjN-qb-1tz"/>
+                            <constraint firstItem="RmF-iu-wBX" firstAttribute="bottom" secondItem="hNL-HI-emQ" secondAttribute="bottom" id="t7L-2A-WQU"/>
+                            <constraint firstItem="hNL-HI-emQ" firstAttribute="trailing" secondItem="RmF-iu-wBX" secondAttribute="trailing" id="vQb-zG-O6Z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="HpG-vA-UDk" id="Aik-j9-9uR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwj-q0-bzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Zu7-Ye-4QC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="7"/>
         </scene>
     </scenes>
     <resources>
