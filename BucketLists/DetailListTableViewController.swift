@@ -24,6 +24,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
     var dataController = DataController()
+    var saveLoadImage = SaveLoadImage()
     var item: Item?
     var editMode: Bool = false
     var globalIndex: Int = 0
@@ -66,7 +67,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         }
         for items in imageStringArray {
             print(items)
-            if let newImage = loadImageFromDiskWith(fileName: items){
+            if let newImage = saveLoadImage.loadImageFromDiskWith(fileName: items){
             imageArray.append(newImage)
             }
         }
@@ -175,18 +176,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             editMode = false
         }
     }
-   // override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       // if indexPath.row == 2 {
-       //     return 512
-       // } else{
-       //     return UITableView.automaticDimension
-       // }
-   // }
      @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
      }
-    
-    
     @IBAction func editingChanged(_ sender: Any) {
         if nameLabel.text?.count != 0 {
             doneLabel.isEnabled = true
@@ -214,49 +206,10 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         dismiss(animated: true, completion: nil)
         let uid = UUID()
         imageStringArray.append("\(uid)")
-        saveImage(imageName: "\(uid)", image: selectedImage)
+        saveLoadImage.saveImage(imageName: "\(uid)", image: selectedImage)
         print("image name", selectedImage)
         imageCollectionView.reloadData()
         //dataSource.apply()
-    }
-    func saveImage(imageName: String, image: UIImage) {
-
-     guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-
-        let fileName = imageName
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        guard let data = image.jpegData(compressionQuality: 1) else { return }
-
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                try FileManager.default.removeItem(atPath: fileURL.path)
-                print("Removed old image")
-            } catch let removeError {
-                print("couldn't remove file at path", removeError)
-            }
-        }
-
-        do {
-            try data.write(to: fileURL)
-        } catch let error {
-            print("error saving file", error)
-        }
-
-    }
-    func loadImageFromDiskWith(fileName: String) -> UIImage? {
-
-      let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-
-        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
-
-        if let dirPath = paths.first {
-            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
-            let image = UIImage(contentsOfFile: imageUrl.path)
-            return image
-
-        }
-        return nil
     }
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")

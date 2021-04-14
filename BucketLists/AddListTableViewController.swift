@@ -50,9 +50,9 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         
         let name = nameLabel.text ?? ""
         let description = descriptionLabel.text ?? ""
-        let location = locationLabel.text ?? ""
+//        let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
-        item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [])
+        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [])
     }
     
     
