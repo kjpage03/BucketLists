@@ -70,6 +70,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             imageArray.append(newImage)
             }
         }
+        
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         
@@ -170,7 +171,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             descriptionTextView.layer.borderWidth = 0
             locationLabel.borderStyle = UITextField.BorderStyle.none
             descriptionTextField.layer.borderWidth = 0
-
             
             editMode = false
         }
@@ -221,14 +221,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     func saveImage(imageName: String, image: UIImage) {
 
-
      guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
 
         let fileName = imageName
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
         guard let data = image.jpegData(compressionQuality: 1) else { return }
 
-        //Checks if file exists, removes it if so.
         if FileManager.default.fileExists(atPath: fileURL.path) {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
@@ -236,13 +234,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             } catch let removeError {
                 print("couldn't remove file at path", removeError)
             }
-
         }
 
         do {
             try data.write(to: fileURL)
         } catch let error {
-            print("error saving file with error", error)
+            print("error saving file", error)
         }
 
     }
@@ -259,7 +256,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             return image
 
         }
-
         return nil
     }
     @IBAction func unwind(segue: UIStoryboardSegue) {
