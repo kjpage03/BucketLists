@@ -30,8 +30,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var saveLoadImage = SaveLoadImage()
     var item: Item?
     var editMode: Bool = false
-
+    @IBOutlet var collectionViewHeight: NSLayoutConstraint!
+    var originalHeight: CGFloat?
+    
     var globalIndex: Int = 0
+    
     
     //Added code begins
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,13 +68,14 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        
+        originalHeight = collectionViewHeight.constant
         //        locationManager.requestLocation()
         
         //        if let image = UIImage(systemName: "photo") {
         //        imageArray.append(image)
         //
         //        }
+        
         if let image = UIImage(systemName: "") {
 
         imageArray.append(image)
@@ -118,14 +122,17 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
 //                    descriptionTextField.isUserInteractionEnabled = false
 //
 //                }
-        
     }
     
     // MARK: - Table view data source
     
+    override func viewWillAppear(_ animated: Bool) {
+        resizeCollectionView()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if completionSwitch.isOn == true {
-            return 7
+            return 6
         } else {
             return 4
         }
@@ -329,6 +336,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         imageStringArray.append("\(uid)")
         saveLoadImage.saveImage(imageName: "\(uid)", image: selectedImage)
         print("image name", selectedImage)
+        resizeCollectionView()
         imageCollectionView.reloadData()
         //dataSource.apply()
     }
@@ -337,10 +345,22 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         print("Success")
     }
     
+    fileprivate func resizeCollectionView() {
+        if imageArray.count == 0 {
+            //collapse collection view
+            collectionViewHeight.constant = 0
+        } else {
+            if let height = originalHeight {
+                collectionViewHeight.constant = height
+            }
+        }
+    }
+    
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")
         if segue.identifier == "deleteImage" {
             deleteimage()
+            resizeCollectionView()
             imageCollectionView.reloadData()
         }
     }

@@ -144,6 +144,9 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dqj-1T-ZFr">
                                                     <rect key="frame" x="20" y="229" width="374" height="177"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="177" id="CRa-9b-e8q"/>
+                                                    </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OI7-sv-far">
                                                         <size key="itemSize" width="128" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -181,7 +184,7 @@
                                                 </collectionView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-vd-UQX">
                                                     <rect key="frame" x="8" y="426" width="398" height="30"/>
-                                                    <state key="normal" title="Add Image"/>
+                                                    <state key="normal" title="Add Image +"/>
                                                     <connections>
                                                         <action selector="addImageButton:" destination="sUt-y4-VRI" eventType="touchUpInside" id="8nd-Te-uEn"/>
                                                     </connections>
@@ -205,48 +208,31 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Location" id="eHi-yS-1Is">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="49" id="SOU-ej-yMi">
-                                        <rect key="frame" x="0.0" y="1099" width="414" height="49"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="455" id="SOU-ej-yMi">
+                                        <rect key="frame" x="0.0" y="1099" width="414" height="455"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SOU-ej-yMi" id="Gml-eF-czg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="455"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfD-EK-GeJ">
-                                                    <rect key="frame" x="164" y="10" width="86" height="29"/>
+                                                    <rect key="frame" x="164" y="413" width="86" height="30"/>
                                                     <state key="normal" title="Set Location"/>
                                                     <connections>
                                                         <action selector="setLocationButtonClicked:" destination="sUt-y4-VRI" eventType="touchUpInside" id="v4u-dC-leu"/>
                                                     </connections>
                                                 </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="nfD-EK-GeJ" secondAttribute="bottom" constant="10" id="Acb-Xt-Vvd"/>
-                                                <constraint firstItem="nfD-EK-GeJ" firstAttribute="top" secondItem="Gml-eF-czg" secondAttribute="top" constant="10" id="cGg-QS-UpK"/>
-                                                <constraint firstItem="nfD-EK-GeJ" firstAttribute="centerX" secondItem="Gml-eF-czg" secondAttribute="centerX" id="sMD-wu-Ikb"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="2zd-D5-frT">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="414" id="jdF-H8-Is8">
-                                        <rect key="frame" x="0.0" y="1204" width="414" height="414"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jdF-H8-Is8" id="oLR-QA-eoK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Gn-Ck-sZY">
-                                                    <rect key="frame" x="20" y="11" width="374" height="392"/>
+                                                    <rect key="frame" x="20" y="21" width="374" height="372"/>
                                                 </mapView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="top" secondItem="oLR-QA-eoK" secondAttribute="topMargin" id="6i2-7g-ed3"/>
-                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="leading" secondItem="oLR-QA-eoK" secondAttribute="leadingMargin" id="FqC-4a-DbJ"/>
-                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="bottom" secondItem="oLR-QA-eoK" secondAttribute="bottomMargin" id="J3P-T2-CBF"/>
-                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="trailing" secondItem="oLR-QA-eoK" secondAttribute="trailingMargin" id="hm7-S4-JQs"/>
+                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="centerX" secondItem="Gml-eF-czg" secondAttribute="centerX" id="6bD-PD-ynR"/>
+                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="leading" secondItem="Gml-eF-czg" secondAttribute="leadingMargin" id="D1k-hN-doz"/>
+                                                <constraint firstItem="6Gn-Ck-sZY" firstAttribute="top" secondItem="Gml-eF-czg" secondAttribute="topMargin" constant="10" id="QZJ-hd-16y"/>
+                                                <constraint firstItem="nfD-EK-GeJ" firstAttribute="top" secondItem="6Gn-Ck-sZY" secondAttribute="bottom" constant="20" id="fNN-1r-2fC"/>
+                                                <constraint firstAttribute="bottom" secondItem="nfD-EK-GeJ" secondAttribute="bottom" constant="12" id="okq-3c-4Ry"/>
+                                                <constraint firstItem="nfD-EK-GeJ" firstAttribute="centerX" secondItem="Gml-eF-czg" secondAttribute="centerX" id="sMD-wu-Ikb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -273,6 +259,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="414" height="2000"/>
                     <connections>
+                        <outlet property="collectionViewHeight" destination="CRa-9b-e8q" id="53r-c8-hPz"/>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>
                         <outlet property="datePicker" destination="9X9-DJ-ShP" id="GgZ-U2-dOO"/>
                         <outlet property="descriptionTextField" destination="mol-yJ-5EX" id="1vV-tr-gpS"/>
