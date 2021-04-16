@@ -61,6 +61,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+        
         //        locationManager.requestLocation()
         
         //        if let image = UIImage(systemName: "photo") {
@@ -76,14 +77,14 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if descriptionTextField.text.count == 0 {
             descriptionTextField.text = "Describe your experience"
         }
-        //        if descriptionTextField.text == "Describe your experience" {
-        //            descriptionTextField.backgroundColor = UIColor.lightGray
-        //            descriptionTextField.isUserInteractionEnabled = true
-        //        } else {
-        //            descriptionTextField.backgroundColor = UIColor.white
-        //            descriptionTextField.isUserInteractionEnabled = false
-        //
-        //        }
+//                if descriptionTextField.text == "Describe your experience" {
+//                    descriptionTextField.backgroundColor = UIColor.lightGray
+//                    descriptionTextField.isUserInteractionEnabled = true
+//                } else {
+//                    descriptionTextField.backgroundColor = UIColor.white
+//                    descriptionTextField.isUserInteractionEnabled = false
+//
+//                }
         
     }
     
@@ -139,6 +140,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         case "LocationSearchVC":
             let searchViewController = segue.destination as! LocationSearchTableViewController
             searchViewController.mapView = self.mapView
+            searchViewController.mapView = mapView
+            searchViewController.handleMapSearchDelegate = self
             
         case "detailUnwind":
             let name = nameLabel.text ?? ""
@@ -159,7 +162,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             } else {
                 item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details)
             }
-            
             //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
             //        dataController.saveData(lists: bucketLists)
         default :
@@ -249,15 +251,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
         }))
         ac.addAction(UIAlertAction(title: "Find a Location", style: .default, handler: { (action) in
-            //do stuff
-            
-//            guard let nav = self.navigationController, let top = nav.topViewController else {
-//                return
-//            }
-//
-//            nav.popViewController(animated: true)
-            
-            
+                        
             self.performSegue(withIdentifier: "LocationSearchVC", sender: nil)
             
 

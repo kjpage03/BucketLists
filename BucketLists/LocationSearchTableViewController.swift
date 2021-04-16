@@ -24,9 +24,10 @@ class LocationSearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable2") as! LocationSearchTableViewController
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
+//        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable2") as! LocationSearchTableViewController
+        resultSearchController = UISearchController(searchResultsController: nil)
+        resultSearchController?.searchResultsUpdater = self
+        resultSearchController?.obscuresBackgroundDuringPresentation = false
         
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
@@ -35,8 +36,6 @@ class LocationSearchTableViewController: UITableViewController {
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
-        locationSearchTable.mapView = mapView
-        locationSearchTable.handleMapSearchDelegate = self
  
     }
     
@@ -51,19 +50,22 @@ extension LocationSearchTableViewController : UISearchResultsUpdating {
         request.naturalLanguageQuery = searchBarText
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
+        
+        
         search.start { (response, _) in
             guard let response = response else {
                 return
             }
-            self.matchingItems = response.mapItems
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.matchingItems = response.mapItems
+                self.tableView.reloadData()
+            }
         }
     }
 }
 
 extension LocationSearchTableViewController {
 
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchingItems.count
     }
@@ -81,16 +83,8 @@ extension LocationSearchTableViewController {
         let selectedItem = matchingItems[indexPath.row].placemark
         handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
 
-        //HELP
+        navigationController?.popViewController(animated: true)
         
-        self.definesPresentationContext = true
-        navigationItem.searchController = nil
-        resultSearchController?.dismiss(animated: true, completion: {
-
-        })
-        resultSearchController = nil
-        //idk
-        resultSearchController?.removeFromParent()
         self.performSegue(withIdentifier: "unwindFromSearch", sender: nil)
         
     }
@@ -101,7 +95,7 @@ extension LocationSearchTableViewController {
     }
 }
 
-extension LocationSearchTableViewController: HandleMapSearch {
+extension DetailListTableViewController: HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark) {
         selectedPin = placemark
         

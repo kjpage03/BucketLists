@@ -40,7 +40,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillDisappear(_ animated: Bool) {
         bucketLists[indexOfList].items = bothList
-        dataController.saveData(lists: bucketLists)
+        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
     }
     
     // MARK: - Table view data source
@@ -79,7 +79,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             updatePercentLabel()
             bucketLists[indexOfList].items.remove(at: indexPath.row)
             tableView.reloadData()
-            dataController.saveData(lists: bucketLists)
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
         } else if editingStyle == .insert {
             
         }
@@ -202,6 +202,9 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 detailTableViewController.indexOfItem = selectedRow
                 //detailTableViewController.updateItem(item: item)
             }
+        } else if segue.identifier == "MapView" {
+            let destination = segue.destination as? MapViewController
+            destination?.bucketItems = bothList
         }
     }
 
@@ -234,7 +237,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             bothList.append(item)
             list.append(item)
             bucketLists[indexOfList].items.append(item)
-            dataController.saveData(lists: bucketLists)
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             
             //update table view with new data
             
