@@ -27,20 +27,22 @@ class ListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    func update(with list: Item, rowNumber: Int, color: String) {
+    func update(with list: Item, rowNumber: Int, color: UIColor) {
         //if list.completed == true {
         //backgroundColor = UIColor.green
-        if color == "green" {
-            backgroundColor = UIColor.green
-        } else {
-            backgroundColor = .white
-        }
+//        if color == "green" {
+//            backgroundColor = UIColor.green
+//        } else {
+//            backgroundColor = .white
+//        }
+        
+        backgroundColor = color
         
         let newformatter = DateFormatter()
         newformatter.dateStyle = .short
         let newDate = newformatter.string(from: list.goalDate)
         goalDateLabel.text = "\(newDate)"
         
-        nameLabel.text = "\(rowNumber): \(list.name)"
+        nameLabel.text = "\(rowNumber). \(list.name)"
     }
 }

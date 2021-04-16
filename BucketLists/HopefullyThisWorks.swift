@@ -16,7 +16,6 @@ final class OrtogonalScrollingCollectionView: UICollectionView {
             super.delegate = newValue
             subviews.forEach { (view) in
 //                guard String(describing: type(of: view)) == "_UICollectionViewOrthogonalScrollerEmbeddedScrollView" else { return }
-                print(view)
                 guard let scrollView = view as? UIScrollView else { return }
                 scrollView.delegate = newValue
             }
