@@ -40,7 +40,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillDisappear(_ animated: Bool) {
         bucketLists[indexOfList].items = bothList
-        dataController.saveData(lists: bucketLists)
+        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
     }
     
     // MARK: - Table view data source
@@ -79,7 +79,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             updatePercentLabel()
             bucketLists[indexOfList].items.remove(at: indexPath.row)
             tableView.reloadData()
-            dataController.saveData(lists: bucketLists)
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
         } else if editingStyle == .insert {
             
         }
@@ -155,7 +155,31 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-//    func updateTotalLabel() {
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        
+        
+        var myList: [String] = ["My List: "]
+        
+        for (index, item) in bothList.enumerated() {
+            
+            if index == bothList.count-1 {
+                myList.append("\(item.name)")
+            } else {
+            myList.append("\(item.name),")
+            }
+        }
+        
+        let ac = UIActivityViewController(activityItems: myList, applicationActivities: nil)
+        
+        present(ac, animated: true, completion: nil)
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return "My Bucket List"
+    }
+    
+    //    func updateTotalLabel() {
 //        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
 //    }
 
@@ -178,6 +202,9 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 detailTableViewController.indexOfItem = selectedRow
                 //detailTableViewController.updateItem(item: item)
             }
+        } else if segue.identifier == "MapView" {
+            let destination = segue.destination as? MapViewController
+            destination?.bucketItems = bothList
         }
     }
 
@@ -202,8 +229,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             tableView.reloadData()
             
-        }
-        else if segue.identifier == "doneUnwind" {
+        } else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
               let sourceViewController = segue.source as?
                 AddListTableViewController,
@@ -211,7 +237,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             bothList.append(item)
             list.append(item)
             bucketLists[indexOfList].items.append(item)
-            dataController.saveData(lists: bucketLists)
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             
             //update table view with new data
             

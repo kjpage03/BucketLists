@@ -36,6 +36,7 @@ struct BucketList: Hashable, Codable {
         
     ], color: Color(uiColor: .red)), BucketList(owner: "Chris's List", items: [
                                    
+
                                                     Item(name: "Go to Japan", description: "Take a trip to japan and eat sushi", location: nil, goalDate: Date(), isComplete: false, details: "", imageArray: []),
                                                     Item(name: "Go to Germany", description: "Take a trip to Germany", location: nil, goalDate: Date(), isComplete: false, details: "", imageArray: []),
                                                     Item(name: "The the Grand Canyon", description: "Plant a trip to go visit the Gran Canyon someday", location: nil, goalDate: Date(), isComplete: true, details: "", imageArray: []),
@@ -52,11 +53,14 @@ struct Item: Hashable, Codable {
     var id = UUID()
     var name: String
     var description: String
-    var location: String?
+    var location: Location?
     var goalDate: Date
     var isComplete: Bool
+
+    var photos: [Data]?
     var details: String
     var imageArray: [String]
+
 }
 
 struct Location: Codable, Hashable {
