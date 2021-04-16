@@ -240,6 +240,8 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             list.append(item)
             bucketLists[indexOfList].items.append(item)
             dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            tableView.reloadData()
+            updatePercentLabel()
             
         }
     }
