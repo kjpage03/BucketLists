@@ -8,9 +8,7 @@
 import UIKit
 
 class ListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-//    @IBOutlet weak var totalLabel: UILabel!
-    
+        
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var percentLabel: UILabel!
     var bucketLists : [BucketList] = []
@@ -34,9 +32,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func updatePercentLabel() {
         if bothList.count > 0 {
-//            percentLabel.text = "\(Int(dataController.retrieveData(pathName: DataController.bucketPathName)[indexOfList].percentCompleted*100))%"
             percentLabel.text = "\(Int(bucketLists[indexOfList].percentCompleted*100))%"
-
         }
     }
     
@@ -46,6 +42,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
         updatePercentLabel()
     }
     
@@ -86,9 +83,9 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.reloadData()
             dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             updatePercentLabel()
-
-        } else if editingStyle == .insert {
             
+        } else if editingStyle == .insert {
+            //might use later
         }
     }
     
@@ -144,24 +141,25 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.showsReorderControl = true
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0;//Choose your custom row height
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRow = indexPath.row
         
         performSegue(withIdentifier: "detailSegue", sender: nil)
-        //present( UIStoryboard(name: "DetailListTableView", bundle: nil).instantiateViewController(withIdentifier: "detailListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
+    
     @IBAction func segmentedControlAction(_ sender: Any) {
         tableView.reloadData()
     }
-    
-    
-    
+
     @IBAction func shareButtonTapped(_ sender: Any) {
         
         
@@ -172,7 +170,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             if index == bothList.count-1 {
                 myList.append("\(item.name)")
             } else {
-            myList.append("\(item.name),")
+                myList.append("\(item.name),")
             }
         }
         
@@ -185,16 +183,13 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return "My Bucket List"
     }
     
-    //    func updateTotalLabel() {
-//        totalLabel.text = "  \(listCompleted.count)/\(bothList.count)"
-//    }
-
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        bucketLists[indexOfList].items = bothList
-//        dataController.saveData(lists: bucketLists)
+        
+        //        bucketLists[indexOfList].items = bothList
+        //        dataController.saveData(lists: bucketLists)
         
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -211,15 +206,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if segue.identifier == "MapView" {
             let destination = segue.destination as? MapViewController
             destination?.bucketItems = bothList
+            destination?.bucketColor = bucketLists[indexOfList].color.uiColor
         }
     }
-
+    
     @IBAction func unwind(segue: UIStoryboardSegue) {
         if segue.identifier == "detailUnwind" {
             guard segue.identifier == "detailUnwind",
-            let detailViewController = segue.source as?
-                DetailListTableViewController,
-            let detailitem = detailViewController.item else {return}
+                  let detailViewController = segue.source as?
+                    DetailListTableViewController,
+                  let detailitem = detailViewController.item else {return}
             
             bothList[selectedRow] = detailitem
             list.removeAll()
@@ -234,24 +230,17 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             bucketLists[indexOfList].items = bothList
-            tableView.reloadData()
-            updatePercentLabel()
             
         } else if segue.identifier == "doneUnwind" {
-        guard segue.identifier == "doneUnwind",
-              let sourceViewController = segue.source as?
-                AddListTableViewController,
-              let item = sourceViewController.item else {return}
+            guard segue.identifier == "doneUnwind",
+                  let sourceViewController = segue.source as?
+                    AddListTableViewController,
+                  let item = sourceViewController.item else {return}
             bothList.append(item)
             list.append(item)
             bucketLists[indexOfList].items.append(item)
             dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             
-            //update table view with new data
-            
-            tableView.reloadData()
-            updatePercentLabel()
-
         }
     }
     @IBAction func backButton(_ sender: Any) {
@@ -261,16 +250,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         if let selectedRow = tableView.indexPathsForSelectedRows {
             tableView.deselectRow(at: selectedRow[0], animated: false)
         }
-//        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        ac.addAction(UIAlertAction(title: "Single Item", style: .default, handler: { (action) in
-//            //single item vc
-//
-//        }))
-//        ac.addAction(UIAlertAction(title: "Multi-Step Item", style: .default, handler: { (action) in
-//            //multiple item vc
-//        }))
-//        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        present(ac, animated: true, completion: nil)
+        //        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        //        ac.addAction(UIAlertAction(title: "Single Item", style: .default, handler: { (action) in
+        //            //single item vc
+        //
+        //        }))
+        //        ac.addAction(UIAlertAction(title: "Multi-Step Item", style: .default, handler: { (action) in
+        //            //multiple item vc
+        //        }))
+        //        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        //        present(ac, animated: true, completion: nil)
         self.present(UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
 }

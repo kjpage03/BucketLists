@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
     
@@ -16,7 +16,8 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var bucketItems: [Item]?
     let dataController = DataController()
-
+    var bucketColor: UIColor!
+    
     var hasRecievedAlert: Bool {
         let value = dataController.retrieveValue(pathName: DataController.hasRecievedPathName)        
         return value
@@ -29,28 +30,30 @@ class MapViewController: UIViewController {
         //subtitle to location
         
         //Set region and span
-
+        mapView.delegate = self
         mapView.region.span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees("100")!, longitudeDelta: CLLocationDegrees("100")!)
-        //percentage doesn't work for some reason
         
-        if let items = bucketItems {
-            items.forEach { (item) in
-                if let location = item.location {
-                    dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude)!, longitude: CLLocationDegrees(location.longitude)!)), title: item.name, subtitle: location.location)
-                }
-            }
-        }
-        //        mapView.centerToLocation(initialLocation)
-        //        let location = BucketItemLocation(coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-        //        mapView.addAnnotation(location)
-        
+        updatePins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updatePins()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKPinAnnotationView()
+        annotationView.pinTintColor = bucketColor
+        annotationView.canShowCallout = true
+        return annotationView
+    }
+    
+    func updatePins() {
         if let items = bucketItems {
             items.forEach { (item) in
-                if let location = item.location {
-                    dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude)!, longitude: CLLocationDegrees(location.longitude)!)), title: item.name, subtitle: location.location)
+                if item.isComplete {
+                    if let location = item.location {
+                        dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude)!, longitude: CLLocationDegrees(location.longitude)!)), title: item.name, subtitle: location.location)
+                    }
                 }
             }
         }
@@ -67,7 +70,6 @@ class MapViewController: UIViewController {
             present(ac, animated: true, completion: nil)
         }
     }
-    
 }
 
 private extension MKMapView {
@@ -79,7 +81,6 @@ private extension MKMapView {
             longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)
     }
-    
 }
 
 class BucketItemLocation: NSObject, MKAnnotation {
@@ -97,17 +98,19 @@ extension MapViewController {
     
     func dropPinZoomIn(placemark: MKPlacemark, title: String, subtitle: String) {
         
-        let annotation = MKPointAnnotation()
+        let annotation = MyPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = title
         annotation.subtitle = subtitle
         mapView?.addAnnotation(annotation)
-//        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-//        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
-//        mapView!.setRegion(region, animated: true)
+        //        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        //        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        //        mapView!.setRegion(region, animated: true)
     }
-    
-    
+}
+
+class MyPointAnnotation : MKPointAnnotation {
+    var pinTintColor: UIColor?
 }
 
 
