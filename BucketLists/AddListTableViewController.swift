@@ -13,7 +13,6 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
-    @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet var doneLabel: UIBarButtonItem!
     
@@ -33,7 +32,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

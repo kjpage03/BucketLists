@@ -34,13 +34,19 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func updatePercentLabel() {
         if bothList.count > 0 {
+//            percentLabel.text = "\(Int(dataController.retrieveData(pathName: DataController.bucketPathName)[indexOfList].percentCompleted*100))%"
             percentLabel.text = "\(Int(bucketLists[indexOfList].percentCompleted*100))%"
+
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         bucketLists[indexOfList].items = bothList
         dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updatePercentLabel()
     }
     
     // MARK: - Table view data source
@@ -76,10 +82,11 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             default:
                 break
             }
-            updatePercentLabel()
             bucketLists[indexOfList].items.remove(at: indexPath.row)
             tableView.reloadData()
             dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            updatePercentLabel()
+
         } else if editingStyle == .insert {
             
         }
@@ -135,7 +142,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             break
         }
         cell.showsReorderControl = true
-        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -227,7 +233,9 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             
+            bucketLists[indexOfList].items = bothList
             tableView.reloadData()
+            updatePercentLabel()
             
         } else if segue.identifier == "doneUnwind" {
         guard segue.identifier == "doneUnwind",
@@ -243,6 +251,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             tableView.reloadData()
             updatePercentLabel()
+
         }
     }
     @IBAction func backButton(_ sender: Any) {
