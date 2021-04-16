@@ -27,9 +27,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
     var dataController = DataController()
+    var saveLoadImage = SaveLoadImage()
     var item: Item?
     var editMode: Bool = false
-    //    var defaultImageWasRemoved: Bool = false
+
+    var globalIndex: Int = 0
+    
     //Added code begins
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imageArray.count
@@ -47,6 +50,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         case photos
     }
     var imageArray = [UIImage]()
+    var imageStringArray = [String]()
     //Added Code ends
     
     override func viewDidLoad() {
@@ -68,14 +72,41 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //        imageArray.append(image)
         //
         //        }
+        if let image = UIImage(systemName: "") {
+            
+        imageArray.append(image)
+        
+        }
+        if let newImageStringArray = item?.imageArray {
+            imageStringArray = newImageStringArray
+        }
+        for items in imageStringArray {
+            print(items)
+            if let newImage = saveLoadImage.loadImageFromDiskWith(fileName: items){
+            imageArray.append(newImage)
+            }
+        }
         
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         
         descriptionTextField.clipsToBounds = true
         descriptionTextField.layer.cornerRadius = 10.0
-        if descriptionTextField.text.count == 0 {
-            descriptionTextField.text = "Describe your experience"
+
+        descriptionTextField.layer.borderWidth = 1
+        descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        descriptionTextView.clipsToBounds = true
+        descriptionTextView.layer.cornerRadius = 10.0
+        descriptionTextView.layer.borderWidth = 0
+        descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
+        if descriptionTextField.text == "Describe your experience" {
+            descriptionTextField.layer.borderWidth = 1
+            descriptionTextField.isUserInteractionEnabled = true
+        } else {
+            descriptionTextField.layer.borderWidth = 0
+            descriptionTextField.isUserInteractionEnabled = false
+
         }
 //                if descriptionTextField.text == "Describe your experience" {
 //                    descriptionTextField.backgroundColor = UIColor.lightGray
@@ -114,6 +145,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         datePicker.date = item.goalDate
         completionSwitch.isOn = item.isComplete
         descriptionTextField.text = item.details
+
         item.photos?.forEach({ (photoData) in
             imageArray.append(UIImage(data: photoData) ?? UIImage())
         })
@@ -172,6 +204,35 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
     }
     
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        globalIndex = indexPath.row
+        print(globalIndex)
+        performSegue(withIdentifier: "imageSegue", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "detailUnwind" {
+            
+        guard segue.identifier == "detailUnwind" else {return}
+        let name = nameLabel.text ?? ""
+        let description = descriptionTextView.text ?? ""
+        let location = locationLabel.text ?? ""
+        let goalDate = datePicker.date
+        let completed = completionSwitch.isOn
+        let details = descriptionTextField.text ?? ""
+            item = Item(name: name, description: description, location: location, goalDate: goalDate, isComplete: completed, details: details, imageArray: imageStringArray)
+        }
+//      bucketLists[indexOfBucketList].items[indexOfItem] = item!
+//      dataController.saveData(lists: bucketLists)
+        else if segue.identifier == "imageSegue" {
+        guard segue.identifier == "imageSegue" else {return}
+        let destination = segue.destination as! ImageViewController
+        let newImage = imageArray[globalIndex]
+        destination.newImage = newImage
+        }
+    }
+
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
             editButton.title = ""
@@ -183,10 +244,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             descriptionTextField.isUserInteractionEnabled = true
             
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
-            //            descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
-            //            locationLabel.borderStyle = UITextField.BorderStyle.roundedRect
-            //            descriptionTextField.backgroundColor = UIColor.lightGray
-            
+
+//          descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
+            descriptionTextView.layer.borderWidth = 1
+            locationLabel.borderStyle = UITextField.BorderStyle.roundedRect
+            descriptionTextField.layer.borderWidth = 1
+
             editMode = true
         }
         else if editMode == true {
@@ -199,27 +262,21 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             descriptionTextField.isUserInteractionEnabled = false
             
             nameLabel.borderStyle = UITextField.BorderStyle.none
-            //            descriptionLabel.borderStyle = UITextField.BorderStyle.none
-            //            locationLabel.borderStyle = UITextField.BorderStyle.none
-            //            descriptionTextField.backgroundColor = UIColor.white
-            
+
+//          descriptionLabel.borderStyle = UITextField.BorderStyle.none
+            descriptionTextView.layer.borderWidth = 0
+            locationLabel.borderStyle = UITextField.BorderStyle.none
+            descriptionTextField.layer.borderWidth = 0
             
             editMode = false
         }
     }
-    // override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    // if indexPath.row == 2 {
-    //     return 512
-    // } else{
-    //     return UITableView.automaticDimension
-    // }
-    // }
-    
-    @IBAction func CompletionSwitch(_ sender: Any) {
+
+     @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
-    }
-    
-    @IBAction func editingChanged(_ sender: Any) {
+     }
+
+@IBAction func editingChanged(_ sender: Any) {
         if nameLabel.text?.count != 0 {
             doneLabel.isEnabled = true
         } else {
@@ -269,6 +326,10 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         pickerController.sourceType = .photoLibrary
         present(pickerController, animated: true, completion: nil)
     }
+    func deleteimage () {
+        imageArray.remove(at: globalIndex)
+        imageStringArray.remove(at: globalIndex)
+    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
@@ -279,6 +340,10 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //        }
         imageArray.append(selectedImage)
         dismiss(animated: true, completion: nil)
+        let uid = UUID()
+        imageStringArray.append("\(uid)")
+        saveLoadImage.saveImage(imageName: "\(uid)", image: selectedImage)
+        print("image name", selectedImage)
         imageCollectionView.reloadData()
         //dataSource.apply()
     }
@@ -287,6 +352,13 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         print("Success")
     }
     
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        print("Unwind worked")
+        if segue.identifier == "deleteImage" {
+            deleteimage()
+            imageCollectionView.reloadData()
+        }
+    }
 }
 
 extension DetailListTableViewController : CLLocationManagerDelegate {
