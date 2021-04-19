@@ -98,7 +98,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         navigationController?.setNavigationBarHidden(true, animated: false)
         newListButtonWasTapped = false
         
-        bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName) ?? []
+        bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
         
         dataSource.apply(updatedSnapshot)
         

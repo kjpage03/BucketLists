@@ -33,6 +33,8 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func updatePercentLabel() {
         if bothList.count > 0 {
             percentLabel.text = "\(Int(bucketLists[indexOfList].percentCompleted*100))%"
+        } else {
+            percentLabel.text = " "
         }
     }
     
@@ -161,7 +163,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @IBAction func shareButtonTapped(_ sender: Any) {
-        
         
         var myList: [String] = ["My List: "]
         
