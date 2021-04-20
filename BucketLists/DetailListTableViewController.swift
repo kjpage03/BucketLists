@@ -64,11 +64,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         descriptionTextView.isUserInteractionEnabled = false
         updateItem(item: item)
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         originalHeight = collectionViewHeight.constant
+
         //        locationManager.requestLocation()
         
         //        if let image = UIImage(systemName: "photo") {

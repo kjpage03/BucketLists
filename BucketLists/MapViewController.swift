@@ -67,7 +67,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 //change the value of hasRecievedAlert
                 self.dataController.saveData(data: true, pathName: DataController.hasRecievedPathName)
             }))
-            present(ac, animated: true, completion: nil)
+//            present(ac, animated: true, completion: nil)
         }
     }
 }

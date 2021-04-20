@@ -186,7 +186,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-vd-UQX">
                                                     <rect key="frame" x="145" y="426" width="124" height="30"/>
                                                     <color key="tintColor" name="AccentColor"/>
-                                                    <state key="normal" title="Add Image"/>
+                                                    <state key="normal" title="Add a photo"/>
                                                     <connections>
                                                         <action selector="addImageButton:" destination="sUt-y4-VRI" eventType="touchUpInside" id="8nd-Te-uEn"/>
                                                     </connections>

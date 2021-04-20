@@ -8,7 +8,7 @@
 import UIKit
 
 class ListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-        
+    
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var percentLabel: UILabel!
     var bucketLists : [BucketList] = []
@@ -51,47 +51,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            switch(segmentedControl.selectedSegmentIndex)
-            {
-            case 0:
-                listCompleted.remove(at: indexPath.row)
-                bothList = list + listCompleted
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                break
-            case 1:
-                bothList.remove(at: indexPath.row)
-                let newUncompletedlist = bothList.filter { $0.isComplete == false}
-                list = newUncompletedlist
-                
-                let newCompletedList = bothList.filter { $0.isComplete == true}
-                listCompleted = newCompletedList
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                break
-            case 2:
-                list.remove(at: indexPath.row)
-                bothList = list + listCompleted
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                break
-            default:
-                break
-            }
-            bucketLists[indexOfList].items.remove(at: indexPath.row)
-            tableView.reloadData()
-            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
-            updatePercentLabel()
-            
-        } else if editingStyle == .insert {
-            //might use later
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var returnValue = 0
         
         switch(segmentedControl.selectedSegmentIndex)
@@ -113,39 +72,104 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return returnValue
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
-        let rowNumber = indexPath.row + 1
-        
-        switch(segmentedControl.selectedSegmentIndex)
-        {
-        case 0:
-            let completedlist = listCompleted[indexPath.row]
-            cell.update(with: completedlist, rowNumber: rowNumber, color: color)
-            break
-        case 1:
-            let bothlist = bothList[indexPath.row]
-            if bothlist.isComplete {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: color)
-            } else {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            switch(segmentedControl.selectedSegmentIndex)
+            {
+            case 0:
+                listCompleted.remove(at: indexPath.section)
+                bothList = list + listCompleted
+                tableView.deleteSections([indexPath.section], with: .automatic)
+                break
+            case 1:
+                bothList.remove(at: indexPath.section)
+                let newUncompletedlist = bothList.filter { $0.isComplete == false}
+                list = newUncompletedlist
+                
+                let newCompletedList = bothList.filter { $0.isComplete == true}
+                listCompleted = newCompletedList
+                tableView.deleteSections([indexPath.section], with: .automatic)
+                break
+            case 2:
+                list.remove(at: indexPath.section)
+                bothList = list + listCompleted
+                tableView.deleteSections([indexPath.section], with: .automatic)
+                break
+            default:
+                break
             }
-            break
+            bucketLists[indexOfList].items.remove(at: indexPath.section)
+            tableView.reloadData()
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            updatePercentLabel()
             
-        case 2:
-            let newlist = list[indexPath.row]
-            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
-            break
-            
-        default:
-            break
+        } else if editingStyle == .insert {
+            //might use later
         }
-        cell.showsReorderControl = true
-        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //make tableview width smaller
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
+        let rowNumber = indexPath.section + 1
+            
+            switch(segmentedControl.selectedSegmentIndex)
+            {
+            case 0:
+                let completedlist = listCompleted[indexPath.section]
+                cell.update(with: completedlist, rowNumber: rowNumber, color: color)
+                break
+            case 1:
+                let bothlist = bothList[indexPath.section]
+                if bothlist.isComplete {
+                    cell.update(with: bothlist, rowNumber: rowNumber, color: color)
+                } else {
+                    cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+                }
+                break
+                
+            case 2:
+                let newlist = list[indexPath.section]
+                cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+                break
+                
+            default:
+                break
+            }
+            
+            //cell configuration
+            
+            cell.showsReorderControl = true
+            cell.layer.cornerRadius = 8
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = UIColor.black.cgColor
+            
+            return cell
+            
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -153,7 +177,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
+        selectedRow = indexPath.section
         
         performSegue(withIdentifier: "detailSegue", sender: nil)
     }
@@ -161,7 +185,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func segmentedControlAction(_ sender: Any) {
         tableView.reloadData()
     }
-
+    
     @IBAction func shareButtonTapped(_ sender: Any) {
         
         var myList: [String] = ["My List: "]
@@ -195,7 +219,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 
-                let item = bothList[indexPath.row]
+                let item = bothList[indexPath.section]
                 let detailTableViewController = segue.destination as! DetailListTableViewController
                 print(item)
                 detailTableViewController.item = item
@@ -246,9 +270,11 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }
     }
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func newListButton(_ sender: Any) {
         if let selectedRow = tableView.indexPathsForSelectedRows {
             tableView.deselectRow(at: selectedRow[0], animated: false)
@@ -263,6 +289,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         //        }))
         //        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         //        present(ac, animated: true, completion: nil)
+        
         self.present(UIStoryboard(name: "AddListTableView", bundle: nil).instantiateViewController(withIdentifier: "AddListTableViewNav") as UIViewController, animated: true, completion: nil)
     }
 }
