@@ -14,6 +14,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var numberofStepsField: UITextField!
     @IBOutlet var doneLabel: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -32,7 +33,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +53,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 //        let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
 
-        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [])
+        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsField.hashValue)
     }
     
     
