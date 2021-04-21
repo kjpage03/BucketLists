@@ -64,9 +64,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         descriptionTextView.isUserInteractionEnabled = false
         updateItem(item: item)
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
         originalHeight = collectionViewHeight.constant
 
         //        locationManager.requestLocation()
@@ -277,12 +274,25 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     
     @IBAction func setLocationButtonClicked(_ sender: Any) {
+
+        
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Current Location", style: .default, handler: { (action) in
+            
+            //huh
+            
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestWhenInUseAuthorization()
+            
             if CLLocationManager.locationServicesEnabled() {
                 switch CLLocationManager().authorizationStatus {
                 case .authorizedWhenInUse:
                     self.mapView.showsUserLocation = true
+                                        
+//                    self.dropPinZoomIn(placemark: MKPlacemark(coordinate: self.mapView.userLocation.coordinate))
+//                    self.mapView.region.center = CLLocationCoordinate2D(latitude: self.mapView.userLocation.coordinate.latitude, longitude: self.mapView.userLocation.coordinate.longitude)
+                
                 case .denied:
                      break
                 case .notDetermined:
@@ -298,6 +308,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             } else {
                 // Alert
             }
+            
+            print(self.mapView.userLocation.coordinate)
+
         }))
         ac.addAction(UIAlertAction(title: "Find a Location", style: .default, handler: { (action) in
                         
@@ -331,6 +344,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //            imageArray.remove(at: 0)
         //            defaultImageWasRemoved = true
         //        }
+        
         imageArray.append(selectedImage)
         dismiss(animated: true, completion: nil)
         let uid = UUID()
@@ -374,7 +388,7 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
         }
@@ -389,8 +403,6 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
             locationManager.requestLocation()
         }
     }
-    
-    
 }
 
 

@@ -32,7 +32,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         //Set region and span
         mapView.delegate = self
-        mapView.region.span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees("100")!, longitudeDelta: CLLocationDegrees("100")!)
+        mapView.region.span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
         
         updatePins()
     }

@@ -55,6 +55,16 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             bucketListLabel.layer.shadowOffset = .zero
             bucketListLabel.layer.shadowRadius = 10
         
+        let center = UNUserNotificationCenter.current()
+
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                if granted {
+                    print("Yay!")
+                } else {
+                    print("D'oh")
+                }
+            }
+        
         //        scrollLabel.text = "\(1)/\(bucketLists.count)"
         // Do any additional setup after loading the view.
         //        let emitter = CAEmitterLayer()
