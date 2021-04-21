@@ -62,7 +62,7 @@ struct DataController {
     }
     
     
-    func retrieveValue(pathName: String) -> Bool {
+    func retrieveValue(pathName: String) -> Bool? {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let archiveURL = documentsDirectory.appendingPathComponent(pathName).appendingPathExtension("plist")
 
@@ -71,7 +71,7 @@ struct DataController {
         if let retrievedListData = try? Data(contentsOf: archiveURL), let decodedLists = try? propertyListDecoder.decode(Bool.self, from: retrievedListData) {
             return decodedLists
         } else {
-            return true
+            return nil
         }
 
     }

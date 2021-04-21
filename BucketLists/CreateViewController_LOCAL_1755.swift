@@ -65,8 +65,10 @@ class CreateViewController: UIViewController {
             self.prevTransform += .pi
             self.colorButton.transform = rotateTransform
         }
+        
         changeColor()
     }
+    
     
     func changeColor() {
         let picker = UIColorPickerViewController()
@@ -75,18 +77,26 @@ class CreateViewController: UIViewController {
         self.present(picker, animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonTapped(_ sender: Any) {
-        checkForEmptyTextField()
-    }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        displayWarning()
+        let ac = UIAlertController(title: "Are you sure?", message: "Once you delete a list, you can't get it back.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            //don't delete
+            var bucketLists = self.dataController.retrieveData(pathName: DataController.bucketPathName) ?? [BucketList]()
+            bucketLists.remove(at: self.indexInArray!)
+            self.dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            self.deleteButtonWasTapped = true
+            self.performSegue(withIdentifier: "unwindFromDelete", sender: nil)
+        }))
+        present(ac, animated: true, completion: nil)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let color = fill.backgroundColor else { return }
         guard let name = nameTextField.text else { return }
-        var bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+        var bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName) ?? [BucketList]()
 
         guard let LandingVC = segue.destination as? InitialViewController else { return }
         if !deleteButtonWasTapped {
@@ -106,6 +116,7 @@ class CreateViewController: UIViewController {
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             }
             //Create a new bucket list and save it
+            
                 
         } else {
             LandingVC.viewHasDisappeared = false
@@ -161,31 +172,5 @@ extension CreateViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return false
-    }
-}
-
-extension CreateViewController {
-    func checkForEmptyTextField() {
-    if nameTextField.text == "" {
-        let ac = UIAlertController(title: "Give it a name!", message: "Your list must have a name in order to be created.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
-        present(ac, animated: true, completion: nil)
-    } else {
-        performSegue(withIdentifier: "unwindToList", sender: nil)
-    }
-    }
-    
-    func displayWarning() {
-        let ac = UIAlertController(title: "Are you sure?", message: "Once you delete a list, you can't get it back.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-            //don't delete
-            var bucketLists = self.dataController.retrieveData(pathName: DataController.bucketPathName)
-            bucketLists.remove(at: self.indexInArray!)
-            self.dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
-            self.deleteButtonWasTapped = true
-            self.performSegue(withIdentifier: "unwindFromDelete", sender: nil)
-        }))
-        present(ac, animated: true, completion: nil)
     }
 }

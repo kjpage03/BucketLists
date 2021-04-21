@@ -19,6 +19,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet var setLocationButton: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet var addImageButton: UIButton!
     @IBOutlet var mapView: MKMapView!
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
@@ -30,7 +31,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var saveLoadImage = SaveLoadImage()
     var item: Item?
     var editMode: Bool = false
-
+    @IBOutlet var collectionViewHeight: NSLayoutConstraint!
+    var originalHeight: CGFloat?
+    
     var globalIndex: Int = 0
     
     //Added code begins
@@ -61,26 +64,23 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         descriptionTextView.isUserInteractionEnabled = false
         updateItem(item: item)
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        
+        originalHeight = collectionViewHeight.constant
+
         //        locationManager.requestLocation()
         
         //        if let image = UIImage(systemName: "photo") {
         //        imageArray.append(image)
         //
         //        }
+        
         if let image = UIImage(systemName: "") {
 
         imageArray.append(image)
 
         }
-
-//        if let newImageStringArray = item?.imageArray {
-//            imageStringArray = newImageStringArray
-//        }
         
         for items in imageStringArray {
             print(items)
@@ -102,30 +102,28 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         descriptionTextView.layer.cornerRadius = 10.0
         descriptionTextView.layer.borderWidth = 0
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
-        if descriptionTextField.text == "Describe your experience" {
-            descriptionTextField.layer.borderWidth = 1
-            descriptionTextField.isUserInteractionEnabled = true
-        } else {
-            descriptionTextField.layer.borderWidth = 0
-            descriptionTextField.isUserInteractionEnabled = false
 
-        }
-//                if descriptionTextField.text == "Describe your experience" {
-//                    descriptionTextField.backgroundColor = UIColor.lightGray
-//                    descriptionTextField.isUserInteractionEnabled = true
-//                } else {
-//                    descriptionTextField.backgroundColor = UIColor.white
-//                    descriptionTextField.isUserInteractionEnabled = false
-//
-//                }
+        descriptionTextField.layer.borderWidth = 1
+        descriptionTextField.isUserInteractionEnabled = false
         
+//        let string = NSMutableAttributedString(string: "Add Image")
+//
+//        let imageAttachment = NSTextAttachment()
+//        imageAttachment.image = UIImage(systemName: "photo")
+//        let imageString = NSAttributedString(attachment: imageAttachment)
+//        string.append(imageString)
+                
     }
     
     // MARK: - Table view data source
     
+    override func viewWillAppear(_ animated: Bool) {
+        resizeCollectionView()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if completionSwitch.isOn == true {
-            return 7
+            return 6
         } else {
             return 4
         }
@@ -133,6 +131,16 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if imageArray.count == 0 && indexPath.section == 4 {
+            return 487 - originalHeight!
+        } else if imageArray.count > 0 && indexPath.section == 4 {
+            return 487
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
     
     func updateItem(item: Item?) {
@@ -329,6 +337,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         imageStringArray.append("\(uid)")
         saveLoadImage.saveImage(imageName: "\(uid)", image: selectedImage)
         print("image name", selectedImage)
+        resizeCollectionView()
         imageCollectionView.reloadData()
         //dataSource.apply()
     }
@@ -337,10 +346,25 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         print("Success")
     }
     
+    fileprivate func resizeCollectionView() {
+        if imageArray.count == 0 {
+            //collapse collection view
+            collectionViewHeight.constant = 0
+//            tableView.reloadSections([4], with: .automatic)
+        } else {
+            if let height = originalHeight {
+                collectionViewHeight.constant = height
+//                tableView.reloadSections([4], with: .automatic)
+            }
+        }
+        tableView.reloadData()
+    }
+    
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")
         if segue.identifier == "deleteImage" {
             deleteimage()
+            resizeCollectionView()
             imageCollectionView.reloadData()
         }
     }

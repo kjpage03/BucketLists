@@ -50,6 +50,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+            bucketListLabel.layer.shadowColor = UIColor.black.cgColor
+            bucketListLabel.layer.shadowOpacity = 0.3
+            bucketListLabel.layer.shadowOffset = .zero
+            bucketListLabel.layer.shadowRadius = 10
+        
         //        scrollLabel.text = "\(1)/\(bucketLists.count)"
         // Do any additional setup after loading the view.
         //        let emitter = CAEmitterLayer()
@@ -98,7 +103,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         navigationController?.setNavigationBarHidden(true, animated: false)
         newListButtonWasTapped = false
         
-        bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName) ?? []
+        bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
         
         dataSource.apply(updatedSnapshot)
         
@@ -131,7 +136,6 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     //            }
     //        }
     //    }
-    
     
     func generateNewLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))

@@ -18,13 +18,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let dataController = DataController()
     var bucketColor: UIColor!
     
-    var hasRecievedAlert: Bool {
-        let value = dataController.retrieveValue(pathName: DataController.hasRecievedPathName)        
-        return value
-    }
+    var hasRecievedAlert: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //fix
+        
+        hasRecievedAlert = dataController.retrieveValue(pathName: DataController.hasRecievedPathName) ?? false
         
         //Set title of pins to bucket list item name
         //subtitle to location
@@ -65,9 +66,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             ac.addAction(UIAlertAction(title: "Got it", style: .default, handler: { (_) in
                 //change the value of hasRecievedAlert
                 self.dataController.saveData(data: true, pathName: DataController.hasRecievedPathName)
-                print(self.dataController.retrieveData(pathName: DataController.hasRecievedPathName))
             }))
-            present(ac, animated: true, completion: nil)
+//            present(ac, animated: true, completion: nil)
         }
     }
 }

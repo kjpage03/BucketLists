@@ -294,7 +294,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="wKE-q5-SqI" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindToListWithUnwindSegue:" id="ihF-xh-XpW"/>
+                                            <action selector="doneButtonTapped:" destination="1lD-9Q-NQD" eventType="touchUpInside" id="7z8-2l-K0f"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrS-7q-MQP">
@@ -339,6 +339,8 @@
                         <outlet property="doneButton" destination="0lF-av-ofg" id="uZx-WA-cgP"/>
                         <outlet property="fill" destination="Vi4-ht-xho" id="sp4-pT-uB6"/>
                         <outlet property="nameTextField" destination="QWF-FA-Yf6" id="OIJ-9b-cTm"/>
+                        <segue destination="wKE-q5-SqI" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithUnwindSegue:" id="oqQ-zZ-P3s"/>
+                        <segue destination="wKE-q5-SqI" kind="unwind" identifier="unwindFromDelete" unwindAction="unwindFromDeleteWithUnwindSegue:" id="WtW-y5-Mkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcY-4K-0n5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
