@@ -53,26 +53,18 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         let goalDate = datePicker.date
 
         item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
-        
-        // 1. Notification Content
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         let content = UNMutableNotificationContent()
-        content.sound = UNNotificationSound.default      // to add a sound
-        content.badge = 2                                // to add a badge
-        content.title = "Reminder"
-        content.body = "Remember to \(item!.name)!"
+        content.title = "You have a goal date today!"
+        content.subtitle = "\(name)'s goal date was today."
+        content.sound = UNNotificationSound.default
+        let alertDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: goalDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: alertDate, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
         
-        // 2. Notification Trigger
-        let timeIntervalTrigger =
-           UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
-        // 3. Notification Request
-        let request = UNNotificationRequest(identifier: "Reminder", content: content, trigger: timeIntervalTrigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+
     }
     
     

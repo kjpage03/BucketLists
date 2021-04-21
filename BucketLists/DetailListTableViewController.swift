@@ -186,9 +186,20 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             let name = nameLabel.text ?? ""
             let description = descriptionTextView.text ?? ""
             //        let location = locationLabel.text ?? ""
+            let goalDate = datePicker.date
+
+            item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            let content = UNMutableNotificationContent()
+            content.title = "You have a goal date today!"
+            content.subtitle = "\(name)'s goal date was today."
+            content.sound = UNNotificationSound.default
+            let alertDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: goalDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: alertDate, repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
             
 //            let location = mapView.annotations.first?.coordinate
-            let goalDate = datePicker.date
             let completed = completionSwitch.isOn
             var photos: [Data] = []
             let details = descriptionTextField.text ?? ""
