@@ -16,6 +16,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var list : [Item] = []
     var listCompleted : [Item] = []
     var bothList : [Item] = []
+    var subList : [Item] = []
     var color: UIColor = UIColor()
     var dataController = DataController()
     var selectedRow: Int = Int()
@@ -173,7 +174,13 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let item = bothList[indexPath.section]
+        if item.numberofSteps > 1 {
+            return CGFloat(48 * item.numberofSteps)
+        } else {
         return 48.0;//Choose your custom row height
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -267,7 +274,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             tableView.reloadData()
             updatePercentLabel()
-            
+        
         }
     }
     

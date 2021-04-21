@@ -10,11 +10,12 @@ import UIKit
 class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     var item: Item?
+    var numberofStepsINT: Int = 0
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var numberofStepsField: UITextField!
+    @IBOutlet weak var numberOfSteps: UISegmentedControl!
     @IBOutlet var doneLabel: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -52,8 +53,26 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         let description = descriptionLabel.text ?? ""
 //        let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
-
-        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsField.hashValue)
+        
+        switch(numberOfSteps.selectedSegmentIndex)
+        {
+        case 0:
+            numberofStepsINT = 1
+            break
+        case 1:
+            numberofStepsINT = 2
+            break
+        case 2:
+            numberofStepsINT = 3
+            break
+        case 3:
+            numberofStepsINT = 4
+            break
+        default:
+            break
+        }
+        
+        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsINT)
     }
     
     

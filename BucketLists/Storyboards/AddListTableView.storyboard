@@ -126,17 +126,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dk-qJ-Ctn">
-                                                    <rect key="frame" x="16" y="4" width="382" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7bk-8U-XaQ">
+                                                    <rect key="frame" x="4" y="4" width="406" height="37"/>
+                                                    <segments>
+                                                        <segment title="One"/>
+                                                        <segment title="Two"/>
+                                                        <segment title="Three"/>
+                                                        <segment title="Four"/>
+                                                    </segments>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6dk-qJ-Ctn" firstAttribute="top" secondItem="fOO-WI-EtT" secondAttribute="top" constant="4" id="4uU-v6-B4v"/>
-                                                <constraint firstAttribute="bottom" secondItem="6dk-qJ-Ctn" secondAttribute="bottom" constant="4" id="NxR-j4-ZWV"/>
-                                                <constraint firstAttribute="trailing" secondItem="6dk-qJ-Ctn" secondAttribute="trailing" constant="16" id="SY9-rt-4Uh"/>
-                                                <constraint firstItem="6dk-qJ-Ctn" firstAttribute="leading" secondItem="fOO-WI-EtT" secondAttribute="leading" constant="16" id="d0m-1T-4hj"/>
+                                                <constraint firstItem="7bk-8U-XaQ" firstAttribute="leading" secondItem="fOO-WI-EtT" secondAttribute="leading" constant="4" id="6f5-fs-9Xd"/>
+                                                <constraint firstAttribute="bottom" secondItem="7bk-8U-XaQ" secondAttribute="bottom" constant="4" id="6f9-qD-Zbu"/>
+                                                <constraint firstAttribute="trailing" secondItem="7bk-8U-XaQ" secondAttribute="trailing" constant="4" id="8zJ-lI-Knv"/>
+                                                <constraint firstItem="7bk-8U-XaQ" firstAttribute="top" secondItem="fOO-WI-EtT" secondAttribute="top" constant="4" id="mRv-Sd-Azw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -165,7 +169,7 @@
                         <outlet property="descriptionLabel" destination="kYz-ls-3YK" id="LMh-KB-hN2"/>
                         <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
-                        <outlet property="numberofStepsField" destination="6dk-qJ-Ctn" id="U44-af-obW"/>
+                        <outlet property="numberOfSteps" destination="7bk-8U-XaQ" id="B6D-T5-6mD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDL-MW-FJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

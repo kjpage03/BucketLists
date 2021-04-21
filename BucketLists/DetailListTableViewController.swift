@@ -27,6 +27,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var bucketLists: [BucketList] = []
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
+    var numberOfSteps: Int = 0
     var dataController = DataController()
     var saveLoadImage = SaveLoadImage()
     var item: Item?
@@ -81,7 +82,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         imageArray.append(image)
 
         }
-        
+        if let newItem = item {
+            numberOfSteps = newItem.numberofSteps
+        }
         for items in imageStringArray {
             print(items)
             if let newImage = saveLoadImage.loadImageFromDiskWith(fileName: items){
@@ -200,9 +203,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
             if let location = mapView.annotations.first {
                 
-                item = Item( name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numberofSteps: 0)
+                item = Item( name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numberofSteps: numberOfSteps)
             } else {
-                item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numberofSteps: 0)
+                item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numberofSteps: numberOfSteps)
             }
             //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
             //        dataController.saveData(lists: bucketLists)
