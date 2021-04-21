@@ -229,11 +229,16 @@
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Gn-Ck-sZY">
                                                     <rect key="frame" x="20" y="21" width="374" height="372"/>
                                                 </mapView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="7ar-al-2uS">
+                                                    <rect key="frame" x="197" y="197" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6Gn-Ck-sZY" firstAttribute="centerX" secondItem="Gml-eF-czg" secondAttribute="centerX" id="6bD-PD-ynR"/>
                                                 <constraint firstItem="6Gn-Ck-sZY" firstAttribute="leading" secondItem="Gml-eF-czg" secondAttribute="leadingMargin" id="D1k-hN-doz"/>
+                                                <constraint firstItem="7ar-al-2uS" firstAttribute="centerX" secondItem="6Gn-Ck-sZY" secondAttribute="centerX" id="D90-Mb-MkD"/>
                                                 <constraint firstItem="6Gn-Ck-sZY" firstAttribute="top" secondItem="Gml-eF-czg" secondAttribute="topMargin" constant="10" id="QZJ-hd-16y"/>
+                                                <constraint firstItem="7ar-al-2uS" firstAttribute="centerY" secondItem="6Gn-Ck-sZY" secondAttribute="centerY" id="Qxd-vB-61E"/>
                                                 <constraint firstItem="nfD-EK-GeJ" firstAttribute="top" secondItem="6Gn-Ck-sZY" secondAttribute="bottom" constant="20" id="fNN-1r-2fC"/>
                                                 <constraint firstAttribute="bottom" secondItem="nfD-EK-GeJ" secondAttribute="bottom" constant="12" id="okq-3c-4Ry"/>
                                                 <constraint firstItem="nfD-EK-GeJ" firstAttribute="centerX" secondItem="Gml-eF-czg" secondAttribute="centerX" id="sMD-wu-Ikb"/>
@@ -263,6 +268,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="414" height="2000"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="7ar-al-2uS" id="Fgw-jW-je5"/>
                         <outlet property="addImageButton" destination="Bkg-vd-UQX" id="XN7-IR-bux"/>
                         <outlet property="collectionViewHeight" destination="CRa-9b-e8q" id="53r-c8-hPz"/>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>

@@ -28,10 +28,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LWQ-FP-uRP">
-                                <rect key="frame" x="0.0" y="19" width="414" height="789"/>
+                                <rect key="frame" x="0.0" y="35" width="414" height="773"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNf-th-Xql">
-                                <rect key="frame" x="177.5" y="8" width="59" height="3"/>
+                                <rect key="frame" x="177.5" y="16" width="59" height="3"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="IBU-aR-pcb"/>
@@ -41,10 +41,10 @@
                         <viewLayoutGuide key="safeArea" id="tTl-JS-lUK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LWQ-FP-uRP" firstAttribute="top" secondItem="oNf-th-Xql" secondAttribute="bottom" constant="8" id="2HI-mq-TTX"/>
                             <constraint firstItem="oNf-th-Xql" firstAttribute="width" secondItem="HHO-XV-Zab" secondAttribute="width" multiplier="0.142512" id="4lp-A8-fCs"/>
                             <constraint firstItem="LWQ-FP-uRP" firstAttribute="bottom" secondItem="tTl-JS-lUK" secondAttribute="bottom" id="Esh-KU-9jp"/>
-                            <constraint firstItem="oNf-th-Xql" firstAttribute="top" secondItem="tTl-JS-lUK" secondAttribute="top" constant="8" id="QMh-ok-9SI"/>
+                            <constraint firstItem="oNf-th-Xql" firstAttribute="top" secondItem="tTl-JS-lUK" secondAttribute="top" constant="16" id="ODg-1B-O34"/>
+                            <constraint firstItem="LWQ-FP-uRP" firstAttribute="top" secondItem="oNf-th-Xql" secondAttribute="bottom" constant="16" id="kG5-ck-obM"/>
                             <constraint firstItem="tTl-JS-lUK" firstAttribute="trailing" secondItem="LWQ-FP-uRP" secondAttribute="trailing" id="ogM-SK-6xt"/>
                             <constraint firstItem="oNf-th-Xql" firstAttribute="centerX" secondItem="HHO-XV-Zab" secondAttribute="centerX" id="rPm-Dm-8Sa"/>
                             <constraint firstItem="LWQ-FP-uRP" firstAttribute="leading" secondItem="tTl-JS-lUK" secondAttribute="leading" id="xen-Wh-5Wq"/>

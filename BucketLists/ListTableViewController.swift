@@ -188,7 +188,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func shareButtonTapped(_ sender: Any) {
         
-        var myList: [String] = ["My List: "]
+        var myList: [String] = ["My List:"]
         
         for (index, item) in bothList.enumerated() {
             
