@@ -155,7 +155,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             cell.showsReorderControl = true
             cell.layer.cornerRadius = 8
-            cell.layer.borderWidth = 1
+            cell.layer.borderWidth = 0.8
             cell.layer.borderColor = UIColor.black.cgColor
             
             return cell
@@ -259,7 +259,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if segue.identifier == "doneUnwind" {
             guard segue.identifier == "doneUnwind",
                   let sourceViewController = segue.source as?
-                    AddListTableViewController,
+                    AddItemTableViewController,
                   let item = sourceViewController.item else {return}
             bothList.append(item)
             list.append(item)

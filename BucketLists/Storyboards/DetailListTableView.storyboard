@@ -76,49 +76,46 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Goal Date" id="cqp-nM-kL7">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="0lE-Po-LQJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="oQz-Qh-Sir">
                                         <rect key="frame" x="0.0" y="332" width="414" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lE-Po-LQJ" id="HUQ-Bz-xmY">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oQz-Qh-Sir" id="sYH-Mf-aJY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-DJ-ShP">
-                                                    <rect key="frame" x="10" y="4" width="394" height="40"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hex-m3-aMs">
+                                                    <rect key="frame" x="20" y="9" width="49" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switchFlipped:" destination="sUt-y4-VRI" eventType="valueChanged" id="WjL-vC-BNe"/>
+                                                    </connections>
+                                                </switch>
+                                                <datePicker userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-DJ-ShP">
+                                                    <rect key="frame" x="85" y="8" width="309" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </datePicker>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="9X9-DJ-ShP" secondAttribute="bottom" constant="4" id="E4L-4W-g7s"/>
-                                                <constraint firstItem="9X9-DJ-ShP" firstAttribute="top" secondItem="HUQ-Bz-xmY" secondAttribute="top" constant="4" id="ffH-b8-KIF"/>
-                                                <constraint firstItem="9X9-DJ-ShP" firstAttribute="leading" secondItem="HUQ-Bz-xmY" secondAttribute="leading" constant="10" id="o0k-Si-kMM"/>
-                                                <constraint firstAttribute="trailing" secondItem="9X9-DJ-ShP" secondAttribute="trailing" constant="10" id="oxO-QI-oks"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Mark As Completed" id="xeo-gR-D5I">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="qp0-if-jsx">
-                                        <rect key="frame" x="0.0" y="436" width="414" height="64"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="qp0-if-jsx">
+                                        <rect key="frame" x="0.0" y="436" width="414" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qp0-if-jsx" id="I4W-vs-dtD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-1m-pYD">
-                                                    <rect key="frame" x="24" y="15" width="368" height="34"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-1m-pYD">
+                                                    <rect key="frame" x="20" y="9" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="CompletionSwitch:" destination="sUt-y4-VRI" eventType="valueChanged" id="kdY-jc-Bic"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hgz-1m-pYD" secondAttribute="bottom" constant="4" id="UIE-VM-cmB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hgz-1m-pYD" secondAttribute="trailing" constant="4" id="YKu-Vl-JWo"/>
-                                                <constraint firstItem="hgz-1m-pYD" firstAttribute="leading" secondItem="I4W-vs-dtD" secondAttribute="leadingMargin" constant="4" id="kaj-eM-ZMf"/>
-                                                <constraint firstItem="hgz-1m-pYD" firstAttribute="top" secondItem="I4W-vs-dtD" secondAttribute="topMargin" constant="4" id="nbj-mM-EPY"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -126,7 +123,7 @@
                             <tableViewSection headerTitle="Details" id="gXY-Cc-Ebe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="487" id="afB-sO-Khp">
-                                        <rect key="frame" x="0.0" y="556" width="414" height="487"/>
+                                        <rect key="frame" x="0.0" y="540" width="414" height="487"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="afB-sO-Khp" id="wia-O6-2qb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="487"/>
@@ -213,7 +210,7 @@
                             <tableViewSection headerTitle="Location" id="eHi-yS-1Is">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="455" id="SOU-ej-yMi">
-                                        <rect key="frame" x="0.0" y="1099" width="414" height="455"/>
+                                        <rect key="frame" x="0.0" y="1083" width="414" height="455"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SOU-ej-yMi" id="Gml-eF-czg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="455"/>
@@ -277,6 +274,7 @@
                         <outlet property="descriptionTextView" destination="QOO-Qv-SZt" id="rhS-pH-EJO"/>
                         <outlet property="doneLabel" destination="CfV-mk-lLQ" id="G2h-ma-OKf"/>
                         <outlet property="editButton" destination="OL4-rV-Yqk" id="XUX-dz-5rE"/>
+                        <outlet property="goalSwitch" destination="Hex-m3-aMs" id="i3C-sY-skf"/>
                         <outlet property="imageCollectionView" destination="Dqj-1T-ZFr" id="c0b-Da-3e6"/>
                         <outlet property="mapView" destination="6Gn-Ck-sZY" id="WsX-ns-dqT"/>
                         <outlet property="nameLabel" destination="SpS-20-u3Y" id="hJI-0L-tMg"/>

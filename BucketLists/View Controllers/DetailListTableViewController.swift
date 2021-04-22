@@ -22,6 +22,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var addImageButton: UIButton!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var goalSwitch: UISwitch!
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -72,10 +73,16 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //
         //        }
         
+        if item?.goalDate == nil {
+            goalSwitch.isOn = false
+            datePicker.isHidden = true
+        } else {
+            goalSwitch.isOn = true
+            datePicker.isHidden = false
+        }
+        
         if let image = UIImage(systemName: "") {
-            
             imageArray.append(image)
-            
         }
         
         for items in imageStringArray {
@@ -125,11 +132,16 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+//        if indexPath.section == 2 {
+//            if item?.goalDate == nil {
+//            return 0
+//            } else {
+//            return super.tableView(tableView, heightForRowAt: indexPath)
+//            }
+//        }
+        
         if imageArray.count == 0 && indexPath.section == 4 {
             return 487 - originalHeight!
         } else if imageArray.count > 0 && indexPath.section == 4 {
@@ -148,7 +160,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             //            dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate[0])!, longitude: CLLocationDegrees(coordinate[1])!)))
             dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate.latitude)!, longitude: CLLocationDegrees(coordinate.longitude)!)), location: coordinate.location)
         }
-        datePicker.date = item.goalDate
+        
+        //Next Project
+        
+        datePicker.date = item.goalDate ?? Date()
+        
         completionSwitch.isOn = item.isComplete
         descriptionTextField.text = item.details
         
@@ -184,10 +200,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         case "detailUnwind":
             let name = nameLabel.text ?? ""
             let description = descriptionTextView.text ?? ""
-            //        let location = locationLabel.text ?? ""
-            
-            //            let location = mapView.annotations.first?.coordinate
-            let goalDate = datePicker.date
+            let goalDate: Date?
+            if goalSwitch.isOn {
+            goalDate = datePicker.date
+            } else {
+            goalDate = nil
+            }
             let completed = completionSwitch.isOn
             var photos: [Data] = []
             let details = descriptionTextField.text ?? ""
@@ -221,7 +239,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         print(globalIndex)
         performSegue(withIdentifier: "imageSegue", sender: nil)
     }
-    
+        
     
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
@@ -258,6 +276,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             
             editMode = false
         }
+    }
+    
+    @IBAction func switchFlipped(_ sender: Any) {
+        datePicker.isHidden.toggle()
+        //animation
     }
     
     @IBAction func CompletionSwitch(_ sender: Any) {
