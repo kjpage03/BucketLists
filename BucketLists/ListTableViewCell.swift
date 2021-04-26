@@ -12,6 +12,16 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var goalDateLabel: UILabel!
     
+    @IBOutlet weak var stepOneLabel: UILabel!
+    @IBOutlet weak var stepTwoLabel: UILabel!
+    @IBOutlet weak var stepThreeLabel: UILabel!
+    @IBOutlet weak var stepFourLabel: UILabel!
+    
+    @IBOutlet weak var stepOneButton: UIButton!
+    @IBOutlet weak var stepTwoButton: UIButton!
+    @IBOutlet weak var stepThreeButton: UIButton!
+    @IBOutlet weak var stepFourButton: UIButton!
+    
     override var frame: CGRect {
             get {
                 return super.frame
@@ -32,6 +42,7 @@ class ListTableViewCell: UITableViewCell {
         super.awakeFromNib()
 //        contentView.layer.borderColor = UIColor.black.cgColor
 //        contentView.layer.borderWidth = 1.0
+            
     }
     
     override func layoutSubviews() {
@@ -54,7 +65,83 @@ class ListTableViewCell: UITableViewCell {
 //        } else {
 //            backgroundColor = .white
 //        }
-        
+        switch(list.numberofSteps)
+        {
+        case 1:
+            stepOneLabel.isHidden = true
+            stepTwoLabel.isHidden = true
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            
+            stepOneButton.isHidden = true
+            stepTwoLabel.isHidden = true
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            break
+        case 2:
+            stepOneLabel.isHidden = false
+            stepTwoLabel.isHidden = true
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            stepOneLabel.text = list.stepsArray[0]
+
+            
+            stepOneButton.isHidden = false
+            stepTwoLabel.isHidden = true
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            break
+        case 3:
+            stepOneLabel.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            stepOneLabel.text = list.stepsArray[0]
+            stepTwoLabel.text = list.stepsArray[1]
+
+            
+            stepOneButton.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = true
+            stepFourLabel.isHidden = true
+            break
+            
+        case 4:
+            stepOneLabel.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = false
+            stepFourLabel.isHidden = true
+            stepOneLabel.text = list.stepsArray[0]
+            stepTwoLabel.text = list.stepsArray[1]
+            stepThreeLabel.text = list.stepsArray[2]
+
+            
+            stepOneButton.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = false
+            stepFourLabel.isHidden = true
+            break
+         
+        case 5:
+            stepOneLabel.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = false
+            stepFourLabel.isHidden = false
+            stepOneLabel.text = list.stepsArray[0]
+            stepTwoLabel.text = list.stepsArray[1]
+            stepThreeLabel.text = list.stepsArray[2]
+            stepFourLabel.text = list.stepsArray[3]
+
+            
+            stepOneButton.isHidden = false
+            stepTwoLabel.isHidden = false
+            stepThreeLabel.isHidden = false
+            stepFourLabel.isHidden = false
+            break
+            
+        default:
+            break
+        }
         backgroundColor = color
         
         let newformatter = DateFormatter()

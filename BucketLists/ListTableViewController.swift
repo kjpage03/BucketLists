@@ -177,7 +177,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let item = bothList[indexPath.section]
         if item.numberofSteps > 1 {
-            return CGFloat(48 * item.numberofSteps)
+            return CGFloat(48 * item.numberofSteps) * 1.10
         } else {
         return 48.0;//Choose your custom row height
         }

@@ -99,7 +99,7 @@ class CreateViewController: UIViewController {
             bucketLists[index] = list
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             } else {
-                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true, details: "", imageArray: [], numberofSteps: 0)], color: Color(uiColor: color))
+                let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true, details: "", imageArray: [], numberofSteps: 0, stepsArray: [])], color: Color(uiColor: color))
                 //            LandingVC.bucketLists.append(bucketList)
 //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)

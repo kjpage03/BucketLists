@@ -10,13 +10,18 @@ import UIKit
 class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     var item: Item?
-    var numberofStepsINT: Int = 0
+    var numberofStepsINT: Int = 1
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var numberOfSteps: UISegmentedControl!
     @IBOutlet var doneLabel: UIBarButtonItem!
+    
+    @IBOutlet weak var firstStepText: UITextField!
+    @IBOutlet weak var secondStepText: UITextField!
+    @IBOutlet weak var thirdStepText: UITextField!
+    @IBOutlet weak var fourthStepText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +39,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 4 + numberofStepsINT
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +58,20 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         let description = descriptionLabel.text ?? ""
 //        let location = locationLabel.text ?? ""
         let goalDate = datePicker.date
+        var stepsStringArray = [String]()
+        if let newStep1 = firstStepText.text {
+            stepsStringArray.append(newStep1)
+        }
+        if let newStep2 = secondStepText.text {
+            stepsStringArray.append(newStep2)
+        }
+        if let newStep3 = thirdStepText.text {
+            stepsStringArray.append(newStep3)
+        }
+        if let newStep4 = fourthStepText.text {
+            stepsStringArray.append(newStep4)
+        }
+
         
         switch(numberOfSteps.selectedSegmentIndex)
         {
@@ -68,11 +87,15 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         case 3:
             numberofStepsINT = 4
             break
+        case 4:
+            numberofStepsINT = 5
+            break
         default:
+
             break
         }
         
-        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsINT)
+        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsINT, stepsArray: stepsStringArray)
     }
     
     
@@ -82,6 +105,32 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
         } else {
             doneLabel.isEnabled = false
         }
+    }
+    @IBAction func NumofStepsSegControl(_ sender: Any) {
+       
+        switch(numberOfSteps.selectedSegmentIndex)
+        {
+        case 0:
+            numberofStepsINT = 1
+            break
+        case 1:
+            numberofStepsINT = 2
+            break
+        case 2:
+            numberofStepsINT = 3
+            break
+        case 3:
+            numberofStepsINT = 4
+            break
+        case 4:
+            numberofStepsINT = 5
+            break
+        default:
+
+            break
+        }
+        tableView.reloadData()
+        print(numberofStepsINT)
     }
     
 }
