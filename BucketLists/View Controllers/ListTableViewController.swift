@@ -30,23 +30,42 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         updatePercentLabel()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+            let pathName = bucketLists[indexOfList].id.uuidString
+            if bucketLists[indexOfList].percentCompleted == 1 {
+                if dataController.retrieveValue(pathName: pathName)?.first == nil {
+                    dataController.saveData(data: [false], pathName: pathName)
+                }
+            }
+        //        && dataController.retrieveValue(pathName: pathName)?.first == false
+    }
+    
     func updatePercentLabel() {
         if bothList.count > 0 {
             percentLabel.text = "\(Int(bucketLists[indexOfList].percentCompleted*100))%"
         } else {
-            percentLabel.text = " "
+            percentLabel.text = ""
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        bucketLists[indexOfList].items = bothList
-        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
-    }
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //
+    //    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        updatePercentLabel()
-    }
+    //    override func viewDidDisappear(_ animated: Bool) {
+    //        let bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+    //        bothList = bucketLists[indexOfList].items
+    //        tableView.reloadData()
+    //        updatePercentLabel()
+    //    }
+    
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        let bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+    //        bothList = bucketLists[indexOfList].items
+    //        tableView.reloadData()
+    //        updatePercentLabel()
+    //    }
     
     // MARK: - Table view data source
     
@@ -123,43 +142,43 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //make tableview width smaller
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.section + 1
-            
-            switch(segmentedControl.selectedSegmentIndex)
-            {
-            case 0:
-                let completedlist = listCompleted[indexPath.section]
-                cell.update(with: completedlist, rowNumber: rowNumber, color: color)
-                break
-            case 1:
-                let bothlist = bothList[indexPath.section]
-                if bothlist.isComplete {
-                    cell.update(with: bothlist, rowNumber: rowNumber, color: color)
-                } else {
-                    cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
-                }
-                break
-                
-            case 2:
-                let newlist = list[indexPath.section]
-                cell.update(with: newlist, rowNumber: rowNumber, color: .white)
-                break
-                
-            default:
-                break
+        
+        switch(segmentedControl.selectedSegmentIndex)
+        {
+        case 0:
+            let completedlist = listCompleted[indexPath.section]
+            cell.update(with: completedlist, rowNumber: rowNumber, color: color)
+            break
+        case 1:
+            let bothlist = bothList[indexPath.section]
+            if bothlist.isComplete {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: color)
+            } else {
+                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
             }
+            break
             
-            //cell configuration
+        case 2:
+            let newlist = list[indexPath.section]
+            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+            break
             
-            cell.showsReorderControl = true
-            cell.layer.cornerRadius = 8
-            cell.layer.borderWidth = 0.8
-            cell.layer.borderColor = UIColor.black.cgColor
-            
-            return cell
-            
+        default:
+            break
+        }
+        
+        //cell configuration
+        
+        cell.showsReorderControl = true
+        cell.layer.cornerRadius = 8
+        cell.layer.borderWidth = 0.8
+        cell.layer.borderColor = UIColor.black.cgColor
+        
+        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -216,6 +235,9 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         //        bucketLists[indexOfList].items = bothList
         //        dataController.saveData(lists: bucketLists)
         
+        //        bucketLists[indexOfList].items = bothList
+        //        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+        
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 
@@ -232,7 +254,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             let destination = segue.destination as? MapViewController
             destination?.bucketItems = bothList
             destination?.bucketColor = bucketLists[indexOfList].color.uiColor
-        }
+        } 
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
@@ -255,6 +277,8 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             bucketLists[indexOfList].items = bothList
+            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            tableView.reloadData()
             
         } else if segue.identifier == "doneUnwind" {
             guard segue.identifier == "doneUnwind",

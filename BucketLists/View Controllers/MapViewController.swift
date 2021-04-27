@@ -8,6 +8,9 @@
 import UIKit
 import MapKit
 
+// get this value to save eventually
+var hasRecievedAlert: Bool = false
+
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
@@ -18,19 +21,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let dataController = DataController()
     var bucketColor: UIColor!
     
-    var hasRecievedAlert: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //fix
         
-        hasRecievedAlert = dataController.retrieveValue(pathName: DataController.hasRecievedPathName) ?? false
+//        hasRecievedAlert = dataController.retrieveValue(pathName: DataController.hasRecievedPathName) ?? []
         
         //Set title of pins to bucket list item name
         //subtitle to location
         
         //Set region and span
+        
         mapView.delegate = self
         mapView.region.span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
         
@@ -61,11 +64,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         if !hasRecievedAlert {
+            
             let ac = UIAlertController(title: "Completion Locations", message: "Scroll to see locations where you completed items on your bucket list.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Got it", style: .default, handler: { (_) in
                 //change the value of hasRecievedAlert
-                self.dataController.saveData(data: true, pathName: DataController.hasRecievedPathName)
+//                self.dataController.saveData(data: true, pathName: DataController.hasRecievedPathName)
+                hasRecievedAlert = true
             }))
             present(ac, animated: true, completion: nil)
         }

@@ -18,6 +18,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     var bucketLists: [BucketList] = []
     var indexOfSelectedRow: Int = 0
+    var originalLayerCount: Int = Int()
     
     @IBOutlet weak var stackView: UIStackView!
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
@@ -60,6 +61,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+<<<<<<< HEAD
             bucketListLabel.layer.shadowColor = UIColor.black.cgColor
             bucketListLabel.layer.shadowOpacity = 0.3
             bucketListLabel.layer.shadowOffset = .zero
@@ -75,39 +77,153 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         //        emitter.emitterCells = generateEmitterCells()
         //        self.view.layer.addSublayer(emitter)
         //    }
+=======
+        bucketListLabel.layer.shadowColor = UIColor.black.cgColor
+        bucketListLabel.layer.shadowOpacity = 0.3
+        bucketListLabel.layer.shadowOffset = .zero
+        bucketListLabel.layer.shadowRadius = 10
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+            } else {
+                print("D'oh")
+            }
+        }
+        
+        createBackgroundParticles()
+        originalLayerCount = self.view.layer.sublayers!.count
+>>>>>>> 601b9137da6d491104a4523adf288ecab0baf112
     }
-    //
-    //    private func generateEmitterCells() -> [CAEmitterCell] {
-    //        var cells: [CAEmitterCell] = [CAEmitterCell]()
-    //        for index in 0..<16 {
-    //        let cell = CAEmitterCell()
-    //        cell.birthRate = 4.0
-    //        cell.lifetime = 14.0
-    //        cell.lifetimeRange = 0
-    //        cell.velocity = CGFloat.random(in: 0...100)
-    //        cell.velocityRange = 0
-    //        cell.emissionLongitude = CGFloat(Double.pi)
-    //        cell.emissionRange = 0.5
-    //        cell.spin = 3.5
-    //        cell.spinRange = 0
-    //        cell.color = getNextColor(i: index)
-    //        cell.contents = UIImage(named: "bucketNoBG")
-    //        cell.scaleRange = 0.25
-    //        cell.scale = 0.1
-    //        cells.append(cell)
-    //        }
-    //        return cells
-    //    }
-    //
-    //    func getNextColor(i: Any) -> CGColor {
-    //        let colors: [CGColor] = [UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor, UIColor.red.cgColor, UIColor.blue.cgColor, UIColor.orange.cgColor, UIColor.green.cgColor]
-    //
-    //        return colors[i as! Int]
-    //    }
     
-    //    func getNextImage(i: Any) -> UIImage {
-    //
-    //    }
+    func createBackgroundParticles() {
+        let particleEmitter = CAEmitterLayer()
+        
+        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.frame.height + 50)
+//        -96
+        particleEmitter.emitterShape = .line
+        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
+        
+        let red = makeEmitterCell(color: UIColor.red, type: .background)
+        let green = makeEmitterCell(color: UIColor.green, type: .background)
+        let blue = makeEmitterCell(color: UIColor.blue, type: .background)
+        
+        particleEmitter.emitterCells = [red, green, blue]
+        
+//        if isInFront {
+            
+            view.layer.addSublayer(particleEmitter)
+//            view.layer.addSublayer(bottomParticleEmitter)
+        
+        let topEmitter = CAEmitterLayer()
+        topEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
+        
+        topEmitter.emitterShape = .line
+        topEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
+        
+        topEmitter.emitterCells = [red, green, blue]
+        view.layer.addSublayer(topEmitter)
+
+    }
+    
+    func createParticles() {
+        let particleEmitter = CAEmitterLayer()
+        
+        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.center.y)
+//        -96
+        particleEmitter.emitterShape = .circle
+        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
+        
+        let red = makeEmitterCell(color: UIColor.red, type: .exploding)
+        let green = makeEmitterCell(color: UIColor.green, type: .exploding)
+        let blue = makeEmitterCell(color: UIColor.blue, type: .exploding)
+        
+        particleEmitter.emitterCells = [red, green, blue]
+        
+        view.layer.addSublayer(particleEmitter)
+    }
+    
+    enum CellEmitterType {
+        case exploding
+        case background
+    }
+    
+    func makeEmitterCell(color: UIColor, type: CellEmitterType) -> CAEmitterCell {
+        let cell = CAEmitterCell()
+        
+        //original
+        
+//        cell.scale = 0.2
+//        cell.birthRate = 3
+//        cell.lifetime = 7.0
+//        cell.lifetimeRange = 0
+//        cell.color = color.cgColor
+//        cell.velocity = 200
+//        cell.velocityRange = 50
+//        cell.emissionLongitude = CGFloat.pi
+//        cell.emissionRange = CGFloat.pi / 4
+//        cell.spin = 2
+//        cell.spinRange = 3
+//        cell.scaleRange = 0.5
+//        cell.scaleSpeed = -0.05
+        
+        //modified
+        
+//        cell.scale = 0.2
+//        cell.birthRate = 5
+//        cell.lifetime = 7.0
+//        cell.lifetimeRange = 0
+//        cell.color = color.cgColor
+//        cell.velocity = 300
+//        cell.velocityRange = 50
+//        cell.emissionLongitude = CGFloat.pi
+//        cell.emissionRange = CGFloat.pi / 4
+//        cell.spin = 3
+//        cell.spinRange = 3
+//        cell.scaleRange = 0.5
+//        cell.scaleSpeed = -0.05
+        
+        switch type {
+        
+        case .exploding :
+                
+        cell.scale = 0.2
+        cell.birthRate = 5
+        cell.lifetime = 7.0
+        cell.lifetimeRange = 0
+        cell.color = color.cgColor
+        cell.velocity = 300
+        cell.velocityRange = 50
+        cell.emissionLongitude = 0
+        cell.emissionRange = CGFloat.pi
+        cell.spin = 3
+        cell.spinRange = 3
+        cell.scaleRange = 0.5
+        cell.scaleSpeed = -0.05
+            
+        case .background:
+        
+        cell.scale = 0.5
+        cell.birthRate = 0.2
+        cell.lifetime = 10.0
+        cell.lifetimeRange = 0
+        cell.color = color.cgColor
+        cell.velocity = 50
+        cell.velocityRange = 50
+        cell.emissionLongitude = CGFloat.pi / 2
+        cell.emissionRange = CGFloat.pi
+        cell.spin = 1
+        cell.spinRange = 3
+        cell.scaleRange = 0
+        cell.scaleSpeed = -0.05
+
+        }
+        
+        cell.contents = UIImage(named: "bucketNoBG")?.cgImage
+        return cell
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -133,6 +249,35 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             }
             print(collectionView.transform)
             viewHasDisappeared = false
+        }
+        
+        if bucketLists.count > 0 {
+            let pathName = bucketLists[indexOfSelectedRow].id.uuidString
+            if dataController.retrieveValue(pathName: pathName)?.first == false {
+                createParticles()
+                Timer.scheduledTimer(withTimeInterval: 5,
+                                     repeats: false) { _ in
+                    self.removeParticles()
+                }
+                dataController.saveData(data: [true], pathName: pathName)
+            }
+            
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if view.layer.sublayers!.count > originalLayerCount {
+            view.layer.sublayers?.removeLast()
+        }
+    }
+    
+    func removeParticles() {
+        UIView.animate(withDuration: 3) {
+            self.view.layer.sublayers?.last?.opacity = 0
+        } completion: { (_) in
+            let ac = UIAlertController(title: "Nice Job!", message: "You completed a list!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Thanks", style: .default, handler: nil))
+            self.present(ac, animated: true, completion: nil)
         }
     }
     

@@ -90,7 +90,7 @@
                                                         <action selector="switchFlipped:" destination="sUt-y4-VRI" eventType="valueChanged" id="WjL-vC-BNe"/>
                                                     </connections>
                                                 </switch>
-                                                <datePicker userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-DJ-ShP">
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-DJ-ShP">
                                                     <rect key="frame" x="85" y="8" width="309" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </datePicker>

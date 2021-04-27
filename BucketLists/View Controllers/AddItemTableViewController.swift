@@ -24,6 +24,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         doneLabel.isEnabled = false
         goalSwitch.isOn = false
         datePicker.isHidden = true
+        nameLabel.delegate = self
     }
 
     // MARK: - Table view data source
@@ -33,11 +34,25 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0;//Choose your custom row height
+        return 48.0; //Choose your custom row height
     }
     
     @IBAction func switchFlipped(_ sender: Any) {
         datePicker.isHidden.toggle()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 26
+        let currentString: NSString = (textField.text ?? "") as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = .clear
+            let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = .black
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +89,14 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             
         }
         
+<<<<<<< HEAD
         item = Item(id: id, name: ItemName.listItemName, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
+=======
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
+        let destination = segue.destination as! ListTableViewController
+        let placeHolderArray: [Bool]? = []
+        DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)
+>>>>>>> 601b9137da6d491104a4523adf288ecab0baf112
         
     }
     

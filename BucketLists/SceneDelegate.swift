@@ -39,6 +39,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+                
+        if let listVC = self.window?.rootViewController?.children.last as? ListTableViewController {
+            let bucketLists = DataController().retrieveData(pathName: DataController.bucketPathName)
+            listVC.bothList = bucketLists[listVC.indexOfList].items
+            listVC.tableView.reloadData()
+            print(listVC)
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
