@@ -155,7 +155,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
             cell.showsReorderControl = true
             cell.layer.cornerRadius = 8
-            cell.layer.borderWidth = 1
+            cell.layer.borderWidth = 0.8
             cell.layer.borderColor = UIColor.black.cgColor
             
             return cell
@@ -188,7 +188,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func shareButtonTapped(_ sender: Any) {
         
-        var myList: [String] = ["My List: "]
+        var myList: [String] = ["My List:"]
         
         for (index, item) in bothList.enumerated() {
             
@@ -259,7 +259,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if segue.identifier == "doneUnwind" {
             guard segue.identifier == "doneUnwind",
                   let sourceViewController = segue.source as?
-                    AddListTableViewController,
+                    AddItemTableViewController,
                   let item = sourceViewController.item else {return}
             bothList.append(item)
             list.append(item)

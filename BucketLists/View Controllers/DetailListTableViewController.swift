@@ -21,6 +21,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet var addImageButton: UIButton!
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var goalSwitch: UISwitch!
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -65,24 +67,28 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         descriptionTextView.isUserInteractionEnabled = false
         updateItem(item: item)
         originalHeight = collectionViewHeight.constant
-
-        //        locationManager.requestLocation()
-        
+        activityIndicator.isHidden = true
         //        if let image = UIImage(systemName: "photo") {
         //        imageArray.append(image)
         //
         //        }
         
+        if item?.goalDate == nil {
+            goalSwitch.isOn = false
+            datePicker.isHidden = true
+        } else {
+            goalSwitch.isOn = true
+            datePicker.isHidden = false
+        }
+        
         if let image = UIImage(systemName: "") {
-
-        imageArray.append(image)
-
+            imageArray.append(image)
         }
         
         for items in imageStringArray {
             print(items)
             if let newImage = saveLoadImage.loadImageFromDiskWith(fileName: items){
-            imageArray.append(newImage)
+                imageArray.append(newImage)
             }
         }
         
@@ -91,7 +97,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
         descriptionTextField.clipsToBounds = true
         descriptionTextField.layer.cornerRadius = 10.0
-
+        
         descriptionTextField.layer.borderWidth = 1
         descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
         
@@ -99,17 +105,17 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         descriptionTextView.layer.cornerRadius = 10.0
         descriptionTextView.layer.borderWidth = 0
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
-
+        
         descriptionTextField.layer.borderWidth = 1
         descriptionTextField.isUserInteractionEnabled = false
         
-//        let string = NSMutableAttributedString(string: "Add Image")
-//
-//        let imageAttachment = NSTextAttachment()
-//        imageAttachment.image = UIImage(systemName: "photo")
-//        let imageString = NSAttributedString(attachment: imageAttachment)
-//        string.append(imageString)
-                
+        //        let string = NSMutableAttributedString(string: "Add Image")
+        //
+        //        let imageAttachment = NSTextAttachment()
+        //        imageAttachment.image = UIImage(systemName: "photo")
+        //        let imageString = NSAttributedString(attachment: imageAttachment)
+        //        string.append(imageString)
+        
     }
     
     // MARK: - Table view data source
@@ -126,11 +132,16 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+//        if indexPath.section == 2 {
+//            if item?.goalDate == nil {
+//            return 0
+//            } else {
+//            return super.tableView(tableView, heightForRowAt: indexPath)
+//            }
+//        }
+        
         if imageArray.count == 0 && indexPath.section == 4 {
             return 487 - originalHeight!
         } else if imageArray.count > 0 && indexPath.section == 4 {
@@ -146,29 +157,33 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         descriptionTextView.text = item.description
         //        locationLabel.text = item.location
         if let coordinate = item.location {
-//            dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate[0])!, longitude: CLLocationDegrees(coordinate[1])!)))
+            //            dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate[0])!, longitude: CLLocationDegrees(coordinate[1])!)))
             dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate.latitude)!, longitude: CLLocationDegrees(coordinate.longitude)!)), location: coordinate.location)
         }
-        datePicker.date = item.goalDate
+        
+        //Next Project
+        
+        datePicker.date = item.goalDate ?? Date()
+        
         completionSwitch.isOn = item.isComplete
         descriptionTextField.text = item.details
-
+        
         item.photos?.forEach({ (photoData) in
             imageArray.append(UIImage(data: photoData) ?? UIImage())
         })
     }
     
     func dropPinZoomIn(placemark: MKPlacemark, location: String) {
-//        selectedPin = placemark
+        //        selectedPin = placemark
         
         mapView!.removeAnnotations(mapView!.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = "\(location)"
         
-//        annotation.subtitle = "\(location)"
+        //        annotation.subtitle = "\(location)"
         mapView?.addAnnotation(annotation)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView!.setRegion(region, animated: true)
     }
@@ -185,21 +200,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         case "detailUnwind":
             let name = nameLabel.text ?? ""
             let description = descriptionTextView.text ?? ""
-            //        let location = locationLabel.text ?? ""
-            let goalDate = datePicker.date
-
-            item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-            let content = UNMutableNotificationContent()
-            content.title = "You have a goal date today!"
-            content.subtitle = "\(name)'s goal date was today."
-            content.sound = UNNotificationSound.default
-            let alertDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: goalDate)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: alertDate, repeats: false)
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request)
-            
-//            let location = mapView.annotations.first?.coordinate
+            let goalDate: Date?
+            if goalSwitch.isOn {
+            goalDate = datePicker.date
+            } else {
+            goalDate = nil
+            }
             let completed = completionSwitch.isOn
             var photos: [Data] = []
             let details = descriptionTextField.text ?? ""
@@ -212,8 +218,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             } else {
                 item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
             }
-            //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
-            //        dataController.saveData(lists: bucketLists)
+        //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
+        //        dataController.saveData(lists: bucketLists)
         
         case "imageSegue" :
             guard segue.identifier == "imageSegue" else {return}
@@ -221,20 +227,20 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             let newImage = imageArray[globalIndex]
             destination.newImage = newImage
             
-        
+            
         default :
             break
         }
-
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         globalIndex = indexPath.row
         print(globalIndex)
         performSegue(withIdentifier: "imageSegue", sender: nil)
     }
-
-
+        
+    
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
             editButton.title = ""
@@ -246,11 +252,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             descriptionTextField.isUserInteractionEnabled = true
             
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
-
-//          descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
+            
+            //          descriptionLabel.borderStyle = UITextField.BorderStyle.roundedRect
             descriptionTextView.layer.borderWidth = 1
             descriptionTextField.layer.borderWidth = 1
-
+            
             editMode = true
         }
         else if editMode == true {
@@ -263,20 +269,25 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             descriptionTextField.isUserInteractionEnabled = false
             
             nameLabel.borderStyle = UITextField.BorderStyle.none
-
-//          descriptionLabel.borderStyle = UITextField.BorderStyle.none
+            
+            //          descriptionLabel.borderStyle = UITextField.BorderStyle.none
             descriptionTextView.layer.borderWidth = 0
             descriptionTextField.layer.borderWidth = 0
             
             editMode = false
         }
     }
-
-     @IBAction func CompletionSwitch(_ sender: Any) {
+    
+    @IBAction func switchFlipped(_ sender: Any) {
+        datePicker.isHidden.toggle()
+        //animation
+    }
+    
+    @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
-     }
-
-@IBAction func editingChanged(_ sender: Any) {
+    }
+    
+    @IBAction func editingChanged(_ sender: Any) {
         if nameLabel.text?.count != 0 {
             doneLabel.isEnabled = true
         } else {
@@ -285,27 +296,27 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     
     @IBAction func setLocationButtonClicked(_ sender: Any) {
-
+        
         
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Current Location", style: .default, handler: { (action) in
             
-            //huh
             
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.requestLocation()
             
             if CLLocationManager.locationServicesEnabled() {
                 switch CLLocationManager().authorizationStatus {
                 case .authorizedWhenInUse:
+                    
+                    self.mapView.removeAnnotations(self.mapView.annotations)
                     self.mapView.showsUserLocation = true
-                                        
-//                    self.dropPinZoomIn(placemark: MKPlacemark(coordinate: self.mapView.userLocation.coordinate))
-//                    self.mapView.region.center = CLLocationCoordinate2D(latitude: self.mapView.userLocation.coordinate.latitude, longitude: self.mapView.userLocation.coordinate.longitude)
+                    self.activityIndicator.isHidden = false
                 
                 case .denied:
-                     break
+                    break
                 case .notDetermined:
                     self.locationManager.requestWhenInUseAuthorization()
                     self.mapView.showsUserLocation = true
@@ -320,14 +331,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
                 // Alert
             }
             
-            print(self.mapView.userLocation.coordinate)
-
         }))
         ac.addAction(UIAlertAction(title: "Find a Location", style: .default, handler: { (action) in
-                        
+            
             self.performSegue(withIdentifier: "LocationSearchVC", sender: nil)
             
-
+            
         }))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true, completion: nil)
@@ -351,10 +360,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         guard let selectedImage = info[.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        //        if !defaultImageWasRemoved {
-        //            imageArray.remove(at: 0)
-        //            defaultImageWasRemoved = true
-        //        }
         
         imageArray.append(selectedImage)
         dismiss(animated: true, completion: nil)
@@ -375,11 +380,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if imageArray.count == 0 {
             //collapse collection view
             collectionViewHeight.constant = 0
-//            tableView.reloadSections([4], with: .automatic)
+            //            tableView.reloadSections([4], with: .automatic)
         } else {
             if let height = originalHeight {
                 collectionViewHeight.constant = height
-//                tableView.reloadSections([4], with: .automatic)
+                //                tableView.reloadSections([4], with: .automatic)
             }
         }
         tableView.reloadData()
@@ -399,9 +404,28 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+            let span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
+        }
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: self.mapView.userLocation.coordinate.latitude, longitude: self.mapView.userLocation.coordinate.longitude)) { (placemarks, error) in
+            if (error != nil){
+                print("error in reverseGeocode")
+            }
+            let placemark = placemarks! as [CLPlacemark]
+            if placemark.count>0{
+                let placemark = placemarks![0]
+//                print(placemark.locality!)
+//                print(placemark.administrativeArea!)
+//                print(placemark.country!)
+                
+                self.mapView.showsUserLocation = false
+                self.dropPinZoomIn(placemark: MKPlacemark(placemark: placemark), location: "\(placemark.locality ?? "City"), \(placemark.administrativeArea ?? "State")")
+                self.activityIndicator.isHidden = true
+            }
+//            print(placemarks)
         }
     }
     

@@ -8,14 +8,64 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let center = UNUserNotificationCenter.current()
+        
+                let completeAction = UNNotificationAction(identifier: "Complete", title: "Mark As Complete", options: [])
+        
+        let remindAction = UNNotificationAction(identifier: "Remind", title: "Remind Me Later", options: [])
+                let bucketCategory = UNNotificationCategory(identifier: "Actions", actions: [completeAction, remindAction], intentIdentifiers: [], options: [])
+        
+                center.setNotificationCategories([bucketCategory])
+                center.delegate = self
+
+        
         return true
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+            if response.actionIdentifier == "Complete" {
+                let dataController = DataController()
+                var bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+                
+                for (index1, bucketList) in bucketLists.enumerated() {
+                    for (index2, item) in bucketList.items.enumerated() {
+                        if item.id.uuidString == response.notification.request.identifier {
+                            bucketLists[index1].items[index2].isComplete = true
+                            print(bucketLists[index1].items[index2])
+                            
+                            
+                        }
+                    }
+                }
+                dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+            } else if response.actionIdentifier == "Remind" {
+                let id = UUID()
+                let name = ItemName.listItemName
+                
+                let content = UNMutableNotificationContent()
+                content.title = "Bucket List Reminder"
+                content.body = "\(name)"
+                content.sound = UNNotificationSound.default
+                content.categoryIdentifier = "Actions"
+        
+                let triggerDateComponents =
+                   Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: Date())
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: false)
+        
+                let request = UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger)
+        
+                UNUserNotificationCenter.current().add(request)
+            }
+            completionHandler()
+        }
+
 
     // MARK: UISceneSession Lifecycle
 

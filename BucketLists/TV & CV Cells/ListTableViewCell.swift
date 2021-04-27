@@ -59,8 +59,13 @@ class ListTableViewCell: UITableViewCell {
         
         let newformatter = DateFormatter()
         newformatter.dateStyle = .short
-        let newDate = newformatter.string(from: list.goalDate)
-        goalDateLabel.text = "\(newDate)"
+        if let date = list.goalDate {
+            let newDate = newformatter.string(from: date)
+            goalDateLabel.text = "\(newDate)"
+        } else {
+            goalDateLabel.text = ""
+        }
+        
         
         nameLabel.text = "\(rowNumber). \(list.name)"
     }

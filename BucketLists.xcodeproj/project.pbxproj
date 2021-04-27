@@ -25,14 +25,15 @@
 		30933AFE26161DFA00F7A645 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30933AFD26161DFA00F7A645 /* ImageViewController.swift */; };
 		309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */; };
 		30EA90ED26023FF200D6BF1D /* AddListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */; };
-		30EA90F22602405800D6BF1D /* AddListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EA90F12602405800D6BF1D /* AddListTableViewController.swift */; };
+		30EA90F22602405800D6BF1D /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EA90F12602405800D6BF1D /* AddItemTableViewController.swift */; };
 		30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30F6576125F9350D00E30B46 /* ListTableView.storyboard */; };
 		30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6576625F9364C00E30B46 /* ListTableViewController.swift */; };
 		7C2FF111260E21780058454C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2FF110260E21780058454C /* InfoViewController.swift */; };
 		7C2FF11B260E3C530058454C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2FF11A260E3C530058454C /* App.swift */; };
 		7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */; };
-		7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */; };
+		7C4CB82F2600F71D00C55EAB /* OrthogonalScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC64C8925FBCBBC00372BE4 /* OrthogonalScrollingCollectionView.swift */; };
 		7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */; };
+		7C5C915C26330D96004C5151 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C915B26330D96004C5151 /* Name.swift */; };
 		7C9DABBF2612118200722DC5 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */; };
 		7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6588925F9342E00537BF4 /* CreateVC.storyboard */; };
 		7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */; };
@@ -77,18 +78,19 @@
 		1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketCollectionViewCell.swift; sourceTree = "<group>"; };
-		1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopefullyThisWorks.swift; sourceTree = "<group>"; };
+		1EC64C8925FBCBBC00372BE4 /* OrthogonalScrollingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrthogonalScrollingCollectionView.swift; sourceTree = "<group>"; };
 		306CC05C2627453100449B2B /* SaveLoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoadImage.swift; sourceTree = "<group>"; };
 		308A10882604E83600B6BBDF /* DetailListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListTableView.storyboard; sourceTree = "<group>"; };
 		308A10902604E93000B6BBDF /* DetailListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListTableViewController.swift; sourceTree = "<group>"; };
 		30933AFD26161DFA00F7A645 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		30EA90EC26023FF200D6BF1D /* AddListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddListTableView.storyboard; sourceTree = "<group>"; };
-		30EA90F12602405800D6BF1D /* AddListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListTableViewController.swift; sourceTree = "<group>"; };
+		30EA90F12602405800D6BF1D /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
 		30F6576125F9350D00E30B46 /* ListTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListTableView.storyboard; sourceTree = "<group>"; };
 		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		7C2FF110260E21780058454C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7C2FF11A260E3C530058454C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		7C5C915B26330D96004C5151 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7CC6588925F9342E00537BF4 /* CreateVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateVC.storyboard; sourceTree = "<group>"; };
 		7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
@@ -120,12 +122,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E1CEDE126307F6F001383F9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
+				1EC64C8925FBCBBC00372BE4 /* OrthogonalScrollingCollectionView.swift */,
+				7CC6589725FBB87700537BF4 /* CreateViewController.swift */,
+				7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */,
+				7C2FF110260E21780058454C /* InfoViewController.swift */,
+				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
+				1E77C36C261B554D00073F72 /* MapViewController.swift */,
+				30EA90F12602405800D6BF1D /* AddItemTableViewController.swift */,
+				308A10902604E93000B6BBDF /* DetailListTableViewController.swift */,
+				1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */,
+				30933AFD26161DFA00F7A645 /* ImageViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1E1CEDE226307FAF001383F9 /* TV & CV Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
+				7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */,
+				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
+			);
+			path = "TV & CV Cells";
+			sourceTree = "<group>";
+		};
 		1E3F2739262DE05B00047C9A /* Models and Data */ = {
 			isa = PBXGroup;
 			children = (
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
 				1E6D1B65260395C500D5427F /* DataController.swift */,
+				7C5C915B26330D96004C5151 /* Name.swift */,
 				306CC05C2627453100449B2B /* SaveLoadImage.swift */,
+				7C2FF11A260E3C530058454C /* App.swift */,
 			);
 			path = "Models and Data";
 			sourceTree = "<group>";
@@ -170,22 +202,9 @@
 				1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */,
 				1E6818EE25F91CA6003FC155 /* ViewController.swift */,
 				1E3F273A262DE0A800047C9A /* Storyboards */,
+				1E1CEDE126307F6F001383F9 /* View Controllers */,
 				1E3F2739262DE05B00047C9A /* Models and Data */,
-				1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */,
-				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
-				7CC6589725FBB87700537BF4 /* CreateViewController.swift */,
-				7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */,
-				1EC64C8925FBCBBC00372BE4 /* HopefullyThisWorks.swift */,
-				7C2FF110260E21780058454C /* InfoViewController.swift */,
-				7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */,
-				7C2FF11A260E3C530058454C /* App.swift */,
-				30F6576625F9364C00E30B46 /* ListTableViewController.swift */,
-				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
-				1E77C36C261B554D00073F72 /* MapViewController.swift */,
-				30EA90F12602405800D6BF1D /* AddListTableViewController.swift */,
-				308A10902604E93000B6BBDF /* DetailListTableViewController.swift */,
-				1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */,
-				30933AFD26161DFA00F7A645 /* ImageViewController.swift */,
+				1E1CEDE226307FAF001383F9 /* TV & CV Cells */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
 			);
@@ -352,7 +371,7 @@
 				7C2FF111260E21780058454C /* InfoViewController.swift in Sources */,
 				7C9DABBF2612118200722DC5 /* ImageCollectionViewCell.swift in Sources */,
 				306CC05D2627453100449B2B /* SaveLoadImage.swift in Sources */,
-				30EA90F22602405800D6BF1D /* AddListTableViewController.swift in Sources */,
+				30EA90F22602405800D6BF1D /* AddItemTableViewController.swift in Sources */,
 				7C2FF11B260E3C530058454C /* App.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
@@ -361,9 +380,10 @@
 				7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */,
 				30F6576725F9364C00E30B46 /* ListTableViewController.swift in Sources */,
 				1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */,
-				7C4CB82F2600F71D00C55EAB /* HopefullyThisWorks.swift in Sources */,
+				7C4CB82F2600F71D00C55EAB /* OrthogonalScrollingCollectionView.swift in Sources */,
 				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
+				7C5C915C26330D96004C5151 /* Name.swift in Sources */,
 				309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
