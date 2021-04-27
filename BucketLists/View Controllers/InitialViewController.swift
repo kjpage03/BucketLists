@@ -46,13 +46,12 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted: Bool, error: Error?) in
             if let error = error {
-                error.localizedDescription
+               print(error.localizedDescription)
             } else {
                print("Success")
             }
         }
 
-        
         //        bucketLists = dataController.retrieveData()
         
         newListButton.layer.cornerRadius = 4
@@ -68,19 +67,12 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         bucketListLabel.layer.shadowOffset = .zero
         bucketListLabel.layer.shadowRadius = 10
         
-        let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Yay!")
-            } else {
-                print("D'oh")
-            }
-        }
         view.bringSubviewToFront(stackView)
 
         createBackgroundParticles()
-        originalLayerCount = self.view.layer.sublayers!.count    }
+        originalLayerCount = self.view.layer.sublayers!.count
+        
+    }
     
     func createBackgroundParticles() {
         let particleEmitter = CAEmitterLayer()
@@ -93,11 +85,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         let cell = makeEmitterCell(color: UIColor.black, type: .background)
         
         particleEmitter.emitterCells = [cell]
-        
-        //        if isInFront {
-        
+                
         view.layer.addSublayer(particleEmitter)
-        //            view.layer.addSublayer(bottomParticleEmitter)
+//        view.layer.sublayers?.insert(particleEmitter, at: 0)
         
         let topEmitter = CAEmitterLayer()
         topEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
@@ -107,6 +97,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         
         topEmitter.emitterCells = [cell]
         view.layer.addSublayer(topEmitter)
+//        view.layer.sublayers?.insert(topEmitter, at: 0)
         
     }
     
