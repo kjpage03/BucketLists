@@ -65,7 +65,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 print("D'oh")
             }
         }
-        
+        view.bringSubviewToFront(stackView)
         createBackgroundParticles()
         originalLayerCount = self.view.layer.sublayers!.count
     }
@@ -74,20 +74,18 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         let particleEmitter = CAEmitterLayer()
         
         particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.frame.height + 50)
-//        -96
+        //        -96
         particleEmitter.emitterShape = .line
         particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
         
-        let red = makeEmitterCell(color: UIColor.red, type: .background)
-        let green = makeEmitterCell(color: UIColor.green, type: .background)
-        let blue = makeEmitterCell(color: UIColor.blue, type: .background)
+        let cell = makeEmitterCell(color: UIColor.black, type: .background)
         
-        particleEmitter.emitterCells = [red, green, blue]
+        particleEmitter.emitterCells = [cell]
         
-//        if isInFront {
-            
-            view.layer.addSublayer(particleEmitter)
-//            view.layer.addSublayer(bottomParticleEmitter)
+        //        if isInFront {
+        
+        view.layer.addSublayer(particleEmitter)
+        //            view.layer.addSublayer(bottomParticleEmitter)
         
         let topEmitter = CAEmitterLayer()
         topEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
@@ -95,24 +93,25 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         topEmitter.emitterShape = .line
         topEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
         
-        topEmitter.emitterCells = [red, green, blue]
+        topEmitter.emitterCells = [cell]
         view.layer.addSublayer(topEmitter)
-
+        
     }
     
     func createParticles() {
         let particleEmitter = CAEmitterLayer()
         
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.center.y)
-//        -96
-        particleEmitter.emitterShape = .circle
+        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
+        //        -96
+        particleEmitter.emitterShape = .line
         particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
         
-        let red = makeEmitterCell(color: UIColor.red, type: .exploding)
-        let green = makeEmitterCell(color: UIColor.green, type: .exploding)
-        let blue = makeEmitterCell(color: UIColor.blue, type: .exploding)
+        let red = makeEmitterCell(color: .red, type: .exploding)
+        let green = makeEmitterCell(color: .green, type: .exploding)
+        let blue = makeEmitterCell(color: .blue, type: .exploding)
+        let yellow = makeEmitterCell(color: .yellow, type: .exploding)
         
-        particleEmitter.emitterCells = [red, green, blue]
+        particleEmitter.emitterCells = [red, green, blue, yellow]
         
         view.layer.addSublayer(particleEmitter)
     }
@@ -127,73 +126,89 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         
         //original
         
-//        cell.scale = 0.2
-//        cell.birthRate = 3
-//        cell.lifetime = 7.0
-//        cell.lifetimeRange = 0
-//        cell.color = color.cgColor
-//        cell.velocity = 200
-//        cell.velocityRange = 50
-//        cell.emissionLongitude = CGFloat.pi
-//        cell.emissionRange = CGFloat.pi / 4
-//        cell.spin = 2
-//        cell.spinRange = 3
-//        cell.scaleRange = 0.5
-//        cell.scaleSpeed = -0.05
+        //        cell.scale = 0.2
+        //        cell.birthRate = 3
+        //        cell.lifetime = 7.0
+        //        cell.lifetimeRange = 0
+        //        cell.color = color.cgColor
+        //        cell.velocity = 200
+        //        cell.velocityRange = 50
+        //        cell.emissionLongitude = CGFloat.pi
+        //        cell.emissionRange = CGFloat.pi / 4
+        //        cell.spin = 2
+        //        cell.spinRange = 3
+        //        cell.scaleRange = 0.5
+        //        cell.scaleSpeed = -0.05
         
         //modified
         
-//        cell.scale = 0.2
-//        cell.birthRate = 5
-//        cell.lifetime = 7.0
-//        cell.lifetimeRange = 0
-//        cell.color = color.cgColor
-//        cell.velocity = 300
-//        cell.velocityRange = 50
-//        cell.emissionLongitude = CGFloat.pi
-//        cell.emissionRange = CGFloat.pi / 4
-//        cell.spin = 3
-//        cell.spinRange = 3
-//        cell.scaleRange = 0.5
-//        cell.scaleSpeed = -0.05
+        //        cell.scale = 0.2
+        //        cell.birthRate = 5
+        //        cell.lifetime = 7.0
+        //        cell.lifetimeRange = 0
+        //        cell.color = color.cgColor
+        //        cell.velocity = 300
+        //        cell.velocityRange = 50
+        //        cell.emissionLongitude = CGFloat.pi
+        //        cell.emissionRange = CGFloat.pi / 4
+        //        cell.spin = 3
+        //        cell.spinRange = 3
+        //        cell.scaleRange = 0.5
+        //        cell.scaleSpeed = -0.05
         
         switch type {
         
         case .exploding :
-                
-        cell.scale = 0.2
-        cell.birthRate = 5
-        cell.lifetime = 7.0
-        cell.lifetimeRange = 0
-        cell.color = color.cgColor
-        cell.velocity = 300
-        cell.velocityRange = 50
-        cell.emissionLongitude = 0
-        cell.emissionRange = CGFloat.pi
-        cell.spin = 3
-        cell.spinRange = 3
-        cell.scaleRange = 0.5
-        cell.scaleSpeed = -0.05
             
-        case .background:
+            cell.scale = 0.2
+            cell.birthRate = 5
+            cell.lifetime = 7.0
+            cell.lifetimeRange = 0
+            cell.color = color.cgColor
+            cell.velocity = 300
+            cell.velocityRange = 0
+            cell.emissionLongitude = CGFloat.pi
+            cell.emissionRange = CGFloat.pi / 4
+            cell.spin = 2
+            cell.spinRange = 3
+            cell.scaleRange = 0
+            cell.scaleSpeed = -0.05
+            
+            cell.contents = UIImage(named: "bucket5")?.cgImage
+
+        //        cell.scale = 0.2
+        //        cell.birthRate = 5
+        //        cell.lifetime = 7.0
+        //        cell.lifetimeRange = 0
+        //        cell.color = color.cgColor
+        //        cell.velocity = 300
+        //        cell.velocityRange = 50
+        //        cell.emissionLongitude = 0
+        //        cell.emissionRange = CGFloat.pi
+        //        cell.spin = 3
+        //        cell.spinRange = 3
+        //        cell.scaleRange = 0.5
+        //        cell.scaleSpeed = -0.05
         
-        cell.scale = 0.5
-        cell.birthRate = 0.2
-        cell.lifetime = 10.0
-        cell.lifetimeRange = 0
-        cell.color = color.cgColor
-        cell.velocity = 50
-        cell.velocityRange = 50
-        cell.emissionLongitude = CGFloat.pi / 2
-        cell.emissionRange = CGFloat.pi
-        cell.spin = 1
-        cell.spinRange = 3
-        cell.scaleRange = 0
-        cell.scaleSpeed = -0.05
+        case .background:
+            
+            cell.scale = 0.5
+            cell.birthRate = 0.2
+            cell.lifetime = 10.0
+            cell.lifetimeRange = 0
+            cell.color = color.cgColor
+            cell.velocity = 50
+            cell.velocityRange = 50
+            cell.emissionLongitude = CGFloat.pi / 2
+            cell.emissionRange = CGFloat.pi
+            cell.spin = 1
+            cell.spinRange = 3
+            cell.scaleRange = 0
+            cell.scaleSpeed = -0.05
+            cell.contents = UIImage(named: "bucketNoBG")?.cgImage
 
         }
         
-        cell.contents = UIImage(named: "bucketNoBG")?.cgImage
         return cell
     }
     
