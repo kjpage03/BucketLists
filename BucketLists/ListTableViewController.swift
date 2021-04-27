@@ -177,7 +177,23 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let item = bothList[indexPath.section]
         if item.numberofSteps > 1 {
-            return CGFloat(48 * item.numberofSteps) * 1.10
+            switch(item.numberofSteps)
+            {
+            case 0:
+                return 48
+            case 1:
+                return 48
+            case 2:
+                return 120
+            case 3:
+                return 158
+            case 4:
+                return 168
+            case 5:
+                return 178
+            default:
+                return 48
+            }
         } else {
         return 48.0;//Choose your custom row height
         }
@@ -276,6 +292,14 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             updatePercentLabel()
         
         }
+    }
+    func saveCompletedSteps(name: String, array: [Int: Bool]){
+        var bothfiltered = bothList.filter { $0.name == name }
+        print(bothfiltered)
+        bothfiltered[0].stepsCompleted = array
+        var filtered = list.filter { $0.name == name }
+        //filtered[0].stepsCompleted = array
+        print(filtered)
     }
     
     @IBAction func backButton(_ sender: Any) {

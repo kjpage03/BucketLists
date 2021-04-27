@@ -21,7 +21,12 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var stepTwoButton: UIButton!
     @IBOutlet weak var stepThreeButton: UIButton!
     @IBOutlet weak var stepFourButton: UIButton!
+    @IBOutlet weak var steckView: UIStackView!
     
+    var itemName: String = ""
+    var completedStepsArray = [Int: Bool]()
+    var listTableViewController = ListTableViewController()
+
     override var frame: CGRect {
             get {
                 return super.frame
@@ -42,7 +47,7 @@ class ListTableViewCell: UITableViewCell {
         super.awakeFromNib()
 //        contentView.layer.borderColor = UIColor.black.cgColor
 //        contentView.layer.borderWidth = 1.0
-            
+        completedStepsArray = [1: false, 2: false, 3: false, 4: false]
     }
     
     override func layoutSubviews() {
@@ -65,6 +70,7 @@ class ListTableViewCell: UITableViewCell {
 //        } else {
 //            backgroundColor = .white
 //        }
+        itemName = list.name
         switch(list.numberofSteps)
         {
         case 1:
@@ -74,9 +80,11 @@ class ListTableViewCell: UITableViewCell {
             stepFourLabel.isHidden = true
             
             stepOneButton.isHidden = true
-            stepTwoLabel.isHidden = true
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
+            stepTwoButton.isHidden = true
+            stepThreeButton.isHidden = true
+            stepFourButton.isHidden = true
+            
+            steckView.spacing = 0
             break
         case 2:
             stepOneLabel.isHidden = false
@@ -87,9 +95,11 @@ class ListTableViewCell: UITableViewCell {
 
             
             stepOneButton.isHidden = false
-            stepTwoLabel.isHidden = true
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
+            stepTwoButton.isHidden = true
+            stepThreeButton.isHidden = true
+            stepFourButton.isHidden = true
+            
+            steckView.spacing = 0
             break
         case 3:
             stepOneLabel.isHidden = false
@@ -101,9 +111,11 @@ class ListTableViewCell: UITableViewCell {
 
             
             stepOneButton.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
+            stepTwoButton.isHidden = false
+            stepThreeButton.isHidden = true
+            stepFourButton.isHidden = true
+            
+            steckView.spacing = 10
             break
             
         case 4:
@@ -117,9 +129,11 @@ class ListTableViewCell: UITableViewCell {
 
             
             stepOneButton.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = false
-            stepFourLabel.isHidden = true
+            stepTwoButton.isHidden = false
+            stepThreeButton.isHidden = false
+            stepFourButton.isHidden = true
+            
+            steckView.spacing = -5
             break
          
         case 5:
@@ -134,9 +148,11 @@ class ListTableViewCell: UITableViewCell {
 
             
             stepOneButton.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = false
-            stepFourLabel.isHidden = false
+            stepTwoButton.isHidden = false
+            stepThreeButton.isHidden = false
+            stepFourButton.isHidden = false
+            
+            steckView.spacing = -15
             break
             
         default:
@@ -150,5 +166,44 @@ class ListTableViewCell: UITableViewCell {
         goalDateLabel.text = "\(newDate)"
         
         nameLabel.text = "\(rowNumber). \(list.name)"
+    }
+    @IBAction func stepOneButton(_ sender: Any) {
+        if stepOneButton.isSelected == false {
+            stepOneButton.isSelected = true
+            completedStepsArray.updateValue(true, forKey: 1)
+            listTableViewController.saveCompletedSteps(name: itemName, array: completedStepsArray)
+        }else if stepOneButton.isSelected == true{
+            stepOneButton.isSelected = false
+            completedStepsArray.updateValue(false, forKey: 1)
+        }
+    }
+    @IBAction func stepTwoButton(_ sender: Any) {
+        if stepTwoButton.isSelected == false {
+            stepTwoButton.isSelected = true
+            completedStepsArray.updateValue(true, forKey: 2)
+        }else if stepTwoButton.isSelected == true{
+            stepTwoButton.isSelected = false
+            completedStepsArray.updateValue(false, forKey: 2)
+        }
+    }
+    @IBAction func stepThreeButton(_ sender: Any) {
+        
+        if stepFourButton.isSelected == false {
+            stepFourButton.isSelected = true
+            completedStepsArray.updateValue(true, forKey: 4)
+        }else if stepFourButton.isSelected == true{
+            stepFourButton.isSelected = false
+            completedStepsArray.updateValue(false, forKey: 4)
+
+        }
+    }
+    @IBAction func stepFourButton(_ sender: Any) {
+        if stepThreeButton.isSelected == false {
+            stepThreeButton.isSelected = true
+            completedStepsArray.updateValue(true, forKey: 3)
+        }else if stepThreeButton.isSelected == true{
+            stepThreeButton.isSelected = false
+            completedStepsArray.updateValue(false, forKey: 3)
+        }
     }
 }

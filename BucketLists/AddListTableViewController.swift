@@ -11,6 +11,8 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
 
     var item: Item?
     var numberofStepsINT: Int = 1
+    var completedStepsArray = [Int: Bool]()
+
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
@@ -95,7 +97,7 @@ class AddListTableViewController: UITableViewController, UITextFieldDelegate {
             break
         }
         
-        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsINT, stepsArray: stepsStringArray)
+        item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Describe your experience", imageArray: [], numberofSteps: numberofStepsINT, stepsArray: stepsStringArray, stepsCompleted: [1:false, 2:false, 3: false, 4: false])
     }
     
     
