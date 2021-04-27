@@ -33,6 +33,7 @@
 		7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */; };
 		7C4CB82F2600F71D00C55EAB /* OrthogonalScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC64C8925FBCBBC00372BE4 /* OrthogonalScrollingCollectionView.swift */; };
 		7C4CB8332600F72000C55EAB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */; };
+		7C5C915C26330D96004C5151 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C915B26330D96004C5151 /* Name.swift */; };
 		7C9DABBF2612118200722DC5 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */; };
 		7CC6588A25F9342E00537BF4 /* CreateVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC6588925F9342E00537BF4 /* CreateVC.storyboard */; };
 		7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */; };
@@ -89,6 +90,7 @@
 		30F6576625F9364C00E30B46 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		7C2FF110260E21780058454C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		7C2FF11A260E3C530058454C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		7C5C915B26330D96004C5151 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7CC6588925F9342E00537BF4 /* CreateVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateVC.storyboard; sourceTree = "<group>"; };
 		7CC6589225FA7F9000537BF4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
 				1E6D1B65260395C500D5427F /* DataController.swift */,
+				7C5C915B26330D96004C5151 /* Name.swift */,
 				306CC05C2627453100449B2B /* SaveLoadImage.swift */,
 				7C2FF11A260E3C530058454C /* App.swift */,
 			);
@@ -380,6 +383,7 @@
 				7C4CB82F2600F71D00C55EAB /* OrthogonalScrollingCollectionView.swift in Sources */,
 				7C4CB82B2600F71100C55EAB /* BucketCollectionViewCell.swift in Sources */,
 				1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */,
+				7C5C915C26330D96004C5151 /* Name.swift in Sources */,
 				309AA52E25FA7B6700F65909 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

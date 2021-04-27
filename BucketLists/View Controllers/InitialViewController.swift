@@ -42,6 +42,16 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted: Bool, error: Error?) in
+            if let error = error {
+                error.localizedDescription
+            } else {
+               print("Success")
+            }
+        }
+
         
         //        bucketLists = dataController.retrieveData()
         
@@ -51,6 +61,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+
+
         bucketListLabel.layer.shadowColor = UIColor.black.cgColor
         bucketListLabel.layer.shadowOpacity = 0.3
         bucketListLabel.layer.shadowOffset = .zero
@@ -66,9 +78,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             }
         }
         view.bringSubviewToFront(stackView)
+
         createBackgroundParticles()
-        originalLayerCount = self.view.layer.sublayers!.count
-    }
+        originalLayerCount = self.view.layer.sublayers!.count    }
     
     func createBackgroundParticles() {
         let particleEmitter = CAEmitterLayer()

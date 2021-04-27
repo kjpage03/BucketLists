@@ -59,7 +59,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         super.prepare(for: segue, sender: sender)
 
         guard segue.identifier == "doneUnwind" else {return}
-        
+        ItemName.listItemName = nameLabel.text ?? ItemName.listItemName
         let name = nameLabel.text ?? ""
         let description = descriptionLabel.text ?? ""
 //        let location = locationLabel.text ?? ""
@@ -70,7 +70,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             
                     let content = UNMutableNotificationContent()
                     content.title = "Bucket List Reminder"
-                    content.body = "\(name)"
+            content.body = "\(ItemName.listItemName)"
                     content.sound = UNNotificationSound.default
                     content.categoryIdentifier = "Actions"
             
@@ -90,6 +90,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             
         }
         
+
         item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
