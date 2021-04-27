@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class DetailListTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
+class DetailListTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet var descriptionTextView: UITextView!
@@ -68,6 +68,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         updateItem(item: item)
         originalHeight = collectionViewHeight.constant
         activityIndicator.isHidden = true
+        nameLabel.delegate = self
         //        if let image = UIImage(systemName: "photo") {
         //        imageArray.append(image)
         //
@@ -134,13 +135,13 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-//        if indexPath.section == 2 {
-//            if item?.goalDate == nil {
-//            return 0
-//            } else {
-//            return super.tableView(tableView, heightForRowAt: indexPath)
-//            }
-//        }
+        //        if indexPath.section == 2 {
+        //            if item?.goalDate == nil {
+        //            return 0
+        //            } else {
+        //            return super.tableView(tableView, heightForRowAt: indexPath)
+        //            }
+        //        }
         
         if imageArray.count == 0 && indexPath.section == 4 {
             return 487 - originalHeight!
@@ -200,11 +201,30 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         case "detailUnwind":
             let name = nameLabel.text ?? ""
             let description = descriptionTextView.text ?? ""
-            let goalDate: Date?
+            var goalDate: Date? = Date()
             if goalSwitch.isOn {
-            goalDate = datePicker.date
+                if !completionSwitch.isOn {
+                    goalDate = datePicker.date
+                    
+                    let content = UNMutableNotificationContent()
+                    content.title = "Bucket List Reminder"
+                    content.body = "\(item!.name)"
+                    content.sound = UNNotificationSound.default
+                    content.categoryIdentifier = "Actions"
+                    
+                    let triggerDateComponents =
+                        Calendar.current.dateComponents([.minute,
+                                                         .hour, .day, .month, .year], from: goalDate!)
+                    let trigger = UNCalendarNotificationTrigger(dateMatching:
+                                                                    triggerDateComponents, repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier:
+                                                            item!.id.uuidString, content: content, trigger: trigger)
+                    removeNotification()
+                    UNUserNotificationCenter.current().add(request)
+                }
             } else {
-            goalDate = nil
+                goalDate = nil
             }
             let completed = completionSwitch.isOn
             var photos: [Data] = []
@@ -214,19 +234,18 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
             if let location = mapView.annotations.first {
                 
-                item = Item( name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
+                item = Item(name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
             } else {
-                item = Item( name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
+                item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
             }
-        //        bucketLists[indexOfBucketList].items[indexOfItem] = item!
-        //        dataController.saveData(lists: bucketLists)
+//                bucketLists[indexOfBucketList].items[indexOfItem] = item!
+//            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
         
         case "imageSegue" :
             guard segue.identifier == "imageSegue" else {return}
             let destination = segue.destination as! ImageViewController
             let newImage = imageArray[globalIndex]
             destination.newImage = newImage
-            
             
         default :
             break
@@ -239,7 +258,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         print(globalIndex)
         performSegue(withIdentifier: "imageSegue", sender: nil)
     }
-        
+    
     
     @IBAction func editButton(_ sender: Any) {
         if editMode == false {
@@ -248,7 +267,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.isUserInteractionEnabled = true
             descriptionTextView.isUserInteractionEnabled = true
             //            locationLabel.isUserInteractionEnabled = true
-            datePicker.isUserInteractionEnabled = true
+//            datePicker.isUserInteractionEnabled = true
             descriptionTextField.isUserInteractionEnabled = true
             
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
@@ -265,7 +284,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.isUserInteractionEnabled = false
             descriptionTextView.isUserInteractionEnabled = false
             //            locationLabel.isUserInteractionEnabled = false
-            datePicker.isUserInteractionEnabled = false
+//            datePicker.isUserInteractionEnabled = false
             descriptionTextField.isUserInteractionEnabled = false
             
             nameLabel.borderStyle = UITextField.BorderStyle.none
@@ -280,11 +299,29 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     
     @IBAction func switchFlipped(_ sender: Any) {
         datePicker.isHidden.toggle()
+        
+        if !goalSwitch.isOn {
+            //not all just one
+            removeNotification()
+        }
         //animation
     }
     
     @IBAction func CompletionSwitch(_ sender: Any) {
         tableView.reloadData()
+        removeNotification()
+    }
+    
+    func removeNotification() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.getPendingNotificationRequests { (requests) in
+            requests.forEach { (request) in
+                if request.identifier == self.item!.id.uuidString {
+                    center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                }
+            }
+        }
     }
     
     @IBAction func editingChanged(_ sender: Any) {
@@ -293,6 +330,14 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         } else {
             doneLabel.isEnabled = false
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 26
+        let currentString: NSString = (textField.text ?? "") as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
     }
     
     @IBAction func setLocationButtonClicked(_ sender: Any) {
@@ -314,7 +359,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     self.mapView.showsUserLocation = true
                     self.activityIndicator.isHidden = false
-                
+                    
                 case .denied:
                     break
                 case .notDetermined:
@@ -417,15 +462,15 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
             let placemark = placemarks! as [CLPlacemark]
             if placemark.count>0{
                 let placemark = placemarks![0]
-//                print(placemark.locality!)
-//                print(placemark.administrativeArea!)
-//                print(placemark.country!)
+                //                print(placemark.locality!)
+                //                print(placemark.administrativeArea!)
+                //                print(placemark.country!)
                 
                 self.mapView.showsUserLocation = false
                 self.dropPinZoomIn(placemark: MKPlacemark(placemark: placemark), location: "\(placemark.locality ?? "City"), \(placemark.administrativeArea ?? "State")")
                 self.activityIndicator.isHidden = true
             }
-//            print(placemarks)
+            //            print(placemarks)
         }
     }
     
