@@ -60,6 +60,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
         guard segue.identifier == "doneUnwind" else {return}
         ItemName.listItemName = nameLabel.text ?? ItemName.listItemName
+        let name = nameLabel.text ?? ""
         let description = descriptionLabel.text ?? ""
 //        let location = locationLabel.text ?? ""
         let goalDate: Date?
@@ -89,14 +90,11 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             
         }
         
-<<<<<<< HEAD
-        item = Item(id: id, name: ItemName.listItemName, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
-=======
+
         item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)
->>>>>>> 601b9137da6d491104a4523adf288ecab0baf112
         
     }
     

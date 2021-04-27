@@ -61,42 +61,15 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-<<<<<<< HEAD
-            bucketListLabel.layer.shadowColor = UIColor.black.cgColor
-            bucketListLabel.layer.shadowOpacity = 0.3
-            bucketListLabel.layer.shadowOffset = .zero
-            bucketListLabel.layer.shadowRadius = 10
-            
-        //        scrollLabel.text = "\(1)/\(bucketLists.count)"
-        // Do any additional setup after loading the view.
-        //        let emitter = CAEmitterLayer()
-        //        emitter.emitterPosition = CGPoint(x: self.view.frame.size.width / 2, y: -10)
-        //
-        //        emitter.emitterShape = CAEmitterLayerEmitterShape.line
-        //        emitter.emitterSize = CGSize(width: self.view.frame.size.width, height: 2.0)
-        //        emitter.emitterCells = generateEmitterCells()
-        //        self.view.layer.addSublayer(emitter)
-        //    }
-=======
+
+
         bucketListLabel.layer.shadowColor = UIColor.black.cgColor
         bucketListLabel.layer.shadowOpacity = 0.3
         bucketListLabel.layer.shadowOffset = .zero
         bucketListLabel.layer.shadowRadius = 10
         
-        let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Yay!")
-            } else {
-                print("D'oh")
-            }
-        }
-        
         createBackgroundParticles()
-        originalLayerCount = self.view.layer.sublayers!.count
->>>>>>> 601b9137da6d491104a4523adf288ecab0baf112
-    }
+        originalLayerCount = self.view.layer.sublayers!.count    }
     
     func createBackgroundParticles() {
         let particleEmitter = CAEmitterLayer()
