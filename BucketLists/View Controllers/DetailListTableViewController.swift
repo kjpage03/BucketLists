@@ -23,6 +23,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var goalSwitch: UISwitch!
+    @IBOutlet var rightBucket: UIImageView!
+    @IBOutlet var leftBucket: UIImageView!
+    
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -109,6 +112,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
         descriptionTextField.layer.borderWidth = 1
         descriptionTextField.isUserInteractionEnabled = false
+        
+        leftBucket.counterRotate360Degrees()
+        rightBucket.counterRotate360Degrees()
         
         //        let string = NSMutableAttributedString(string: "Add Image")
         //

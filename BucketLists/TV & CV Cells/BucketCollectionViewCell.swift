@@ -13,6 +13,7 @@ class BucketCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var fill: UIView!
     @IBOutlet weak var fillHeight: NSLayoutConstraint!
+    
     //    @IBOutlet weak var imageView: UIButton!
     
     func configure(label: String, percentage: Double, color: UIColor) {
@@ -26,12 +27,15 @@ class BucketCollectionViewCell: UICollectionViewCell {
         }
 //        fill.layer.borderWidth = 1.6
 //        fill.layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
+        
         //ADJUST FILL HEIGHT BASED ON PERCENTAGE
-        let newConstraint = fillHeight.constraintWithMultiplier(CGFloat(newPercentage))
-        self.contentView.removeConstraint(fillHeight)
-        self.contentView.addConstraint(newConstraint)
-        self.contentView.layoutIfNeeded()
-            fillHeight = newConstraint
+        
+            let newConstraint = self.fillHeight.constraintWithMultiplier(CGFloat(newPercentage))
+            self.contentView.removeConstraint(self.fillHeight)
+            self.contentView.addConstraint(newConstraint)
+            self.contentView.layoutIfNeeded()
+            var tempHeight = newConstraint.constant
+            self.fillHeight = newConstraint
         
 //        imageView.layer.shadowColor = UIColor.black.cgColor
 //        imageView.layer.shadowOpacity = 1

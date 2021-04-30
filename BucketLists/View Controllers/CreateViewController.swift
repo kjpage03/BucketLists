@@ -9,23 +9,12 @@ import UIKit
 
 class CreateViewController: UIViewController {
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        1
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateVCView")
-//        return cell!
-//    }
-    
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bucketListItemImage: UIImageView!
     @IBOutlet weak var colorButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var fill: UIView!
-//    @IBOutlet var tableView: UITableView!
     
     var prevTransform: CGFloat = .pi
     var bucketList: BucketList?
@@ -34,14 +23,9 @@ class CreateViewController: UIViewController {
     let dataController = DataController()
     var deleteButtonWasTapped: Bool = false
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tableView.delegate = self
-//        tableView.dataSource = self
-        // Do any additional setup after loading the view.
         navigationController?.setNavigationBarHidden(false, animated: false)
         
         doneButton.layer.cornerRadius = 4
@@ -87,26 +71,26 @@ class CreateViewController: UIViewController {
         guard let color = fill.backgroundColor else { return }
         guard let name = nameTextField.text else { return }
         var bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
-
+        
         guard let LandingVC = segue.destination as? InitialViewController else { return }
         if !deleteButtonWasTapped {
             
             //Edit the bucket list that was passed in and save it
             if let index = indexInArray {
-            var list = bucketLists[index]
-            list.color = Color(uiColor: color)
-            list.owner = name
-            bucketLists[index] = list
+                var list = bucketLists[index]
+                list.color = Color(uiColor: color)
+                list.owner = name
+                bucketLists[index] = list
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             } else {
                 let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true, details: "Write about your experience!", imageArray: [])], color: Color(uiColor: color))
                 //            LandingVC.bucketLists.append(bucketList)
-//                var bucketLists = dataController.retrieveData()
+                //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             }
             //Create a new bucket list and save it
-                
+            
         } else {
             LandingVC.viewHasDisappeared = false
             LandingVC.collectionView.transform = CGAffineTransform.identity
@@ -118,6 +102,7 @@ class CreateViewController: UIViewController {
 }
 
 extension CreateViewController: UIColorPickerViewControllerDelegate {
+    
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         //        self.view.backgroundColor = viewController.selectedColor
         self.fill.backgroundColor = viewController.selectedColor
@@ -127,32 +112,34 @@ extension CreateViewController: UIColorPickerViewControllerDelegate {
             self.colorButton.transform = rotateTransform
         }
     }
+    
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         //        self.view.backgroundColor = viewController.selectedColor
         self.fill.backgroundColor = viewController.selectedColor
     }
+    
 }
 
 extension CreateViewController {
     func initializeHideKeyboard(){
-            //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-                target: self,
-                action: #selector(dismissMyKeyboard))
-            
-            //Add this tap gesture recognizer to the parent view
-            view.addGestureRecognizer(tap)
-        }
+        //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissMyKeyboard))
         
-        @objc func dismissMyKeyboard(){
-            //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
-            //In short- Dismiss the active keyboard.
-            view.endEditing(true)
-        }
+        //Add this tap gesture recognizer to the parent view
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissMyKeyboard(){
+        //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
+        //In short- Dismiss the active keyboard.
+        view.endEditing(true)
+    }
 }
 
 extension CreateViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Check if there is any other text-field in the view whose tag is +1 greater than the current text-field on which the return key was pressed. If yes → then move the cursor to that next text-field. If No → Dismiss the keyboard
         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
@@ -166,13 +153,13 @@ extension CreateViewController: UITextFieldDelegate {
 
 extension CreateViewController {
     func checkForEmptyTextField() {
-    if nameTextField.text == "" {
-        let ac = UIAlertController(title: "Give it a name!", message: "Your list must have a name in order to be created.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
-        present(ac, animated: true, completion: nil)
-    } else {
-        performSegue(withIdentifier: "unwindToList", sender: nil)
-    }
+        if nameTextField.text == "" {
+            let ac = UIAlertController(title: "Give it a name!", message: "Your list must have a name in order to be created.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "unwindToList", sender: nil)
+        }
     }
     
     func displayWarning() {

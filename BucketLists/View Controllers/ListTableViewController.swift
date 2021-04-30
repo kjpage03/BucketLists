@@ -32,12 +32,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillDisappear(_ animated: Bool) {
         
-            let pathName = bucketLists[indexOfList].id.uuidString
-            if bucketLists[indexOfList].percentCompleted == 1 {
-                if dataController.retrieveValue(pathName: pathName)?.first == nil {
-                    dataController.saveData(data: [false], pathName: pathName)
-                }
+        let pathName = bucketLists[indexOfList].id.uuidString
+        if bucketLists[indexOfList].percentCompleted == 1 {
+            if dataController.retrieveValue(pathName: pathName)?.first == nil {
+                dataController.saveData(data: [false], pathName: pathName)
             }
+        }
         //        && dataController.retrieveValue(pathName: pathName)?.first == false
     }
     
@@ -207,18 +207,39 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func shareButtonTapped(_ sender: Any) {
         
-        var myList: [String] = ["My List:"]
         
-        for (index, item) in bothList.enumerated() {
+        
+        //take a screenshot of the list and share it
+        
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Screenshot", style: .default, handler: { (_) in
+            let bounds = UIScreen.main.bounds
+            UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+            self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
+            let img = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            let activityViewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
             
-            if index == bothList.count-1 {
-                myList.append("\(item.name)")
-            } else {
-                myList.append("\(item.name),")
+        }))
+        ac.addAction(UIAlertAction(title: "Text", style: .default, handler: { (_) in
+            var myList: [String] = ["My List:"]
+    
+            for (index, item) in self.bothList.enumerated() {
+    
+                if index == self.bothList.count-1 {
+                    myList.append("\(item.name)")
+                } else {
+                    myList.append("\(item.name),")
+                }
             }
-        }
+    
+            let ac = UIActivityViewController(activityItems: myList, applicationActivities: nil)
+    
+            self.present(ac, animated: true, completion: nil)
+        }))
         
-        let ac = UIActivityViewController(activityItems: myList, applicationActivities: nil)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(ac, animated: true, completion: nil)
     }

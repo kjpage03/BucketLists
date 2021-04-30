@@ -234,7 +234,7 @@
                                 <rect key="frame" x="10" y="97.999999999999972" width="370" height="439.33333333333326"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
-                                        <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
+                                        <rect key="frame" x="33.666666666666657" y="0.0" width="303" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="DW4-dm-wqQ"/>
                                         </constraints>
@@ -280,8 +280,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="0f9-QF-bBn" secondAttribute="leading" id="Vwd-3U-6n9"/>
-                                    <constraint firstAttribute="trailing" secondItem="QWF-FA-Yf6" secondAttribute="trailing" id="fKd-mR-gea"/>
+                                    <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="1qq-PS-mzb" secondAttribute="leading" id="cBf-re-k1s"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-7G-mgp" userLabel="Done/Delete Stack">

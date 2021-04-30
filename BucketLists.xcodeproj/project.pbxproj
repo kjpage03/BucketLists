@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E1CEDF626386EF2001383F9 /* ParticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1CEDF526386EF2001383F9 /* ParticleController.swift */; };
 		1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EA25F91CA6003FC155 /* AppDelegate.swift */; };
 		1E6818ED25F91CA6003FC155 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */; };
 		1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6818EE25F91CA6003FC155 /* ViewController.swift */; };
@@ -17,6 +18,8 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
+		1E75C11E2639BAC900C9277A /* DeviceDeterminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E75C11D2639BAC900C9277A /* DeviceDeterminator.swift */; };
+		1E75C1262639C0EA00C9277A /* waterSplash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E75C1252639C0EA00C9277A /* waterSplash.mp3 */; };
 		1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C36C261B554D00073F72 /* MapViewController.swift */; };
 		1E77C394261CAADD00073F72 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */; };
 		306CC05D2627453100449B2B /* SaveLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306CC05C2627453100449B2B /* SaveLoadImage.swift */; };
@@ -58,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E1CEDF526386EF2001383F9 /* ParticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleController.swift; sourceTree = "<group>"; };
 		1E6818E725F91CA6003FC155 /* BucketLists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketLists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6818EA25F91CA6003FC155 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6818EC25F91CA6003FC155 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		1E6D1B65260395C500D5427F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1E75C11D2639BAC900C9277A /* DeviceDeterminator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDeterminator.swift; sourceTree = "<group>"; };
+		1E75C1252639C0EA00C9277A /* waterSplash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waterSplash.mp3; sourceTree = "<group>"; };
 		1E77C36C261B554D00073F72 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1E77C393261CAADD00073F72 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		1E9AC5F125FA6BAE0071B59F /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 			children = (
 				1E68192325F92D7E003FC155 /* BucketList.swift */,
 				1E6D1B65260395C500D5427F /* DataController.swift */,
+				1E1CEDF526386EF2001383F9 /* ParticleController.swift */,
+				1E75C11D2639BAC900C9277A /* DeviceDeterminator.swift */,
 				7C5C915B26330D96004C5151 /* Name.swift */,
 				306CC05C2627453100449B2B /* SaveLoadImage.swift */,
 				7C2FF11A260E3C530058454C /* App.swift */,
@@ -206,6 +214,7 @@
 				1E3F2739262DE05B00047C9A /* Models and Data */,
 				1E1CEDE226307FAF001383F9 /* TV & CV Cells */,
 				1E6818F325F91CA6003FC155 /* Assets.xcassets */,
+				1E75C1252639C0EA00C9277A /* waterSplash.mp3 */,
 				1E6818F825F91CA6003FC155 /* Info.plist */,
 			);
 			path = BucketLists;
@@ -338,6 +347,7 @@
 				308A10892604E83600B6BBDF /* DetailListTableView.storyboard in Resources */,
 				1E6818F425F91CA6003FC155 /* Assets.xcassets in Resources */,
 				30F6576225F9350D00E30B46 /* ListTableView.storyboard in Resources */,
+				1E75C1262639C0EA00C9277A /* waterSplash.mp3 in Resources */,
 				1E6818F225F91CA6003FC155 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,12 +375,14 @@
 			files = (
 				7CC6589825FBB87700537BF4 /* CreateViewController.swift in Sources */,
 				1E6D1B66260395C500D5427F /* DataController.swift in Sources */,
+				1E1CEDF626386EF2001383F9 /* ParticleController.swift in Sources */,
 				308A10912604E93000B6BBDF /* DetailListTableViewController.swift in Sources */,
 				1E6818EF25F91CA6003FC155 /* ViewController.swift in Sources */,
 				1E77C394261CAADD00073F72 /* LocationSearchTableViewController.swift in Sources */,
 				7C2FF111260E21780058454C /* InfoViewController.swift in Sources */,
 				7C9DABBF2612118200722DC5 /* ImageCollectionViewCell.swift in Sources */,
 				306CC05D2627453100449B2B /* SaveLoadImage.swift in Sources */,
+				1E75C11E2639BAC900C9277A /* DeviceDeterminator.swift in Sources */,
 				30EA90F22602405800D6BF1D /* AddItemTableViewController.swift in Sources */,
 				7C2FF11B260E3C530058454C /* App.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,

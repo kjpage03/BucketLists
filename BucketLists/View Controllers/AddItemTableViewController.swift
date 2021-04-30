@@ -8,7 +8,7 @@
 import UIKit
 
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
-
+    
     var item: Item?
     
     @IBOutlet weak var nameLabel: UITextField!
@@ -16,6 +16,8 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet var doneLabel: UIBarButtonItem!
     @IBOutlet var goalSwitch: UISwitch!
+    @IBOutlet var rightBucket: UIImageView!
+    @IBOutlet var leftBucket: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +27,24 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         goalSwitch.isOn = false
         datePicker.isHidden = true
         nameLabel.delegate = self
+        
+        rightBucket.rotate360Degrees()
+        leftBucket.rotate360Degrees()
     }
-
+    
+//    func startRotating() {
+//        UIView.animate(withDuration: 1, delay: 0) {
+//            self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi)
+//        } completion: { (_) in
+//            UIView.animate(withDuration: 1) {
+//                self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi * 2)
+//            }
+//            self.startRotating()
+//        }
+//    }
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -51,46 +67,46 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
-            let header = view as! UITableViewHeaderFooterView
+        let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .black
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-
+        
         guard segue.identifier == "doneUnwind" else {return}
         ItemName.listItemName = nameLabel.text ?? ItemName.listItemName
         let name = nameLabel.text ?? ""
         let description = descriptionLabel.text ?? ""
-//        let location = locationLabel.text ?? ""
+        //        let location = locationLabel.text ?? ""
         let goalDate: Date?
         let id = UUID()
         if goalSwitch.isOn {
-        goalDate = datePicker.date
+            goalDate = datePicker.date
             
-                    let content = UNMutableNotificationContent()
-                    content.title = "Bucket List Reminder"
+            let content = UNMutableNotificationContent()
+            content.title = "Bucket List Reminder"
             content.body = "\(ItemName.listItemName)"
-                    content.sound = UNNotificationSound.default
-                    content.categoryIdentifier = "Actions"
+            content.sound = UNNotificationSound.default
+            content.categoryIdentifier = "Actions"
             
-                    let triggerDateComponents =
-                       Calendar.current.dateComponents([.minute,
-                                                        .hour, .day, .month, .year], from: goalDate!)
-                    let trigger = UNCalendarNotificationTrigger(dateMatching:
-                       triggerDateComponents, repeats: false)
+            let triggerDateComponents =
+                Calendar.current.dateComponents([.minute,
+                                                 .hour, .day, .month, .year], from: goalDate!)
+            let trigger = UNCalendarNotificationTrigger(dateMatching:
+                                                            triggerDateComponents, repeats: false)
             
-                    let request = UNNotificationRequest(identifier:
-                                                            id.uuidString, content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier:
+                                                    id.uuidString, content: content, trigger: trigger)
             
-                    UNUserNotificationCenter.current().add(request)
+            UNUserNotificationCenter.current().add(request)
         } else {
             
-        goalDate = nil
+            goalDate = nil
             
         }
         
-
+        
         item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
@@ -106,4 +122,26 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+}
+
+extension UIImageView {
+    func rotate360Degrees(duration: CFTimeInterval = 3) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(Double.pi * 2)
+        rotateAnimation.isRemovedOnCompletion = false
+        rotateAnimation.duration = duration
+        rotateAnimation.repeatCount=Float.infinity
+        self.layer.add(rotateAnimation, forKey: nil)
+    }
+    
+    func counterRotate360Degrees(duration: CFTimeInterval = 3) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(-Double.pi * 2)
+        rotateAnimation.isRemovedOnCompletion = false
+        rotateAnimation.duration = duration
+        rotateAnimation.repeatCount=Float.infinity
+        self.layer.add(rotateAnimation, forKey: nil)
+    }
 }
