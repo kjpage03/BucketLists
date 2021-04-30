@@ -26,6 +26,10 @@ class ListTableViewCell: UITableViewCell {
     var itemName: String = ""
     var completedStepsArray = [Int: Bool]()
     var listTableViewController = ListTableViewController()
+    var bucketLists : [BucketList] = []
+    var dataController = DataController()
+    var bothList : [Item] = []
+    var indexOfList: Int = Int()
 
     override var frame: CGRect {
             get {
@@ -92,7 +96,6 @@ class ListTableViewCell: UITableViewCell {
             stepThreeLabel.isHidden = true
             stepFourLabel.isHidden = true
             stepOneLabel.text = list.stepsArray[0]
-
             
             stepOneButton.isHidden = false
             stepTwoButton.isHidden = true
@@ -171,7 +174,7 @@ class ListTableViewCell: UITableViewCell {
         if stepOneButton.isSelected == false {
             stepOneButton.isSelected = true
             completedStepsArray.updateValue(true, forKey: 1)
-            listTableViewController.saveCompletedSteps(name: itemName, array: completedStepsArray)
+            //saveSteps(name: itemName, array: ["\(completedStepsArray)"])
         }else if stepOneButton.isSelected == true{
             stepOneButton.isSelected = false
             completedStepsArray.updateValue(false, forKey: 1)
@@ -205,5 +208,28 @@ class ListTableViewCell: UITableViewCell {
             stepThreeButton.isSelected = false
             completedStepsArray.updateValue(false, forKey: 3)
         }
+    }
+    func saveSteps(name: String, array: [String]) {
+        bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+        for item in bucketLists{
+            bothList.append(contentsOf: item.items)
+        }
+        
+        let filteredList = bothList.filter { $0.name == name}
+        let bucketIndex = bucketLists.firstIndex(where: { $0.owner == name})
+        print("bucket index \(bucketIndex)")
+        if let index = bothList.firstIndex(where: { $0.name == name }) {
+            print(filteredList)
+            var filteredresults = filteredList[0]
+            filteredresults.stepsArray = array
+            bothList[index] = filteredresults
+            //print(array)
+            //bucketLists[indexOfList].items = bothList
+            //dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+        }
+            //
+    }
+    func deleteSteps() {
+        
     }
 }

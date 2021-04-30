@@ -106,6 +106,7 @@
                                                                     <state key="normal" image="checkmark.square" catalog="system"/>
                                                                     <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                                     <connections>
+                                                                        <action selector="step1Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="6s5-fc-X52"/>
                                                                         <action selector="stepOneButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="K44-ql-yfZ"/>
                                                                     </connections>
                                                                 </button>
@@ -125,6 +126,7 @@
                                                                     <state key="normal" image="checkmark.square" catalog="system"/>
                                                                     <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                                     <connections>
+                                                                        <action selector="step2Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="oe3-9s-1Ab"/>
                                                                         <action selector="stepTwoButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="XEh-yc-ftd"/>
                                                                     </connections>
                                                                 </button>
@@ -144,6 +146,7 @@
                                                                     <state key="normal" image="checkmark.square" catalog="system"/>
                                                                     <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                                     <connections>
+                                                                        <action selector="step3Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="UZR-r3-i4v"/>
                                                                         <action selector="stepFourButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="mkG-TA-6G8"/>
                                                                     </connections>
                                                                 </button>
@@ -163,6 +166,7 @@
                                                                     <state key="normal" image="checkmark.square" catalog="system"/>
                                                                     <state key="selected" image="checkmark.square.fill" catalog="system"/>
                                                                     <connections>
+                                                                        <action selector="step4Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="knK-CR-Gpi"/>
                                                                         <action selector="stepThreeButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="krF-3B-19G"/>
                                                                     </connections>
                                                                 </button>

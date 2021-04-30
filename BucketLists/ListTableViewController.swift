@@ -20,8 +20,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     var color: UIColor = UIColor()
     var dataController = DataController()
     var selectedRow: Int = Int()
+    
+    var completedStepsArray = [Int: Bool]()
+    var tempName: String = ""
     @IBOutlet var tableView: UITableView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -293,13 +297,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         }
     }
-    func saveCompletedSteps(name: String, array: [Int: Bool]){
-        var bothfiltered = bothList.filter { $0.name == name }
-        print(bothfiltered)
-        bothfiltered[0].stepsCompleted = array
-        var filtered = list.filter { $0.name == name }
-        //filtered[0].stepsCompleted = array
-        print(filtered)
+    @IBAction func step1Button(_ sender: Any) {
+        
+    }
+    @IBAction func step2Button(_ sender: Any) {
+        
+    }
+    @IBAction func step3Button(_ sender: Any) {
+        
+    }
+    @IBAction func step4Button(_ sender: Any) {
     }
     
     @IBAction func backButton(_ sender: Any) {
