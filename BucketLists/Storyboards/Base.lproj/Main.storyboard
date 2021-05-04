@@ -234,7 +234,7 @@
                                 <rect key="frame" x="10" y="97.999999999999972" width="370" height="439.33333333333326"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name/Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-FA-Yf6">
-                                        <rect key="frame" x="0.0" y="0.0" width="370" height="34"/>
+                                        <rect key="frame" x="33.666666666666657" y="0.0" width="303" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="DW4-dm-wqQ"/>
                                         </constraints>
@@ -246,7 +246,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-ht-xho" userLabel="Fill">
                                                 <rect key="frame" x="0.0" y="0.0" width="303" height="283.33333333333331"/>
-                                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket3" translatesAutoresizingMaskIntoConstraints="NO" id="1qq-PS-mzb">
                                                 <rect key="frame" x="0.0" y="0.0" width="303" height="283.33333333333331"/>
@@ -280,8 +280,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="0f9-QF-bBn" secondAttribute="leading" id="Vwd-3U-6n9"/>
-                                    <constraint firstAttribute="trailing" secondItem="QWF-FA-Yf6" secondAttribute="trailing" id="fKd-mR-gea"/>
+                                    <constraint firstItem="QWF-FA-Yf6" firstAttribute="leading" secondItem="1qq-PS-mzb" secondAttribute="leading" id="cBf-re-k1s"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-7G-mgp" userLabel="Done/Delete Stack">
@@ -469,9 +468,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -6,24 +6,31 @@
 //
 
 import UIKit
+import AVFoundation
 
 class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var bucketListLabel: UILabel!
     @IBOutlet weak var newListButton: UIButton!
-    //    @IBOutlet weak var scrollLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
     
     var newListButtonWasTapped: Bool = false
-    
     var bucketLists: [BucketList] = []
     var indexOfSelectedRow: Int = 0
     var originalLayerCount: Int = Int()
-    
-    @IBOutlet weak var stackView: UIStackView!
     var dataSource: UICollectionViewDiffableDataSource<String, BucketList>!
     var viewHasDisappeared: Bool = false
-    @IBOutlet weak var collectionView: OrtogonalScrollingCollectionView!
+    var editingSwitchIsOn: Bool = false
+    var animatedCell: BucketCollectionViewCell?
+    var selectedItem: BucketList?
+    let dataController = DataController()
+    var particleController: ParticleController!
+    var img: UIImage?
+    var bucketSplashSoundEffect: AVAudioPlayer?
+    var hapticTimer: Timer?
+    var landScapeWasChanged = false
     
     var updatedSnapshot: NSDiffableDataSourceSnapshot<String, BucketList> {
         var snapshot = NSDiffableDataSourceSnapshot<String, BucketList>()
@@ -34,26 +41,11 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         return snapshot
     }
     
-    var editingSwitchIsOn: Bool = false
-    var animatedCell: BucketCollectionViewCell?
-    var selectedItem: BucketList?
-    
-    let dataController = DataController()
-    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        let center = UNUserNotificationCenter.current()
         
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted: Bool, error: Error?) in
-            if let error = error {
-                error.localizedDescription
-            } else {
-               print("Success")
-            }
-        }
-
-        
-        //        bucketLists = dataController.retrieveData()
+        requestAuthorization()
         
         newListButton.layer.cornerRadius = 4
         createDataSource()
@@ -61,176 +53,59 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         collectionView.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-
-
         bucketListLabel.layer.shadowColor = UIColor.black.cgColor
         bucketListLabel.layer.shadowOpacity = 0.3
         bucketListLabel.layer.shadowOffset = .zero
         bucketListLabel.layer.shadowRadius = 10
         
+        view.bringSubviewToFront(stackView)
+        particleController = ParticleController(view: self.view)
+        
+        if UIDevice.modelName == "Simulator iPhone 12" {
+        particleController.createBackgroundParticles()
+        }
+//        particleController = ParticleController(view: self.collectionView.visibleCells.first!.contentView)
+//        particleController = ParticleController(view: self.view)
+        originalLayerCount = self.view.layer.sublayers!.count
+        
+    }
+    
+    fileprivate func requestAuthorization() {
         let center = UNUserNotificationCenter.current()
         
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Yay!")
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted: Bool, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
             } else {
-                print("D'oh")
+                print("Success")
             }
         }
-        view.bringSubviewToFront(stackView)
-
-        createBackgroundParticles()
-        originalLayerCount = self.view.layer.sublayers!.count    }
-    
-    func createBackgroundParticles() {
-        let particleEmitter = CAEmitterLayer()
-        
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.frame.height + 50)
-        //        -96
-        particleEmitter.emitterShape = .line
-        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        
-        let cell = makeEmitterCell(color: UIColor.black, type: .background)
-        
-        particleEmitter.emitterCells = [cell]
-        
-        //        if isInFront {
-        
-        view.layer.addSublayer(particleEmitter)
-        //            view.layer.addSublayer(bottomParticleEmitter)
-        
-        let topEmitter = CAEmitterLayer()
-        topEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
-        
-        topEmitter.emitterShape = .line
-        topEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        
-        topEmitter.emitterCells = [cell]
-        view.layer.addSublayer(topEmitter)
-        
     }
     
-    func createParticles() {
-        let particleEmitter = CAEmitterLayer()
-        
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
-        //        -96
-        particleEmitter.emitterShape = .line
-        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        
-        let red = makeEmitterCell(color: .red, type: .exploding)
-        let green = makeEmitterCell(color: .green, type: .exploding)
-        let blue = makeEmitterCell(color: .blue, type: .exploding)
-        let yellow = makeEmitterCell(color: .yellow, type: .exploding)
-        
-        particleEmitter.emitterCells = [red, green, blue, yellow]
-        
-        view.layer.addSublayer(particleEmitter)
-    }
-    
-    enum CellEmitterType {
-        case exploding
-        case background
-    }
-    
-    func makeEmitterCell(color: UIColor, type: CellEmitterType) -> CAEmitterCell {
-        let cell = CAEmitterCell()
-        
-        //original
-        
-        //        cell.scale = 0.2
-        //        cell.birthRate = 3
-        //        cell.lifetime = 7.0
-        //        cell.lifetimeRange = 0
-        //        cell.color = color.cgColor
-        //        cell.velocity = 200
-        //        cell.velocityRange = 50
-        //        cell.emissionLongitude = CGFloat.pi
-        //        cell.emissionRange = CGFloat.pi / 4
-        //        cell.spin = 2
-        //        cell.spinRange = 3
-        //        cell.scaleRange = 0.5
-        //        cell.scaleSpeed = -0.05
-        
-        //modified
-        
-        //        cell.scale = 0.2
-        //        cell.birthRate = 5
-        //        cell.lifetime = 7.0
-        //        cell.lifetimeRange = 0
-        //        cell.color = color.cgColor
-        //        cell.velocity = 300
-        //        cell.velocityRange = 50
-        //        cell.emissionLongitude = CGFloat.pi
-        //        cell.emissionRange = CGFloat.pi / 4
-        //        cell.spin = 3
-        //        cell.spinRange = 3
-        //        cell.scaleRange = 0.5
-        //        cell.scaleSpeed = -0.05
-        
-        switch type {
-        
-        case .exploding :
-            
-            cell.scale = 0.2
-            cell.birthRate = 5
-            cell.lifetime = 7.0
-            cell.lifetimeRange = 0
-            cell.color = color.cgColor
-            cell.velocity = 300
-            cell.velocityRange = 0
-            cell.emissionLongitude = CGFloat.pi
-            cell.emissionRange = CGFloat.pi / 4
-            cell.spin = 2
-            cell.spinRange = 3
-            cell.scaleRange = 0
-            cell.scaleSpeed = -0.05
-            
-            cell.contents = UIImage(named: "bucket5")?.cgImage
+    func playSound() {
+        let path = Bundle.main.path(forResource: "waterSplash.mp3", ofType: nil)!
+        let url = URL(fileURLWithPath: path)
 
-        //        cell.scale = 0.2
-        //        cell.birthRate = 5
-        //        cell.lifetime = 7.0
-        //        cell.lifetimeRange = 0
-        //        cell.color = color.cgColor
-        //        cell.velocity = 300
-        //        cell.velocityRange = 50
-        //        cell.emissionLongitude = 0
-        //        cell.emissionRange = CGFloat.pi
-        //        cell.spin = 3
-        //        cell.spinRange = 3
-        //        cell.scaleRange = 0.5
-        //        cell.scaleSpeed = -0.05
-        
-        case .background:
+        do {
             
-            cell.scale = 0.5
-            cell.birthRate = 0.2
-            cell.lifetime = 10.0
-            cell.lifetimeRange = 0
-            cell.color = color.cgColor
-            cell.velocity = 50
-            cell.velocityRange = 50
-            cell.emissionLongitude = CGFloat.pi / 2
-            cell.emissionRange = CGFloat.pi
-            cell.spin = 1
-            cell.spinRange = 3
-            cell.scaleRange = 0
-            cell.scaleSpeed = -0.05
-            cell.contents = UIImage(named: "bucketNoBG")?.cgImage
-
+            bucketSplashSoundEffect = try AVAudioPlayer(contentsOf: url)
+            bucketSplashSoundEffect?.play()
+            
+        } catch {
+            print("File not found")
+            // couldn't load file :(
         }
-        
-        return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        newListButtonWasTapped = false
         
         bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
+    
+        self.dataSource.apply(self.updatedSnapshot)
         
-        dataSource.apply(updatedSnapshot)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        newListButtonWasTapped = false
         
         //OPTIONAL ZOOM OUT
         
@@ -253,15 +128,43 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         if bucketLists.count > 0 {
             let pathName = bucketLists[indexOfSelectedRow].id.uuidString
             if dataController.retrieveValue(pathName: pathName)?.first == false {
-                createParticles()
+                particleController.createParticles()
+                //haptics
+                beginHaptics()
+                
                 Timer.scheduledTimer(withTimeInterval: 5,
                                      repeats: false) { _ in
+                    
                     self.removeParticles()
+                    self.endHaptics()
                 }
+                
+                Timer.scheduledTimer(withTimeInterval: 3,
+                                     repeats: false) { _ in
+                    let bounds = self.view.bounds
+                    UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+                    self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
+                    self.img = UIGraphicsGetImageFromCurrentImageContext()
+                    UIGraphicsEndImageContext()
+                }
+                
                 dataController.saveData(data: [true], pathName: pathName)
             }
-            
         }
+        collectionView.reloadData()
+    }
+    
+    func beginHaptics() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+
+        hapticTimer = Timer.scheduledTimer(withTimeInterval: 0.05,
+                             repeats: true) { _ in
+            generator.impactOccurred()
+        }
+    }
+    
+    func endHaptics() {
+        hapticTimer?.invalidate()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -274,24 +177,20 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         UIView.animate(withDuration: 3) {
             self.view.layer.sublayers?.last?.opacity = 0
         } completion: { (_) in
+            
             let ac = UIAlertController(title: "Nice Job!", message: "You completed a list!", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Thanks", style: .default, handler: nil))
+            ac.addAction(UIAlertAction(title: "Share", style: .default, handler: { (_) in
+                let activityViewController = UIActivityViewController(activityItems: [self.img!], applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
+            }))
+            
             self.present(ac, animated: true, completion: nil)
         }
     }
     
-    //    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    //        for cell in self.collectionView.visibleCells {
-    //            let indexPath = self.collectionView.indexPath(for: cell)
-    //            if let ip = indexPath {
-    //                DispatchQueue.main.async {
-    //                    self.scrollLabel.text = "\(ip.row+1)/\(self.bucketLists.count)"
-    //                }
-    //            }
-    //        }
-    //    }
-    
     func generateNewLayout() -> UICollectionViewCompositionalLayout {
+        
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)), subitems: [item])
@@ -299,10 +198,6 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         let section = NSCollectionLayoutSection(group: group)
         
         section.orthogonalScrollingBehavior = .groupPagingCentered
-        
-        //        section.visibleItemsInvalidationHandler = { [self] (visibleItems, point, env) -> Void in
-        //
-        //        }
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         
@@ -323,16 +218,22 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         self.indexOfSelectedRow = indexPath.row
         self.viewHasDisappeared = true
         
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        Timer.scheduledTimer(withTimeInterval: 0.25,
+                             repeats: false) { _ in
+//            self.playSound()
+        }
+
+        
         UIView.animate(withDuration: 0.5) {
             let rotateTransform = CGAffineTransform(rotationAngle: .pi)
             collectionView.transform = rotateTransform
-            //            cell.imageView.transform = rotateTransform
             cell.fill.layer.borderWidth = 0
         }
         completion: { (_) in
             UIView.animate(withDuration: 0.5) {
-                //                let scaleTransform = CGAffineTransform(scaleX: 50, y: 50)
-                //                collectionView.transform = scaleTransform
                 collectionView.transform.a *= 50
                 collectionView.transform.d *= 50
             } completion: { (_) in
@@ -349,16 +250,16 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     }
     
     func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { [self] (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
             
-            cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
+            cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor, landScapeWasChanged: landScapeWasChanged)
             //            cell.layoutIfNeeded()
             return cell
         })
         dataSource.apply(updatedSnapshot)
-        
     }
+    
     @IBAction func segmentControlChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0: editingSwitchIsOn = false
@@ -370,14 +271,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         }
     }
     
-    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {
-        
-        
-    }
+    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue) {}
     
-    @IBAction func unwindFromDelete(unwindSegue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindFromDelete(unwindSegue: UIStoryboardSegue) {}
     
     @IBAction func newListButtonTapped(_ sender: Any) {
         newListButtonWasTapped = true
@@ -401,7 +297,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 }
                 listViewController.bothList.append(item)
             }
+            
         } else  {
+            
             if let createViewController = segue.destination as? CreateViewController, let list = selectedItem {
                 if newListButtonWasTapped {
                     createViewController.title = "New List"
@@ -413,6 +311,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                     createViewController.indexInArray = indexOfSelectedRow
                 }
             }
+            
         }
     }
 }
