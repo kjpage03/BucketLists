@@ -11,8 +11,12 @@ class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var goalDateLabel: UILabel!
-    
-//    override var frame: CGRect {
+    @IBOutlet weak var stepOne: UIButton!
+    @IBOutlet weak var stepTwo: UIButton!
+    @IBOutlet weak var stepThree: UIButton!
+    @IBOutlet weak var StepFour: UIButton!
+
+    //    override var frame: CGRect {
 //            get {
 //                return super.frame
 //            }

@@ -10,12 +10,14 @@ import UIKit
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
     var item: Item?
+    var numberofStepsInt: Int = 0
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet var doneLabel: UIBarButtonItem!
     @IBOutlet var goalSwitch: UISwitch!
+    @IBOutlet weak var numberOfSteps: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +27,13 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         goalSwitch.isOn = false
         datePicker.isHidden = true
         nameLabel.delegate = self
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -54,6 +57,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .black
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -91,7 +95,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
 
-        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [])
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: 0)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)

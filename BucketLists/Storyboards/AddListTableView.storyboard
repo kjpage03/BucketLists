@@ -120,6 +120,139 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Number of Steps" id="7i5-Q5-rg6">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="T7q-Ss-x0n">
+                                        <rect key="frame" x="0.0" y="426" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T7q-Ss-x0n" id="BQd-Yi-ZhN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nvk-Lm-LAt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                    <segments>
+                                                        <segment title="Zero"/>
+                                                        <segment title="One"/>
+                                                        <segment title="Two"/>
+                                                        <segment title="Three"/>
+                                                        <segment title="Four"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="NumberofStepsSeg:" destination="PdB-SR-wQm" eventType="valueChanged" id="AMO-Sy-7zC"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nvk-Lm-LAt" firstAttribute="leading" secondItem="BQd-Yi-ZhN" secondAttribute="leading" id="1LS-ob-Tlq"/>
+                                                <constraint firstAttribute="trailing" secondItem="nvk-Lm-LAt" secondAttribute="trailing" id="MOS-cV-MS7"/>
+                                                <constraint firstAttribute="bottom" secondItem="nvk-Lm-LAt" secondAttribute="bottom" id="UrK-z1-jDB"/>
+                                                <constraint firstItem="nvk-Lm-LAt" firstAttribute="top" secondItem="BQd-Yi-ZhN" secondAttribute="top" id="kCh-xg-RNr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="First Step Name" id="luJ-oB-XmD">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ENm-pd-dNg">
+                                        <rect key="frame" x="0.0" y="525.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ENm-pd-dNg" id="Q64-UW-qMr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EcA-Tm-5TR">
+                                                    <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="EcA-Tm-5TR" secondAttribute="bottom" id="RB5-ad-BBL"/>
+                                                <constraint firstItem="EcA-Tm-5TR" firstAttribute="top" secondItem="Q64-UW-qMr" secondAttribute="top" id="mAF-ry-Jeb"/>
+                                                <constraint firstAttribute="trailing" secondItem="EcA-Tm-5TR" secondAttribute="trailing" constant="10" id="p41-1N-8Zq"/>
+                                                <constraint firstItem="EcA-Tm-5TR" firstAttribute="leading" secondItem="Q64-UW-qMr" secondAttribute="leading" constant="10" id="veH-62-jHY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Second Step Name" id="oef-bY-ZnA">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MmH-GQ-Gez">
+                                        <rect key="frame" x="0.0" y="625" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MmH-GQ-Gez" id="aFC-Av-IzP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FFe-yM-vCT">
+                                                    <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FFe-yM-vCT" firstAttribute="leading" secondItem="aFC-Av-IzP" secondAttribute="leading" constant="10" id="1IH-w4-3iN"/>
+                                                <constraint firstItem="FFe-yM-vCT" firstAttribute="top" secondItem="aFC-Av-IzP" secondAttribute="top" id="Cgk-5G-Oqt"/>
+                                                <constraint firstAttribute="bottom" secondItem="FFe-yM-vCT" secondAttribute="bottom" id="VYz-60-k00"/>
+                                                <constraint firstAttribute="trailing" secondItem="FFe-yM-vCT" secondAttribute="trailing" constant="10" id="W9n-QG-O9f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Third Step Name" id="3HM-9F-h3l">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YYi-xS-cxH">
+                                        <rect key="frame" x="0.0" y="724.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YYi-xS-cxH" id="5Tn-Qi-0Qg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWF-pA-8I5">
+                                                    <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GWF-pA-8I5" firstAttribute="leading" secondItem="5Tn-Qi-0Qg" secondAttribute="leading" constant="10" id="Ig0-QS-E1N"/>
+                                                <constraint firstItem="GWF-pA-8I5" firstAttribute="top" secondItem="5Tn-Qi-0Qg" secondAttribute="top" id="UcJ-4K-fUd"/>
+                                                <constraint firstAttribute="trailing" secondItem="GWF-pA-8I5" secondAttribute="trailing" constant="10" id="Wnz-IJ-CUe"/>
+                                                <constraint firstAttribute="bottom" secondItem="GWF-pA-8I5" secondAttribute="bottom" id="hdq-Cd-H7W"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Fourth Step Name" id="7Ty-V7-Jga">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mEg-0i-96J">
+                                        <rect key="frame" x="0.0" y="824" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mEg-0i-96J" id="IJF-Ci-h6R">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cBO-UK-Rfm">
+                                                    <rect key="frame" x="10" y="0.0" width="394" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cBO-UK-Rfm" firstAttribute="leading" secondItem="IJF-Ci-h6R" secondAttribute="leading" constant="10" id="B6t-gg-w85"/>
+                                                <constraint firstAttribute="trailing" secondItem="cBO-UK-Rfm" secondAttribute="trailing" constant="10" id="U2v-Oh-3OD"/>
+                                                <constraint firstAttribute="bottom" secondItem="cBO-UK-Rfm" secondAttribute="bottom" id="gjZ-Uc-tSn"/>
+                                                <constraint firstItem="cBO-UK-Rfm" firstAttribute="top" secondItem="IJF-Ci-h6R" secondAttribute="top" id="oGp-wN-pfN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="PdB-SR-wQm" id="NvM-VM-dZE"/>
@@ -144,6 +277,7 @@
                         <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
                         <outlet property="goalSwitch" destination="BbY-Ha-w12" id="xsU-xZ-ood"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
+                        <outlet property="numberOfSteps" destination="nvk-Lm-LAt" id="WhG-Jw-WYB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDL-MW-FJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
