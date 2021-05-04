@@ -32,16 +32,16 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         leftBucket.rotate360Degrees()
     }
     
-//    func startRotating() {
-//        UIView.animate(withDuration: 1, delay: 0) {
-//            self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi)
-//        } completion: { (_) in
-//            UIView.animate(withDuration: 1) {
-//                self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi * 2)
-//            }
-//            self.startRotating()
-//        }
-//    }
+    //    func startRotating() {
+    //        UIView.animate(withDuration: 1, delay: 0) {
+    //            self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi)
+    //        } completion: { (_) in
+    //            UIView.animate(withDuration: 1) {
+    //                self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi * 2)
+    //            }
+    //            self.startRotating()
+    //        }
+    //    }
     
     // MARK: - Table view data source
     
@@ -68,7 +68,11 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = .clear
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = .black
+        if traitCollection.userInterfaceStyle == .light {
+            header.textLabel?.textColor = .black
+        } else {
+            header.textLabel?.textColor = .white
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

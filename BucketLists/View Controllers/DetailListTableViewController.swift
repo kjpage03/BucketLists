@@ -38,7 +38,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var editMode: Bool = false
     @IBOutlet var collectionViewHeight: NSLayoutConstraint!
     var originalHeight: CGFloat?
-    
     var globalIndex: Int = 0
     
     //Added code begins
@@ -57,6 +56,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     enum Section: Hashable {
         case photos
     }
+    
     var imageArray = [UIImage]()
     var imageStringArray = [String]()
     //Added Code ends
@@ -122,6 +122,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //        imageAttachment.image = UIImage(systemName: "photo")
         //        let imageString = NSAttributedString(attachment: imageAttachment)
         //        string.append(imageString)
+//        completionSwitch.transform = CGAffineTransform(scaleX: 2, y: 2)
         
     }
     
@@ -244,8 +245,8 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             } else {
                 item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray)
             }
-//                bucketLists[indexOfBucketList].items[indexOfItem] = item!
-//            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
+        //                bucketLists[indexOfBucketList].items[indexOfItem] = item!
+        //            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
         
         case "imageSegue" :
             guard segue.identifier == "imageSegue" else {return}
@@ -273,7 +274,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.isUserInteractionEnabled = true
             descriptionTextView.isUserInteractionEnabled = true
             //            locationLabel.isUserInteractionEnabled = true
-//            datePicker.isUserInteractionEnabled = true
+            //            datePicker.isUserInteractionEnabled = true
             descriptionTextField.isUserInteractionEnabled = true
             
             nameLabel.borderStyle = UITextField.BorderStyle.roundedRect
@@ -290,7 +291,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             nameLabel.isUserInteractionEnabled = false
             descriptionTextView.isUserInteractionEnabled = false
             //            locationLabel.isUserInteractionEnabled = false
-//            datePicker.isUserInteractionEnabled = false
+            //            datePicker.isUserInteractionEnabled = false
             descriptionTextField.isUserInteractionEnabled = false
             
             nameLabel.borderStyle = UITextField.BorderStyle.none
@@ -352,7 +353,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Current Location", style: .default, handler: { (action) in
             
-            
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestWhenInUseAuthorization()
@@ -387,8 +387,14 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             
             self.performSegue(withIdentifier: "LocationSearchVC", sender: nil)
             
-            
         }))
+        
+        if mapView.annotations.count > 0 {
+            ac.addAction(UIAlertAction(title: "Remove Location", style: .destructive, handler: { (_) in
+                self.mapView.removeAnnotation(self.mapView.annotations.first!)
+            }))
+        }
+        
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true, completion: nil)
     }
@@ -431,11 +437,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if imageArray.count == 0 {
             //collapse collection view
             collectionViewHeight.constant = 0
-            //            tableView.reloadSections([4], with: .automatic)
+                //tableView.reloadSections([4], with: .automatic)
         } else {
             if let height = originalHeight {
                 collectionViewHeight.constant = height
-                //                tableView.reloadSections([4], with: .automatic)
+                //tableView.reloadSections([4], with: .automatic)
             }
         }
         tableView.reloadData()
@@ -468,6 +474,7 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
             let placemark = placemarks! as [CLPlacemark]
             if placemark.count>0{
                 let placemark = placemarks![0]
+                
                 //                print(placemark.locality!)
                 //                print(placemark.administrativeArea!)
                 //                print(placemark.country!)

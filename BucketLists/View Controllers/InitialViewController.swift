@@ -29,6 +29,8 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     var particleController: ParticleController!
     var img: UIImage?
     var bucketSplashSoundEffect: AVAudioPlayer?
+    var hapticTimer: Timer?
+    var landScapeWasChanged = false
     
     var updatedSnapshot: NSDiffableDataSourceSnapshot<String, BucketList> {
         var snapshot = NSDiffableDataSourceSnapshot<String, BucketList>()
@@ -59,7 +61,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         view.bringSubviewToFront(stackView)
         particleController = ParticleController(view: self.view)
         
-        if UIDevice.modelName == "Simulator iPhone 12"{
+        if UIDevice.modelName == "Simulator iPhone 12" {
         particleController.createBackgroundParticles()
         }
 //        particleController = ParticleController(view: self.collectionView.visibleCells.first!.contentView)
@@ -85,8 +87,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         let url = URL(fileURLWithPath: path)
 
         do {
+            
             bucketSplashSoundEffect = try AVAudioPlayer(contentsOf: url)
             bucketSplashSoundEffect?.play()
+            
         } catch {
             print("File not found")
             // couldn't load file :(
@@ -125,10 +129,14 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
             let pathName = bucketLists[indexOfSelectedRow].id.uuidString
             if dataController.retrieveValue(pathName: pathName)?.first == false {
                 particleController.createParticles()
+                //haptics
+                beginHaptics()
+                
                 Timer.scheduledTimer(withTimeInterval: 5,
                                      repeats: false) { _ in
                     
                     self.removeParticles()
+                    self.endHaptics()
                 }
                 
                 Timer.scheduledTimer(withTimeInterval: 3,
@@ -143,6 +151,20 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
                 dataController.saveData(data: [true], pathName: pathName)
             }
         }
+        collectionView.reloadData()
+    }
+    
+    func beginHaptics() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+
+        hapticTimer = Timer.scheduledTimer(withTimeInterval: 0.05,
+                             repeats: true) { _ in
+            generator.impactOccurred()
+        }
+    }
+    
+    func endHaptics() {
+        hapticTimer?.invalidate()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -157,7 +179,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         } completion: { (_) in
             
             let ac = UIAlertController(title: "Nice Job!", message: "You completed a list!", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Thanks!", style: .default, handler: nil))
+            ac.addAction(UIAlertAction(title: "Thanks", style: .default, handler: nil))
             ac.addAction(UIAlertAction(title: "Share", style: .default, handler: { (_) in
                 let activityViewController = UIActivityViewController(activityItems: [self.img!], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
@@ -196,11 +218,12 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         self.indexOfSelectedRow = indexPath.row
         self.viewHasDisappeared = true
         
-        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
         
         Timer.scheduledTimer(withTimeInterval: 0.25,
                              repeats: false) { _ in
-            self.playSound()
+//            self.playSound()
         }
 
         
@@ -227,10 +250,10 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     }
     
     func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<String, BucketList>(collectionView: collectionView, cellProvider: { [self] (collectionView, indexPath, bucketList) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Bucket", for: indexPath) as! BucketCollectionViewCell
             
-            cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor)
+            cell.configure(label: bucketList.owner, percentage: bucketList.percentCompleted, color: bucketList.color.uiColor, landScapeWasChanged: landScapeWasChanged)
             //            cell.layoutIfNeeded()
             return cell
         })

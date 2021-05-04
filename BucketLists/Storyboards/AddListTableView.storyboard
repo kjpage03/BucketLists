@@ -31,11 +31,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket" translatesAutoresizingMaskIntoConstraints="NO" id="ZzX-Go-Sxc">
-                                                    <rect key="frame" x="359" y="5" width="35" height="34"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket4" translatesAutoresizingMaskIntoConstraints="NO" id="ZzX-Go-Sxc">
+                                                    <rect key="frame" x="359" y="11" width="35" height="22"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket" translatesAutoresizingMaskIntoConstraints="NO" id="J1J-uP-rrq">
-                                                    <rect key="frame" x="20" y="5" width="35" height="34"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket4" translatesAutoresizingMaskIntoConstraints="NO" id="J1J-uP-rrq">
+                                                    <rect key="frame" x="20" y="11" width="35" height="22"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -46,8 +46,8 @@
                                                 <constraint firstItem="J1J-uP-rrq" firstAttribute="width" secondItem="95g-0M-Uyq" secondAttribute="width" multiplier="0.0845411" id="HXu-av-6OH"/>
                                                 <constraint firstItem="Gw3-K4-z0B" firstAttribute="centerX" secondItem="95g-0M-Uyq" secondAttribute="centerX" id="Hyh-4a-qd6"/>
                                                 <constraint firstItem="Gw3-K4-z0B" firstAttribute="top" secondItem="95g-0M-Uyq" secondAttribute="topMargin" constant="4" id="N9G-Fc-IMD"/>
-                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.781609" id="O3I-Gn-1X0"/>
-                                                <constraint firstItem="ZzX-Go-Sxc" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.781609" id="cEx-4D-kHV"/>
+                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.5" id="O3I-Gn-1X0"/>
+                                                <constraint firstItem="ZzX-Go-Sxc" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.5" id="cEx-4D-kHV"/>
                                                 <constraint firstItem="ZzX-Go-Sxc" firstAttribute="centerY" secondItem="95g-0M-Uyq" secondAttribute="centerY" id="re9-j8-Z3F"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZzX-Go-Sxc" secondAttribute="trailing" constant="20" symbolic="YES" id="zlG-nG-VyT"/>
                                             </constraints>
@@ -66,6 +66,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-3O-38N">
                                                     <rect key="frame" x="24" y="4" width="374" height="36"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -94,6 +95,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kYz-ls-3YK">
                                                     <rect key="frame" x="24" y="4" width="374" height="36"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -186,7 +188,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bucket" width="232" height="217"/>
+        <image name="bucket4" width="232" height="217"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

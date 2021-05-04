@@ -22,6 +22,19 @@ class CreateViewController: UIViewController {
     var indexInArray: Int?
     let dataController = DataController()
     var deleteButtonWasTapped: Bool = false
+    var darkImage = UIImage(named: "darkBucket")
+    var lightImage = UIImage(named: "bucket3")
+    var isDarkMode: Bool = Bool() {
+        didSet {
+            if isDarkMode {
+                bucketListItemImage.image = darkImage
+                doneButton.setTitleColor(.white, for: .normal)
+            } else {
+                bucketListItemImage.image = lightImage
+                doneButton.setTitleColor(.black, for: .normal)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +44,12 @@ class CreateViewController: UIViewController {
         doneButton.layer.cornerRadius = 4
         nameTextField.delegate = self
         initializeHideKeyboard()
+        
+        if traitCollection.userInterfaceStyle == .light {
+            isDarkMode = false
+            } else {
+            isDarkMode = true
+            }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +76,10 @@ class CreateViewController: UIViewController {
         picker.selectedColor = self.view.backgroundColor!
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
+    }
+    
+    func switchImages() {
+
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {

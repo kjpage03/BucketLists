@@ -157,13 +157,21 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             if bothlist.isComplete {
                 cell.update(with: bothlist, rowNumber: rowNumber, color: color)
             } else {
-                cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+                if traitCollection.userInterfaceStyle == .light {
+                    cell.update(with: bothlist, rowNumber: rowNumber, color: .white)
+                } else {
+                    cell.update(with: bothlist, rowNumber: rowNumber, color: .black)
+                }
             }
             break
             
         case 2:
             let newlist = list[indexPath.section]
-            cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+            if traitCollection.userInterfaceStyle == .light {
+                cell.update(with: newlist, rowNumber: rowNumber, color: .white)
+            } else {
+                cell.update(with: newlist, rowNumber: rowNumber, color: .black)
+            }
             break
             
         default:
@@ -175,7 +183,11 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.showsReorderControl = true
         cell.layer.cornerRadius = 8
         cell.layer.borderWidth = 0.8
-        cell.layer.borderColor = UIColor.black.cgColor
+        if traitCollection.userInterfaceStyle == .light {
+            cell.layer.borderColor = UIColor.black.cgColor
+        } else {
+            cell.layer.borderColor = UIColor.white.cgColor
+        }
         
         return cell
         
@@ -211,8 +223,8 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //take a screenshot of the list and share it
         
-        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Screenshot", style: .default, handler: { (_) in
+        let ac = UIAlertController(title: "Sharing Options", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Image", style: .default, handler: { (_) in
             let bounds = UIScreen.main.bounds
             UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
             self.view.drawHierarchy(in: bounds, afterScreenUpdates: false)
@@ -223,19 +235,19 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             
         }))
         ac.addAction(UIAlertAction(title: "Text", style: .default, handler: { (_) in
-            var myList: [String] = ["My List:"]
-    
+            var myList: [String] = ["My bucket list:"]
+            
             for (index, item) in self.bothList.enumerated() {
-    
+                
                 if index == self.bothList.count-1 {
                     myList.append("\(item.name)")
                 } else {
                     myList.append("\(item.name),")
                 }
             }
-    
+            
             let ac = UIActivityViewController(activityItems: myList, applicationActivities: nil)
-    
+            
             self.present(ac, animated: true, completion: nil)
         }))
         
