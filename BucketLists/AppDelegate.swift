@@ -17,14 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let center = UNUserNotificationCenter.current()
         
-                let completeAction = UNNotificationAction(identifier: "Complete", title: "Mark As Complete", options: [])
+                let completeAction = UNNotificationAction(identifier: "Complete", title: "Mark as complete", options: [])
         
-        let remindAction = UNNotificationAction(identifier: "Remind", title: "Remind Me Later", options: [])
+        let remindAction = UNNotificationAction(identifier: "Remind", title: "Remind me later", options: [])
                 let bucketCategory = UNNotificationCategory(identifier: "Actions", actions: [completeAction, remindAction], intentIdentifiers: [], options: [])
         
                 center.setNotificationCategories([bucketCategory])
                 center.delegate = self
-
         
         return true
     }
@@ -39,11 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if item.id.uuidString == response.notification.request.identifier {
                             bucketLists[index1].items[index2].isComplete = true
                             print(bucketLists[index1].items[index2])
-                            
-                            
                         }
                     }
                 }
+                
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             } else if response.actionIdentifier == "Remind" {
                 let id = UUID()

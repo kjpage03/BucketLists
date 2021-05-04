@@ -26,17 +26,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw3-K4-z0B">
-                                                    <rect key="frame" x="24" y="15" width="366" height="14"/>
+                                                    <rect key="frame" x="167" y="15" width="80" height="14"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket4" translatesAutoresizingMaskIntoConstraints="NO" id="ZzX-Go-Sxc">
+                                                    <rect key="frame" x="359" y="11" width="35" height="22"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bucket4" translatesAutoresizingMaskIntoConstraints="NO" id="J1J-uP-rrq">
+                                                    <rect key="frame" x="20" y="11" width="35" height="22"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Gw3-K4-z0B" secondAttribute="trailing" constant="4" id="ATo-fn-Gco"/>
+                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="centerY" secondItem="95g-0M-Uyq" secondAttribute="centerY" id="0uS-d0-fo1"/>
+                                                <constraint firstItem="ZzX-Go-Sxc" firstAttribute="width" secondItem="95g-0M-Uyq" secondAttribute="width" multiplier="0.0845411" id="11g-0h-ca4"/>
+                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="leading" secondItem="95g-0M-Uyq" secondAttribute="leading" constant="20" symbolic="YES" id="7T1-dy-paC"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Gw3-K4-z0B" secondAttribute="bottom" constant="4" id="FaG-R7-eqx"/>
+                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="width" secondItem="95g-0M-Uyq" secondAttribute="width" multiplier="0.0845411" id="HXu-av-6OH"/>
+                                                <constraint firstItem="Gw3-K4-z0B" firstAttribute="centerX" secondItem="95g-0M-Uyq" secondAttribute="centerX" id="Hyh-4a-qd6"/>
                                                 <constraint firstItem="Gw3-K4-z0B" firstAttribute="top" secondItem="95g-0M-Uyq" secondAttribute="topMargin" constant="4" id="N9G-Fc-IMD"/>
-                                                <constraint firstItem="Gw3-K4-z0B" firstAttribute="leading" secondItem="95g-0M-Uyq" secondAttribute="leadingMargin" constant="4" id="uo8-2i-KJU"/>
+                                                <constraint firstItem="J1J-uP-rrq" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.5" id="O3I-Gn-1X0"/>
+                                                <constraint firstItem="ZzX-Go-Sxc" firstAttribute="height" secondItem="95g-0M-Uyq" secondAttribute="height" multiplier="0.5" id="cEx-4D-kHV"/>
+                                                <constraint firstItem="ZzX-Go-Sxc" firstAttribute="centerY" secondItem="95g-0M-Uyq" secondAttribute="centerY" id="re9-j8-Z3F"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZzX-Go-Sxc" secondAttribute="trailing" constant="20" symbolic="YES" id="zlG-nG-VyT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -53,6 +66,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-3O-38N">
                                                     <rect key="frame" x="24" y="4" width="374" height="36"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -81,6 +95,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kYz-ls-3YK">
                                                     <rect key="frame" x="24" y="4" width="374" height="36"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -276,7 +291,9 @@
                         <outlet property="descriptionLabel" destination="kYz-ls-3YK" id="LMh-KB-hN2"/>
                         <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
                         <outlet property="goalSwitch" destination="BbY-Ha-w12" id="xsU-xZ-ood"/>
+                        <outlet property="leftBucket" destination="J1J-uP-rrq" id="utd-4P-2LR"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
+                        <outlet property="rightBucket" destination="ZzX-Go-Sxc" id="4lV-wM-ZxM"/>
                         <outlet property="numberOfSteps" destination="nvk-Lm-LAt" id="WhG-Jw-WYB"/>
                     </connections>
                 </tableViewController>
@@ -305,6 +322,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bucket4" width="232" height="217"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
