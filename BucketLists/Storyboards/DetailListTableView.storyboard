@@ -263,6 +263,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="414" height="2000"/>
                     <connections>
+                        <outlet property="CompletedViewSection" destination="xeo-gR-D5I" id="Bpq-Gx-mVB"/>
                         <outlet property="addImageButton" destination="Bkg-vd-UQX" id="XN7-IR-bux"/>
                         <outlet property="collectionViewHeight" destination="CRa-9b-e8q" id="53r-c8-hPz"/>
                         <outlet property="completionSwitch" destination="hgz-1m-pYD" id="U1S-Nd-XTG"/>

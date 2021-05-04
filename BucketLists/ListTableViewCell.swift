@@ -78,10 +78,10 @@ class ListTableViewCell: UITableViewCell {
         switch(list.numberofSteps)
         {
         case 1:
-            stepOneLabel.isHidden = true
-            stepTwoLabel.isHidden = true
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
+            //stepOneLabel.isHidden = true
+            //stepTwoLabel.isHidden = true
+            //stepThreeLabel.isHidden = true
+            //stepFourLabel.isHidden = true
             
             stepOneButton.isHidden = true
             stepTwoButton.isHidden = true
@@ -91,11 +91,11 @@ class ListTableViewCell: UITableViewCell {
             steckView.spacing = 0
             break
         case 2:
-            stepOneLabel.isHidden = false
-            stepTwoLabel.isHidden = true
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
-            stepOneLabel.text = list.stepsArray[0]
+            //stepOneLabel.isHidden = false
+            //stepTwoLabel.isHidden = true
+            //stepThreeLabel.isHidden = true
+            //stepFourLabel.isHidden = true
+            //stepOneLabel.text = list.stepsArray[0]
             
             stepOneButton.isHidden = false
             stepTwoButton.isHidden = true
@@ -105,12 +105,12 @@ class ListTableViewCell: UITableViewCell {
             steckView.spacing = 0
             break
         case 3:
-            stepOneLabel.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = true
-            stepFourLabel.isHidden = true
-            stepOneLabel.text = list.stepsArray[0]
-            stepTwoLabel.text = list.stepsArray[1]
+            //stepOneLabel.isHidden = false
+            //stepTwoLabel.isHidden = false
+            //stepThreeLabel.isHidden = true
+            //stepFourLabel.isHidden = true
+            //stepOneLabel.text = list.stepsArray[0]
+            //stepTwoLabel.text = list.stepsArray[1]
 
             
             stepOneButton.isHidden = false
@@ -122,11 +122,11 @@ class ListTableViewCell: UITableViewCell {
             break
             
         case 4:
-            stepOneLabel.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = false
-            stepFourLabel.isHidden = true
-            stepOneLabel.text = list.stepsArray[0]
+            //stepOneLabel.isHidden = false
+            //stepTwoLabel.isHidden = false
+            //stepThreeLabel.isHidden = false
+            //stepFourLabel.isHidden = true
+            //stepOneLabel.text = list.stepsArray[0]
             stepTwoLabel.text = list.stepsArray[1]
             stepThreeLabel.text = list.stepsArray[2]
 
@@ -140,14 +140,14 @@ class ListTableViewCell: UITableViewCell {
             break
          
         case 5:
-            stepOneLabel.isHidden = false
-            stepTwoLabel.isHidden = false
-            stepThreeLabel.isHidden = false
-            stepFourLabel.isHidden = false
-            stepOneLabel.text = list.stepsArray[0]
-            stepTwoLabel.text = list.stepsArray[1]
-            stepThreeLabel.text = list.stepsArray[2]
-            stepFourLabel.text = list.stepsArray[3]
+            //stepOneLabel.isHidden = false
+            //stepTwoLabel.isHidden = false
+            //stepThreeLabel.isHidden = false
+            //stepFourLabel.isHidden = false
+            //stepOneLabel.text = list.stepsArray[0]
+            //stepTwoLabel.text = list.stepsArray[1]
+            //stepThreeLabel.text = list.stepsArray[2]
+            //stepFourLabel.text = list.stepsArray[3]
 
             
             stepOneButton.isHidden = false

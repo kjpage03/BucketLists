@@ -89,89 +89,65 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bfU-Te-4Nj">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bfU-Te-4Nj">
                                                     <rect key="frame" x="68" y="40" width="336" height="122"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-hh-g9F">
-                                                            <rect key="frame" x="0.0" y="0.0" width="336" height="30.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.  This is Step 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57y-uW-K2c">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="30.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7A-Lz-Bvi">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="30.5"/>
-                                                                    <state key="normal" image="checkmark.square" catalog="system"/>
-                                                                    <state key="selected" image="checkmark.square.fill" catalog="system"/>
-                                                                    <connections>
-                                                                        <action selector="step1Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="6s5-fc-X52"/>
-                                                                        <action selector="stepOneButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="K44-ql-yfZ"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="N5E-6L-djY">
-                                                            <rect key="frame" x="0.0" y="30.5" width="336" height="30.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.  This is Step 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG3-Sc-lHj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="30.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU0-5n-xKK">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="30.5"/>
-                                                                    <state key="normal" image="checkmark.square" catalog="system"/>
-                                                                    <state key="selected" image="checkmark.square.fill" catalog="system"/>
-                                                                    <connections>
-                                                                        <action selector="step2Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="oe3-9s-1Ab"/>
-                                                                        <action selector="stepTwoButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="XEh-yc-ftd"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="0R2-Ws-T6L">
-                                                            <rect key="frame" x="0.0" y="61" width="336" height="30.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.  This is Step 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjq-qA-xba">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="30.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wth-wx-Be2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="30.5"/>
-                                                                    <state key="normal" image="checkmark.square" catalog="system"/>
-                                                                    <state key="selected" image="checkmark.square.fill" catalog="system"/>
-                                                                    <connections>
-                                                                        <action selector="step3Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="UZR-r3-i4v"/>
-                                                                        <action selector="stepFourButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="mkG-TA-6G8"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-ob-xnG">
-                                                            <rect key="frame" x="0.0" y="91.5" width="336" height="30.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.  This is Step 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IM7-Kl-3HF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="30.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJw-XF-Buq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="30.5"/>
-                                                                    <state key="normal" image="checkmark.square" catalog="system"/>
-                                                                    <state key="selected" image="checkmark.square.fill" catalog="system"/>
-                                                                    <connections>
-                                                                        <action selector="step4Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="knK-CR-Gpi"/>
-                                                                        <action selector="stepThreeButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="krF-3B-19G"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7A-Lz-Bvi">
+                                                            <rect key="frame" x="0.0" y="0.0" width="336" height="27"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal" title="1. First step">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <state key="selected">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="step1Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="6s5-fc-X52"/>
+                                                                <action selector="stepOneButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="K44-ql-yfZ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU0-5n-xKK">
+                                                            <rect key="frame" x="0.0" y="32" width="336" height="26.5"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal" title="2. Second Step">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <state key="selected" image="checkmark.square.fill" catalog="system">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="step2Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="oe3-9s-1Ab"/>
+                                                                <action selector="stepTwoButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="XEh-yc-ftd"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wth-wx-Be2">
+                                                            <rect key="frame" x="0.0" y="63.5" width="336" height="27"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal" title="3. Third Step">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <state key="selected">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="step3Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="UZR-r3-i4v"/>
+                                                                <action selector="stepFourButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="mkG-TA-6G8"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJw-XF-Buq">
+                                                            <rect key="frame" x="0.0" y="95.5" width="336" height="26.5"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <state key="normal" title="4. Fourth step">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <state key="selected">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="step4Button:" destination="R1E-6V-2IH" eventType="touchUpInside" id="knK-CR-Gpi"/>
+                                                                <action selector="stepThreeButton:" destination="yoY-CA-9PD" eventType="touchUpInside" id="krF-3B-19G"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -193,13 +169,9 @@
                                             <outlet property="nameLabel" destination="DbG-El-uSk" id="lCf-93-fEy"/>
                                             <outlet property="steckView" destination="bfU-Te-4Nj" id="3aN-g9-fqV"/>
                                             <outlet property="stepFourButton" destination="HJw-XF-Buq" id="4qk-uv-Pec"/>
-                                            <outlet property="stepFourLabel" destination="IM7-Kl-3HF" id="lSV-9w-rNX"/>
                                             <outlet property="stepOneButton" destination="X7A-Lz-Bvi" id="pst-BW-UtZ"/>
-                                            <outlet property="stepOneLabel" destination="57y-uW-K2c" id="z2u-Fw-zhk"/>
                                             <outlet property="stepThreeButton" destination="wth-wx-Be2" id="dfh-RS-MtP"/>
-                                            <outlet property="stepThreeLabel" destination="Jjq-qA-xba" id="Xa4-Fb-jWo"/>
                                             <outlet property="stepTwoButton" destination="oU0-5n-xKK" id="OQf-o1-0x0"/>
-                                            <outlet property="stepTwoLabel" destination="XG3-Sc-lHj" id="bud-hy-YAx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -280,13 +252,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

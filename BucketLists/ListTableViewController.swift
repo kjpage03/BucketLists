@@ -194,7 +194,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             case 4:
                 return 168
             case 5:
-                return 178
+                return 188
             default:
                 return 48
             }
@@ -296,17 +296,19 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             updatePercentLabel()
         
         }
+        
     }
     @IBAction func step1Button(_ sender: Any) {
-        
+        performSegue(withIdentifier: "subStep", sender: nil)
     }
     @IBAction func step2Button(_ sender: Any) {
-        
+        performSegue(withIdentifier: "subStep", sender: nil)
     }
     @IBAction func step3Button(_ sender: Any) {
-        
+        performSegue(withIdentifier: "subStep", sender: nil)
     }
     @IBAction func step4Button(_ sender: Any) {
+        performSegue(withIdentifier: "subStep", sender: nil)
     }
     
     @IBAction func backButton(_ sender: Any) {
