@@ -26,6 +26,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var rightBucket: UIImageView!
     @IBOutlet var leftBucket: UIImageView!
     
+    @IBOutlet weak var firstStepButton: UIButton!
+    @IBOutlet weak var secondStepButton: UIButton!
+    @IBOutlet weak var thirdStepButton: UIButton!
+    @IBOutlet weak var fourthStepButton: UIButton!
+    
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -455,6 +460,54 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         tableView.reloadData()
     }
     
+    @IBAction func firstButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (firstStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[0] == true {
+            stepsCompleted[0] = false
+            firstStepButton.isEnabled = true
+        }
+        if stepsCompleted[0] == false{
+            stepsCompleted[0] = true
+            firstStepButton.isEnabled = false
+            firstStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func secondButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (secondStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[1] == true {
+            stepsCompleted[1] = false
+            secondStepButton.isEnabled = true
+        }
+        if stepsCompleted[1] == false{
+            stepsCompleted[1] = true
+            secondStepButton.isEnabled = false
+            secondStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func thirdButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (thirdStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[2] == true {
+            stepsCompleted[2] = false
+            thirdStepButton.isEnabled = true
+        }
+        if stepsCompleted[2] == false{
+            stepsCompleted[2] = true
+            thirdStepButton.isEnabled = false
+            thirdStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func fourthButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (fourthStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[3] == true {
+            stepsCompleted[3] = false
+            fourthStepButton.isEnabled = true
+        }
+        if stepsCompleted[3] == false{
+            stepsCompleted[3] = true
+            fourthStepButton.isEnabled = false
+            fourthStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")
         if segue.identifier == "deleteImage" {
