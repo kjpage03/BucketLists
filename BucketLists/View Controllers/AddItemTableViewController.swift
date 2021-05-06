@@ -11,7 +11,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     var item: Item?
     var numberofStepsINT: Int = 1
-    var stepNames: [String] = []
+    var stepNames: [Substep] = []
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
@@ -119,12 +119,21 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             goalDate = nil
             
         }
-        stepNames.append(firstStepLabel.text ?? "")
-        stepNames.append(secondStepLabel.text ?? "")
-        stepNames.append(thirdStepLabel.text ?? "")
-        stepNames.append(fourthStepLabel.text ?? "")
+        
+        var ltr: String = String()
+        let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
+        let alphabet: String = "abcdefghijklmnopqrstuvwxyz"
+        for index in 0...numberofStepsINT-2 {
+            let new = alphabet.index(alphabet.startIndex, offsetBy: index)
+            ltr = String(alphabet[new])
+            stepNames.append(Substep(name: "\(ltr). \(labels[index]!.text ?? "")", isComplete: false))
+        }
+//        stepNames.append(Substep(name: "a. \(firstStepLabel.text ?? "")", isComplete: false))
+//        stepNames.append(Substep(name: "a. \(secondStepLabel.text ?? "")", isComplete: false))
+//        stepNames.append("c. \(thirdStepLabel.text ?? "")")
+//        stepNames.append("d. \(fourthStepLabel.text ?? "")")
 
-        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, stepnames: stepNames)
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, subSteps: stepNames)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)
