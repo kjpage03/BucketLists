@@ -204,7 +204,28 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0;//Choose your custom row height
+        let item = bothList[indexPath.section]
+        if item.numofSteps > 1 {
+            switch(item.numofSteps)
+                    {
+                    case 0:
+                        return 48
+                    case 1:
+                        return 48
+                    case 2:
+                        return 120
+                    case 3:
+                        return 158
+                    case 4:
+                        return 168
+                    case 5:
+                        return 188
+                    default:
+                        return 48
+                    }
+                } else {
+                return 48.0;//Choose your custom row height
+                }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

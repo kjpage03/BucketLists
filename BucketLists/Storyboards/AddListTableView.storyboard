@@ -154,7 +154,7 @@
                                                         <segment title="Four"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="NumberofStepsSeg:" destination="PdB-SR-wQm" eventType="valueChanged" id="AMO-Sy-7zC"/>
+                                                        <action selector="NumofStepsSegControl:" destination="PdB-SR-wQm" eventType="valueChanged" id="OVp-sR-ffJ"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -290,11 +290,15 @@
                         <outlet property="datePicker" destination="aHc-sU-kbj" id="q3I-Ef-828"/>
                         <outlet property="descriptionLabel" destination="kYz-ls-3YK" id="LMh-KB-hN2"/>
                         <outlet property="doneLabel" destination="FMh-CG-0gZ" id="Wcp-wE-4SF"/>
+                        <outlet property="firstStepLabel" destination="EcA-Tm-5TR" id="lk3-hB-zfE"/>
+                        <outlet property="fourthStepLabel" destination="cBO-UK-Rfm" id="4s5-CL-GgN"/>
                         <outlet property="goalSwitch" destination="BbY-Ha-w12" id="xsU-xZ-ood"/>
                         <outlet property="leftBucket" destination="J1J-uP-rrq" id="utd-4P-2LR"/>
                         <outlet property="nameLabel" destination="5bm-3O-38N" id="02E-Aj-w9V"/>
+                        <outlet property="numberOfSteps" destination="nvk-Lm-LAt" id="Hbu-8i-AEF"/>
                         <outlet property="rightBucket" destination="ZzX-Go-Sxc" id="4lV-wM-ZxM"/>
-                        <outlet property="numberOfSteps" destination="nvk-Lm-LAt" id="WhG-Jw-WYB"/>
+                        <outlet property="secondStepLabel" destination="FFe-yM-vCT" id="dtw-jc-3Ec"/>
+                        <outlet property="thirdStepLabel" destination="GWF-pA-8I5" id="Z2J-ke-393"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDL-MW-FJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,7 +10,8 @@ import UIKit
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     var item: Item?
-    var numberofStepsInt: Int = 0
+    var numberofStepsINT: Int = 1
+    var stepNames: [String] = []
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
@@ -20,6 +21,12 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var rightBucket: UIImageView!
     @IBOutlet var leftBucket: UIImageView!
     @IBOutlet weak var numberOfSteps: UISegmentedControl!
+    
+    @IBOutlet weak var firstStepLabel: UITextField!
+    @IBOutlet weak var secondStepLabel: UITextField!
+    @IBOutlet weak var thirdStepLabel: UITextField!
+    @IBOutlet weak var fourthStepLabel: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +55,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 4 + numberofStepsINT
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -112,13 +119,40 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             goalDate = nil
             
         }
-        
+        stepNames.append(firstStepLabel.text ?? "")
+        stepNames.append(secondStepLabel.text ?? "")
+        stepNames.append(thirdStepLabel.text ?? "")
+        stepNames.append(fourthStepLabel.text ?? "")
 
-        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: 0)
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, stepnames: stepNames)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)
         
+    }
+    @IBAction func NumofStepsSegControl(_ sender: Any) {
+        switch(numberOfSteps.selectedSegmentIndex)
+                {
+                case 0:
+                    numberofStepsINT = 1
+                    break
+                case 1:
+                    numberofStepsINT = 2
+                    break
+                case 2:
+                    numberofStepsINT = 3
+                    break
+                case 3:
+                    numberofStepsINT = 4
+                    break
+                case 4:
+                    numberofStepsINT = 5
+                    break
+                default:
+                    numberofStepsINT = 1
+                    break
+                }
+                tableView.reloadData()
     }
     
     @IBAction func editingChanged(_ sender: Any) {
