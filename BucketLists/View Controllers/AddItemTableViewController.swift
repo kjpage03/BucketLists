@@ -12,6 +12,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     var item: Item?
     var numberofStepsINT: Int = 1
     var stepNames: [String] = []
+    var stepsCompleted: [Bool] = []
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
@@ -123,8 +124,14 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         stepNames.append(secondStepLabel.text ?? "")
         stepNames.append(thirdStepLabel.text ?? "")
         stepNames.append(fourthStepLabel.text ?? "")
+        
+        stepsCompleted.append(false)
+        stepsCompleted.append(false)
+        stepsCompleted.append(false)
+        stepsCompleted.append(false)
 
-        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, stepnames: stepNames)
+
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, stepnames: stepNames, stepsCompleted: stepsCompleted)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)

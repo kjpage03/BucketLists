@@ -26,6 +26,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var rightBucket: UIImageView!
     @IBOutlet var leftBucket: UIImageView!
     
+    @IBOutlet weak var firstStepButton: UIButton!
+    @IBOutlet weak var secondStepButton: UIButton!
+    @IBOutlet weak var thirdStepButton: UIButton!
+    @IBOutlet weak var fourthStepButton: UIButton!
+    
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -34,6 +39,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var indexOfItem: Int = 0
     var numberOfSteps: Int = 0
     var stepNames: [String] = []
+    var stepsCompleted: [Bool] = []
     var dataController = DataController()
     var saveLoadImage = SaveLoadImage()
     var item: Item?
@@ -93,6 +99,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if let newItem = item {
             numberOfSteps = newItem.numofSteps
             stepNames = newItem.stepnames
+            stepsCompleted = newItem.stepsCompleted
         }
         
         for items in imageStringArray {
@@ -129,7 +136,113 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //        let imageString = NSAttributedString(attachment: imageAttachment)
         //        string.append(imageString)
 //        completionSwitch.transform = CGAffineTransform(scaleX: 2, y: 2)
-        
+        switch(numberOfSteps)
+        {
+        case 0:
+            firstStepButton.isHidden = true
+            secondStepButton.isHidden = true
+            thirdStepButton.isHidden = true
+            fourthStepButton.isHidden = true
+            break
+        case 1:
+            firstStepButton.isHidden = true
+            secondStepButton.isHidden = true
+            thirdStepButton.isHidden = true
+            fourthStepButton.isHidden = true
+            break
+        case 2:
+            firstStepButton.isHidden = false
+            secondStepButton.isHidden = true
+            thirdStepButton.isHidden = true
+            fourthStepButton.isHidden = true
+            
+            if stepsCompleted[0] == true {
+                firstStepButton.isEnabled = false
+            } else {
+                firstStepButton.isEnabled = true
+            }
+            break
+        case 3:
+            firstStepButton.isHidden = false
+            secondStepButton.isHidden = false
+            thirdStepButton.isHidden = true
+            fourthStepButton.isHidden = true
+            
+            firstStepButton.setTitle(stepNames[0], for: .normal)
+            secondStepButton.setTitle(stepNames[1], for: .normal)
+            
+            if stepsCompleted[0] == true {
+                firstStepButton.isEnabled = false
+            } else {
+                firstStepButton.isEnabled = true
+            }
+            if stepsCompleted[1] == true {
+                secondStepButton.isEnabled = false
+            } else {
+                secondStepButton.isEnabled = true
+            }
+            break
+        case 4:
+            firstStepButton.isHidden = false
+            secondStepButton.isHidden = false
+            thirdStepButton.isHidden = false
+            fourthStepButton.isHidden = true
+            
+            firstStepButton.setTitle(stepNames[0], for: .normal)
+            secondStepButton.setTitle(stepNames[1], for: .normal)
+            thirdStepButton.setTitle(stepNames[2], for: .normal)
+ 
+            if stepsCompleted[0] == true {
+                firstStepButton.isEnabled = false
+            } else {
+                firstStepButton.isEnabled = true
+            }
+            if stepsCompleted[1] == true {
+                secondStepButton.isEnabled = false
+            } else {
+                secondStepButton.isEnabled = true
+            }
+            if stepsCompleted[2] == true {
+                thirdStepButton.isEnabled = false
+            } else {
+                thirdStepButton.isEnabled = true
+            }
+            break
+        case 5:
+            firstStepButton.isHidden = false
+            secondStepButton.isHidden = false
+            thirdStepButton.isHidden = false
+            fourthStepButton.isHidden = false
+            
+            firstStepButton.setTitle(stepNames[0], for: .normal)
+            secondStepButton.setTitle(stepNames[1], for: .normal)
+            thirdStepButton.setTitle(stepNames[2], for: .normal)
+            fourthStepButton.setTitle(stepNames[3], for: .normal)
+            
+            if stepsCompleted[0] == true {
+                firstStepButton.isEnabled = false
+            } else {
+                firstStepButton.isEnabled = true
+            }
+            if stepsCompleted[1] == true {
+                secondStepButton.isEnabled = false
+            } else {
+                secondStepButton.isEnabled = true
+            }
+            if stepsCompleted[2] == true {
+                thirdStepButton.isEnabled = false
+            } else {
+                thirdStepButton.isEnabled = true
+            }
+            if stepsCompleted[3] == true {
+                fourthStepButton.isEnabled = false
+            } else {
+                fourthStepButton.isEnabled = true
+            }
+            break
+        default:
+            break
+        }
     }
     
     // MARK: - Table view data source
@@ -247,9 +360,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
             if let location = mapView.annotations.first {
                 
-                item = Item(name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, stepnames: stepNames)
+                item = Item(name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, stepnames: stepNames, stepsCompleted: stepsCompleted)
             } else {
-                item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, stepnames: stepNames)
+                item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, stepnames: stepNames, stepsCompleted: stepsCompleted)
             }
         //                bucketLists[indexOfBucketList].items[indexOfItem] = item!
         //            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
@@ -453,6 +566,54 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         tableView.reloadData()
     }
     
+    @IBAction func firstButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (firstStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[0] == true {
+            stepsCompleted[0] = false
+            firstStepButton.isEnabled = true
+        }
+        if stepsCompleted[0] == false{
+            stepsCompleted[0] = true
+            firstStepButton.isEnabled = false
+            firstStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func secondButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (secondStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[1] == true {
+            stepsCompleted[1] = false
+            secondStepButton.isEnabled = true
+        }
+        if stepsCompleted[1] == false{
+            stepsCompleted[1] = true
+            secondStepButton.isEnabled = false
+            secondStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func thirdButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (thirdStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[2] == true {
+            stepsCompleted[2] = false
+            thirdStepButton.isEnabled = true
+        }
+        if stepsCompleted[2] == false{
+            stepsCompleted[2] = true
+            thirdStepButton.isEnabled = false
+            thirdStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
+    @IBAction func fourthButton(_ sender: Any) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (fourthStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        if stepsCompleted[3] == true {
+            stepsCompleted[3] = false
+            fourthStepButton.isEnabled = true
+        }
+        if stepsCompleted[3] == false{
+            stepsCompleted[3] = true
+            fourthStepButton.isEnabled = false
+            fourthStepButton.setAttributedTitle(attributeString, for: .disabled)
+        }
+    }
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")
         if segue.identifier == "deleteImage" {
