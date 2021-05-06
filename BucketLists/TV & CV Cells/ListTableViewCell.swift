@@ -58,6 +58,65 @@ class ListTableViewCell: UITableViewCell {
 //        } else {
 //            backgroundColor = .white
 //        }
+        switch(list.numofSteps)
+                {
+                case 1:
+
+                    stepOne.isHidden = true
+                    stepTwo.isHidden = true
+                    stepThree.isHidden = true
+                    StepFour.isHidden = true
+                    
+                    break
+                case 2:
+
+                    stepOne.isHidden = false
+                    stepTwo.isHidden = true
+                    stepThree.isHidden = true
+                    StepFour.isHidden = true
+                    
+                    stepOne.setTitle(list.stepnames[0], for: .normal)
+                    break
+                case 3:
+                    
+                    stepOne.isHidden = false
+                    stepTwo.isHidden = false
+                    stepThree.isHidden = true
+                    StepFour.isHidden = true
+                    
+                    stepOne.setTitle(list.stepnames[0], for: .normal)
+                    stepTwo.setTitle(list.stepnames[1], for: .normal)
+                    break
+                    
+                case 4:
+                    
+                    stepOne.isHidden = false
+                    stepTwo.isHidden = false
+                    stepThree.isHidden = false
+                    StepFour.isHidden = true
+                    
+                    stepOne.setTitle(list.stepnames[0], for: .normal)
+                    stepTwo.setTitle(list.stepnames[1], for: .normal)
+                    stepThree.setTitle(list.stepnames[2], for: .normal)
+
+                    break
+                 
+                case 5:
+                    
+                    stepOne.isHidden = false
+                    stepTwo.isHidden = false
+                    stepThree.isHidden = false
+                    StepFour.isHidden = false
+                    
+                    stepOne.setTitle(list.stepnames[0], for: .normal)
+                    stepTwo.setTitle(list.stepnames[1], for: .normal)
+                    stepThree.setTitle(list.stepnames[2], for: .normal)
+                    StepFour.setTitle(list.stepnames[3], for: .normal)
+                    break
+                    
+                default:
+                    break
+                }
         
         backgroundColor = color
         
