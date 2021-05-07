@@ -72,6 +72,17 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func numberOfSections(in tableView: UITableView) -> Int {
         var returnValue = 0
         
+        listCompleted.removeAll()
+        list.removeAll()
+        
+        for item in bothList {
+            if item.isComplete {
+                listCompleted.append(item)
+            } else {
+                list.append(item)
+            }
+        }
+        
         switch(segmentedControl.selectedSegmentIndex)
         {
         case 0:
@@ -140,11 +151,20 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //make tableview width smaller
-        
+                
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.section + 1
+        
+        listCompleted.removeAll()
+        list.removeAll()
+        
+        for item in bothList {
+            if item.isComplete {
+                listCompleted.append(item)
+            } else {
+                list.append(item)
+            }
+        }
         
         switch(segmentedControl.selectedSegmentIndex)
         {
@@ -204,48 +224,15 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //var item: Item
-        switch(segmentedControl.selectedSegmentIndex)
-        {
-        case 0:
-            let item = listCompleted[indexPath.section]
-            var height = 48
-            
-            if let steps = item.subSteps {
-                for _ in steps {
-                    height += 28
-                }
-                return CGFloat(height)
-            } else {
-                return 48
-            }
+        var item = bothList[indexPath.section]
+        switch segmentedControl.selectedSegmentIndex {
+        case 0 :
+            item = listCompleted[indexPath.section]
         case 1:
-            let item = bothList[indexPath.section]
-            var height = 48
-            
-            if let steps = item.subSteps {
-                for _ in steps {
-                    height += 28
-                }
-                return CGFloat(height)
-            } else {
-                return 48
-            }
-            
+            item = bothList[indexPath.section]
         case 2:
-            let item = list[indexPath.section]
-            var height = 48
-            
-            if let steps = item.subSteps {
-                for _ in steps {
-                    height += 28
-                }
-                return CGFloat(height)
-            } else {
-                return 48
-            }
+            item = list[indexPath.section]
         default:
-            return 48
             break
         }
         //        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
@@ -348,9 +335,37 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         //        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
         
         if segue.identifier == "detailSegue" {
+            
+            
+            
             if let indexPath = tableView.indexPathForSelectedRow {
+                var item: Item = bothList[indexPath.section]
+
+                switch segmentedControl.selectedSegmentIndex {
+                case 0 :
+//                    item = listCompleted[indexPath.section]
+                    for (index, item11) in bothList.enumerated() {
+                        if item11.id == listCompleted[indexPath.section].id {
+                            item = bothList[index]
+                            selectedRow = index
+                        }
+                    }
+                case 1:
+                    item = bothList[indexPath.section]
+                case 2:
+                    
+                    for (index, item11) in bothList.enumerated() {
+                        if item11.id == list[indexPath.section].id {
+                            item = bothList[index]
+                            selectedRow = index
+                        }
+                    }
+//                    item = list[indexPath.section]
+                default:
+                    break
+                }
                 
-                let item = bothList[indexPath.section]
+//                item = bothList[indexPath.section]
                 let detailTableViewController = segue.destination as! DetailListTableViewController
                 print(item)
                 detailTableViewController.item = item

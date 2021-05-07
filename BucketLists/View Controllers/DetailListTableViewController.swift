@@ -170,7 +170,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     
     @objc func stepButtonTapped(sender: CustomButton) {
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (sender.titleLabel?.text!) as! String); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: sender.titleLabel?.text?.count, range: NSMakeRange(0, attributeString.length))
+        
         
 //        var value = subSteps[sender.indexInArray].isComplete
         for (index, step) in subSteps.enumerated() {
@@ -181,10 +181,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
                     value = false
 //                    sender.isEnabled = true
                     subSteps[index].isComplete = false
+                    
                     sender.setAttributedTitle(NSAttributedString(string: subSteps[index].name), for: .normal)
                 } else {
                     value = true
 //                    sender.isEnabled = false
+                    let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: subSteps[index].name); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                     sender.setAttributedTitle(attributeString, for: .normal)
                     subSteps[index].isComplete = true
                 }
@@ -198,6 +200,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
                 
                 if values.allSatisfy({$0}) {
                     completionSwitch.isOn = true
+                    completion()
                 }
             }
         }
@@ -232,7 +235,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if indexPath.section == 3 {
             var height = 48
             for _ in subSteps {
-                height += 32
+                height += 40
             }
             return CGFloat(height)
         }
@@ -402,6 +405,10 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     
     @IBAction func CompletionSwitch(_ sender: Any) {
+        completion()
+    }
+    
+    func completion() {
         tableView.reloadData()
         removeNotification()
     }
