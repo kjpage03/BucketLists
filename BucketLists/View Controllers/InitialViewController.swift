@@ -64,8 +64,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         if UIDevice.modelName == "Simulator iPhone 12" {
         particleController.createBackgroundParticles()
         }
-//        particleController = ParticleController(view: self.collectionView.visibleCells.first!.contentView)
-//        particleController = ParticleController(view: self.view)
+
         originalLayerCount = self.view.layer.sublayers!.count
         
     }
@@ -175,7 +174,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     
     func removeParticles() {
         UIView.animate(withDuration: 3) {
-            self.view.layer.sublayers?.last?.opacity = 0
+            if self.view.layer.sublayers?.last != self.view.layer {
+                self.view.layer.sublayers?.last?.opacity = 0
+            }
         } completion: { (_) in
             
             let ac = UIAlertController(title: "Nice Job!", message: "You completed a list!", preferredStyle: .alert)
@@ -206,6 +207,9 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //MARK: Explain Bucket Animation
+        
         print("Cell \(indexPath.row) was selected.")
         let cell = collectionView.cellForItem(at: indexPath) as! BucketCollectionViewCell
         animatedCell = cell
@@ -223,6 +227,7 @@ class InitialViewController: UIViewController, UICollectionViewDelegate, UIScrol
         
         Timer.scheduledTimer(withTimeInterval: 0.25,
                              repeats: false) { _ in
+            
 //            self.playSound()
         }
 

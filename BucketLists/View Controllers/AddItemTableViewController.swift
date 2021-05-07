@@ -30,7 +30,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate, UI
     @IBOutlet var stackView: UIStackView!
     var stepNumber: Int = 0
     var labels: [UITextField] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate, UI
                 textField.placeholder = "Step name"
                 stackView.addArrangedSubview(textField)
                 labels.append(textField)
-//                numberofStepsINT += 1
+                //                numberofStepsINT += 1
             }
         }
         tableView.reloadData()
@@ -92,14 +92,6 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate, UI
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4 + numberofStepsINT
     }
-    
-    //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        if section == 4 {
-    //            return 1
-    //        } else {
-    //            return 1
-    //        }
-    //    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 4 {
@@ -178,7 +170,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate, UI
         
         if stepNumber > 1 {
             var ltr: String = String()
-//            let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
+            //            let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
             let alphabet: String = "abcdefghijklmnopqrstuvwxyz"
             for index in 0...stepNumber-1 {
                 let new = alphabet.index(alphabet.startIndex, offsetBy: index)

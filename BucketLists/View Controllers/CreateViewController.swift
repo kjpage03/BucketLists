@@ -38,7 +38,7 @@ class CreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.setNavigationBarHidden(false, animated: false)
         
         doneButton.layer.cornerRadius = 4
@@ -47,9 +47,9 @@ class CreateViewController: UIViewController {
         
         if traitCollection.userInterfaceStyle == .light {
             isDarkMode = false
-            } else {
+        } else {
             isDarkMode = true
-            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +79,7 @@ class CreateViewController: UIViewController {
     }
     
     func switchImages() {
-
+        
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
@@ -107,11 +107,10 @@ class CreateViewController: UIViewController {
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             } else {
                 let newBucketList: BucketList = BucketList(owner: name, items: [Item(name: "Example Item", description: "", location: nil, goalDate: Date(), isComplete: true, details: "Write about your experience!", imageArray: [], numofSteps: 0)], color: Color(uiColor: color))
-                //            LandingVC.bucketLists.append(bucketList)
-                //                var bucketLists = dataController.retrieveData()
                 bucketLists.insert(newBucketList, at: 0)
                 dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
             }
+            
             //Create a new bucket list and save it
             
         } else {
@@ -155,8 +154,6 @@ extension CreateViewController {
     }
     
     @objc func dismissMyKeyboard(){
-        //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
-        //In short- Dismiss the active keyboard.
         view.endEditing(true)
     }
 }
@@ -164,7 +161,7 @@ extension CreateViewController {
 extension CreateViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //Check if there is any other text-field in the view whose tag is +1 greater than the current text-field on which the return key was pressed. If yes → then move the cursor to that next text-field. If No → Dismiss the keyboard
+
         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
         } else {

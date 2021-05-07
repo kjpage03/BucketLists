@@ -49,24 +49,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //
-    //    }
-    
-    //    override func viewDidDisappear(_ animated: Bool) {
-    //        let bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
-    //        bothList = bucketLists[indexOfList].items
-    //        tableView.reloadData()
-    //        updatePercentLabel()
-    //    }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        let bucketLists = dataController.retrieveData(pathName: DataController.bucketPathName)
-    //        bothList = bucketLists[indexOfList].items
-    //        tableView.reloadData()
-    //        updatePercentLabel()
-    //    }
-    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -151,7 +133,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         let rowNumber = indexPath.section + 1
         
@@ -224,6 +206,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         var item = bothList[indexPath.section]
         switch segmentedControl.selectedSegmentIndex {
         case 0 :
@@ -235,9 +218,7 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         default:
             break
         }
-        //        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
-        //        let height = cell.stepStackView.frame.height
-        //        return 48 + height
+        
         var height = 48
         
         if let steps = item.subSteps {
@@ -248,28 +229,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             return 48
         }
-        
-//        if item.numofSteps > 1 {
-//            switch(item.numofSteps)
-//            {
-//            case 0:
-//                return 48
-//            case 1:
-//                return 48
-//            case 2:
-//                return 120
-//            case 3:
-//                return 158
-//            case 4:
-//                return 168
-//            case 5:
-//                return 188
-//            default:
-//                return 48
-//            }
-//        } else {
-//            return 48.0;//Choose your custom row height
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -328,22 +287,14 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        //        bucketLists[indexOfList].items = bothList
-        //        dataController.saveData(lists: bucketLists)
-        
-        //        bucketLists[indexOfList].items = bothList
-        //        dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
-        
         if segue.identifier == "detailSegue" {
-            
-            
             
             if let indexPath = tableView.indexPathForSelectedRow {
                 var item: Item = bothList[indexPath.section]
-
+                
                 switch segmentedControl.selectedSegmentIndex {
                 case 0 :
-//                    item = listCompleted[indexPath.section]
+                    //                    item = listCompleted[indexPath.section]
                     for (index, item11) in bothList.enumerated() {
                         if item11.id == listCompleted[indexPath.section].id {
                             item = bothList[index]
@@ -360,12 +311,12 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
                             selectedRow = index
                         }
                     }
-//                    item = list[indexPath.section]
+                //                    item = list[indexPath.section]
                 default:
                     break
                 }
                 
-//                item = bothList[indexPath.section]
+                //                item = bothList[indexPath.section]
                 let detailTableViewController = segue.destination as! DetailListTableViewController
                 print(item)
                 detailTableViewController.item = item

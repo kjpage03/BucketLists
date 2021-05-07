@@ -32,7 +32,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var rightBucket: UIImageView!
     @IBOutlet var leftBucket: UIImageView!
     
-  
+    
     @IBOutlet var stackView: UIStackView!
     
     var index: Int = Int()
@@ -102,16 +102,16 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if let newItem = item {
             numberOfSteps = newItem.numofSteps
             if let substeps = newItem.subSteps {
-            subSteps = substeps
+                subSteps = substeps
             }
         }
-                
+        
         for step in subSteps {
             let newButton = CustomButton()
             button = newButton
             buttonArray.append(newButton)
             newButton.indexInArray = buttonArray.count-1
-//            self.index = index
+            //            self.index = index
             newButton.addTarget(self, action: #selector(stepButtonTapped), for: .touchUpInside)
             newButton.setTitleColor(.black, for: .normal)
             newButton.setTitleColor(.gray, for: .disabled)
@@ -120,11 +120,11 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
                 
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: step.name)
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-//                newButton.isEnabled = false
+                //                newButton.isEnabled = false
                 newButton.setAttributedTitle(attributeString, for: .normal)
                 
             } else {
-//                newButton.isEnabled = true
+                //                newButton.isEnabled = true
                 newButton.setTitle(step.name, for: .normal)
             }
             
@@ -159,33 +159,25 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         leftBucket.counterRotate360Degrees()
         rightBucket.counterRotate360Degrees()
         
-        //        let string = NSMutableAttributedString(string: "Add Image")
-        //
-        //        let imageAttachment = NSTextAttachment()
-        //        imageAttachment.image = UIImage(systemName: "photo")
-        //        let imageString = NSAttributedString(attachment: imageAttachment)
-        //        string.append(imageString)
-//        completionSwitch.transform = CGAffineTransform(scaleX: 2, y: 2)
-        
     }
     
     @objc func stepButtonTapped(sender: CustomButton) {
         
         
-//        var value = subSteps[sender.indexInArray].isComplete
+        //        var value = subSteps[sender.indexInArray].isComplete
         for (index, step) in subSteps.enumerated() {
             if sender.titleLabel?.text == step.name {
                 var value = subSteps[index].isComplete
                 
                 if value == true {
                     value = false
-//                    sender.isEnabled = true
+                    //                    sender.isEnabled = true
                     subSteps[index].isComplete = false
                     
                     sender.setAttributedTitle(NSAttributedString(string: subSteps[index].name), for: .normal)
                 } else {
                     value = true
-//                    sender.isEnabled = false
+                    //                    sender.isEnabled = false
                     let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: subSteps[index].name); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                     sender.setAttributedTitle(attributeString, for: .normal)
                     subSteps[index].isComplete = true
@@ -205,13 +197,13 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
         }
         
-        
     }
     
     // MARK: - Table view data source
     
     override func viewWillAppear(_ animated: Bool) {
         resizeCollectionView()
+        view.endEditing(true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -223,14 +215,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        //        if indexPath.section == 2 {
-        //            if item?.goalDate == nil {
-        //            return 0
-        //            } else {
-        //            return super.tableView(tableView, heightForRowAt: indexPath)
-        //            }
-        //        }
         
         if indexPath.section == 3 {
             var height = 55
@@ -531,7 +515,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if imageArray.count == 0 {
             //collapse collection view
             collectionViewHeight.constant = 0
-                //tableView.reloadSections([4], with: .automatic)
+            //tableView.reloadSections([4], with: .automatic)
         } else {
             if let height = originalHeight {
                 collectionViewHeight.constant = height
@@ -554,6 +538,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
 extension DetailListTableViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if let location = locations.first {
             let span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
@@ -565,19 +550,15 @@ extension DetailListTableViewController : CLLocationManagerDelegate {
             if (error != nil){
                 print("error in reverseGeocode")
             }
+            
             let placemark = placemarks! as [CLPlacemark]
             if placemark.count>0{
                 let placemark = placemarks![0]
-                
-                //                print(placemark.locality!)
-                //                print(placemark.administrativeArea!)
-                //                print(placemark.country!)
                 
                 self.mapView.showsUserLocation = false
                 self.dropPinZoomIn(placemark: MKPlacemark(placemark: placemark), location: "\(placemark.locality ?? "City"), \(placemark.administrativeArea ?? "State")")
                 self.activityIndicator.isHidden = true
             }
-            //            print(placemarks)
         }
     }
     

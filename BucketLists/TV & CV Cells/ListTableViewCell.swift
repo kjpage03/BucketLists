@@ -19,26 +19,9 @@ class ListTableViewCell: UITableViewCell {
     
     @IBOutlet var stepStackView: UIStackView!
     
-    //    override var frame: CGRect {
-    //            get {
-    //                return super.frame
-    //            }
-    //            set (newFrame) {
-    //                var frame = newFrame
-    //                let newWidth = frame.width * 0.90
-    //                let space = (frame.width - newWidth) / 2
-    //                frame.size.width = newWidth
-    //                frame.origin.x += space
-    //
-    //                super.frame = frame
-    //
-    //            }
-    //        }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //        contentView.layer.borderColor = UIColor.black.cgColor
-        //        contentView.layer.borderWidth = 1.0
     }
     
     override func layoutSubviews() {
@@ -54,14 +37,6 @@ class ListTableViewCell: UITableViewCell {
     
     func update(with list: Item, rowNumber: Int, color: UIColor) {
         
-        //if list.completed == true {
-        //backgroundColor = UIColor.green
-        //        if color == "green" {
-        //            backgroundColor = UIColor.green
-        //        } else {
-        //            backgroundColor = .white
-        //        }
-        
         //Remove all subviews from stack view
         print(stepStackView.subviews.count)
         print(stepStackView.arrangedSubviews.count)
@@ -69,12 +44,6 @@ class ListTableViewCell: UITableViewCell {
         for subview in stepStackView.arrangedSubviews {
             subview.removeFromSuperview()
         }
-        
-        print("HERE")
-        print(stepStackView.arrangedSubviews.count)
-        print(stepStackView.subviews.count)
-        
-        //        stepStackView.frame.size.height = 0
         
         //add back as many as needed
         
@@ -94,7 +63,7 @@ class ListTableViewCell: UITableViewCell {
                     }
                     
                     stepStackView.addArrangedSubview(newLabel)
-                    //                stepStackView.frame.size.height += newLabel.frame.height
+                    //stepStackView.frame.size.height += newLabel.frame.height
                 }
             }
         }

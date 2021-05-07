@@ -13,33 +13,7 @@ struct ParticleController {
     
     func createBackgroundParticles() {
         
-        //Top and Bottom
-        
-//        let particleEmitter = CAEmitterLayer()
-//
-//        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: view.frame.height + 50)
-//        //        -96
-//        particleEmitter.emitterShape = .line
-//        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-//
-//        let cell = makeEmitterCell(color: UIColor.black, type: .background)
-//
-//        particleEmitter.emitterCells = [cell]
-//
-//        view.layer.addSublayer(particleEmitter)
-////        view.layer.sublayers?.insert(particleEmitter, at: 0)
-//
-//        let topEmitter = CAEmitterLayer()
-//        topEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
-//
-//        topEmitter.emitterShape = .line
-//        topEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-//
-//        topEmitter.emitterCells = [cell]
-//        view.layer.addSublayer(topEmitter)
-////        view.layer.sublayers?.insert(topEmitter, at: 0)
-        
-        //Sides
+        //MARK: Explain Particles
         
         let particleEmitter = CAEmitterLayer()
         
@@ -51,9 +25,9 @@ struct ParticleController {
         let bottomCell = makeEmitterCell(color: UIColor.black, type: .bottom)
         
         particleEmitter.emitterCells = [bottomCell]
+        
                 
         view.layer.addSublayer(particleEmitter)
-//        view.layer.sublayers?.insert(particleEmitter, at: 0)
         
         let topEmitter = CAEmitterLayer()
         topEmitter.emitterPosition = CGPoint(x: view.frame.maxX + 40, y: view.frame.height * 0.20)
@@ -64,11 +38,13 @@ struct ParticleController {
 
         topEmitter.emitterCells = [topCell]
         view.layer.addSublayer(topEmitter)
-//        view.layer.sublayers?.insert(topEmitter, at: 0)
         
     }
     
     func createParticles() {
+        
+        //Configure Emitter
+        
         let particleEmitter = CAEmitterLayer()
         
         particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
@@ -76,18 +52,20 @@ struct ParticleController {
         particleEmitter.emitterShape = .line
         particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
         
-        let red = makeEmitterCell(color: .red, type: .exploding)
-        let green = makeEmitterCell(color: .green, type: .exploding)
-        let blue = makeEmitterCell(color: .blue, type: .exploding)
-        let yellow = makeEmitterCell(color: .yellow, type: .exploding)
+        let red = makeEmitterCell(color: .red, type: .confetti)
+        let green = makeEmitterCell(color: .green, type: .confetti)
+        let blue = makeEmitterCell(color: .blue, type: .confetti)
+        let yellow = makeEmitterCell(color: .yellow, type: .confetti)
         
         particleEmitter.emitterCells = [red, green, blue, yellow]
+        
+        //Add Emitter
         
         view.layer.addSublayer(particleEmitter)
     }
     
     enum CellEmitterType {
-        case exploding
+        case confetti
         case top
         case bottom
     }
@@ -129,7 +107,9 @@ struct ParticleController {
         
         switch type {
         
-        case .exploding :
+        case .confetti :
+            
+            //configure cell
             
             cell.scale = 0.2
             cell.birthRate = 5
@@ -146,20 +126,6 @@ struct ParticleController {
             cell.scaleSpeed = -0.05
             
             cell.contents = UIImage(named: "bucket5")?.cgImage
-
-        //        cell.scale = 0.2
-        //        cell.birthRate = 5
-        //        cell.lifetime = 7.0
-        //        cell.lifetimeRange = 0
-        //        cell.color = color.cgColor
-        //        cell.velocity = 300
-        //        cell.velocityRange = 50
-        //        cell.emissionLongitude = 0
-        //        cell.emissionRange = CGFloat.pi
-        //        cell.spin = 3
-        //        cell.spinRange = 3
-        //        cell.scaleRange = 0.5
-        //        cell.scaleSpeed = -0.05
         
         case .bottom:
             
