@@ -233,7 +233,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //        }
         
         if indexPath.section == 3 {
-            var height = 48
+            var height = 55
             for _ in subSteps {
                 height += 40
             }
