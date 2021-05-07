@@ -8,6 +8,12 @@
 import UIKit
 import MapKit
 
+class CustomButton: UIButton {
+    
+    var indexInArray: Int!
+    
+}
+
 class DetailListTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var nameLabel: UITextField!
@@ -26,11 +32,12 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var rightBucket: UIImageView!
     @IBOutlet var leftBucket: UIImageView!
     
-    @IBOutlet weak var firstStepButton: UIButton!
-    @IBOutlet weak var secondStepButton: UIButton!
-    @IBOutlet weak var thirdStepButton: UIButton!
-    @IBOutlet weak var fourthStepButton: UIButton!
+  
+    @IBOutlet var stackView: UIStackView!
     
+    var index: Int = Int()
+    var button: UIButton!
+    var buttonArray: [UIButton] = []
     var matchingItems:[MKMapItem] = []
     var selectedPin: MKPlacemark? = nil
     let locationManager = CLLocationManager()
@@ -38,7 +45,7 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
     var indexOfBucketList: Int = 0
     var indexOfItem: Int = 0
     var numberOfSteps: Int = 0
-    var stepNames: [Substep] = []
+    var subSteps: [Substep] = []
     var dataController = DataController()
     var saveLoadImage = SaveLoadImage()
     var item: Item?
@@ -79,10 +86,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         originalHeight = collectionViewHeight.constant
         activityIndicator.isHidden = true
         nameLabel.delegate = self
-        //        if let image = UIImage(systemName: "photo") {
-        //        imageArray.append(image)
-        //
-        //        }
         
         if item?.goalDate == nil {
             goalSwitch.isOn = false
@@ -95,11 +98,38 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         if let image = UIImage(systemName: "") {
             imageArray.append(image)
         }
+        
         if let newItem = item {
             numberOfSteps = newItem.numofSteps
             if let substeps = newItem.subSteps {
-            stepNames = substeps
+            subSteps = substeps
             }
+        }
+                
+        for step in subSteps {
+            let newButton = CustomButton()
+            button = newButton
+            buttonArray.append(newButton)
+            newButton.indexInArray = buttonArray.count-1
+//            self.index = index
+            newButton.addTarget(self, action: #selector(stepButtonTapped), for: .touchUpInside)
+            newButton.setTitleColor(.black, for: .normal)
+            newButton.setTitleColor(.gray, for: .disabled)
+            
+            if step.isComplete == true {
+                
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: step.name)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+//                newButton.isEnabled = false
+                newButton.setAttributedTitle(attributeString, for: .normal)
+                
+            } else {
+//                newButton.isEnabled = true
+                newButton.setTitle(step.name, for: .normal)
+            }
+            
+            stackView.addArrangedSubview(newButton)
+            buttonArray.append(newButton)
         }
         
         for items in imageStringArray {
@@ -139,6 +169,42 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         
     }
     
+    @objc func stepButtonTapped(sender: CustomButton) {
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (sender.titleLabel?.text!) as! String); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: sender.titleLabel?.text?.count, range: NSMakeRange(0, attributeString.length))
+        
+//        var value = subSteps[sender.indexInArray].isComplete
+        for (index, step) in subSteps.enumerated() {
+            if sender.titleLabel?.text == step.name {
+                var value = subSteps[index].isComplete
+                
+                if value == true {
+                    value = false
+//                    sender.isEnabled = true
+                    subSteps[index].isComplete = false
+                    sender.setAttributedTitle(NSAttributedString(string: subSteps[index].name), for: .normal)
+                } else {
+                    value = true
+//                    sender.isEnabled = false
+                    sender.setAttributedTitle(attributeString, for: .normal)
+                    subSteps[index].isComplete = true
+                }
+                
+                //check if all items are complete
+                var values: [Bool] = []
+                
+                subSteps.forEach { (step) in
+                    values.append(step.isComplete)
+                }
+                
+                if values.allSatisfy({$0}) {
+                    completionSwitch.isOn = true
+                }
+            }
+        }
+        
+        
+    }
+    
     // MARK: - Table view data source
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,6 +228,14 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         //            return super.tableView(tableView, heightForRowAt: indexPath)
         //            }
         //        }
+        
+        if indexPath.section == 3 {
+            var height = 48
+            for _ in subSteps {
+                height += 32
+            }
+            return CGFloat(height)
+        }
         
         if imageArray.count == 0 && indexPath.section == 4 {
             return 487 - originalHeight!
@@ -254,9 +328,9 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
             }
             if let location = mapView.annotations.first {
                 
-                item = Item(name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, subSteps: stepNames)
+                item = Item(name: name, description: description, location: Location(latitude: String(location.coordinate.latitude), longitude: String(location.coordinate.longitude), location: location.title!!), goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, subSteps: subSteps)
             } else {
-                item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, subSteps: stepNames)
+                item = Item(name: name, description: description, location: nil, goalDate: goalDate, isComplete: completed, photos: photos, details: details, imageArray: imageStringArray, numofSteps: numberOfSteps, subSteps: subSteps)
             }
         //                bucketLists[indexOfBucketList].items[indexOfItem] = item!
         //            dataController.saveData(data: bucketLists, pathName: DataController.bucketPathName)
@@ -460,54 +534,6 @@ class DetailListTableViewController: UITableViewController, UIImagePickerControl
         tableView.reloadData()
     }
     
-    @IBAction func firstButton(_ sender: Any) {
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (firstStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        if stepsCompleted[0] == true {
-            stepsCompleted[0] = false
-            firstStepButton.isEnabled = true
-        }
-        if stepsCompleted[0] == false{
-            stepsCompleted[0] = true
-            firstStepButton.isEnabled = false
-            firstStepButton.setAttributedTitle(attributeString, for: .disabled)
-        }
-    }
-    @IBAction func secondButton(_ sender: Any) {
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (secondStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        if stepsCompleted[1] == true {
-            stepsCompleted[1] = false
-            secondStepButton.isEnabled = true
-        }
-        if stepsCompleted[1] == false{
-            stepsCompleted[1] = true
-            secondStepButton.isEnabled = false
-            secondStepButton.setAttributedTitle(attributeString, for: .disabled)
-        }
-    }
-    @IBAction func thirdButton(_ sender: Any) {
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (thirdStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        if stepsCompleted[2] == true {
-            stepsCompleted[2] = false
-            thirdStepButton.isEnabled = true
-        }
-        if stepsCompleted[2] == false{
-            stepsCompleted[2] = true
-            thirdStepButton.isEnabled = false
-            thirdStepButton.setAttributedTitle(attributeString, for: .disabled)
-        }
-    }
-    @IBAction func fourthButton(_ sender: Any) {
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: (fourthStepButton.titleLabel?.text)!); attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        if stepsCompleted[3] == true {
-            stepsCompleted[3] = false
-            fourthStepButton.isEnabled = true
-        }
-        if stepsCompleted[3] == false{
-            stepsCompleted[3] = true
-            fourthStepButton.isEnabled = false
-            fourthStepButton.setAttributedTitle(attributeString, for: .disabled)
-        }
-    }
     @IBAction func unwind(segue: UIStoryboardSegue) {
         print("Unwind worked")
         if segue.identifier == "deleteImage" {

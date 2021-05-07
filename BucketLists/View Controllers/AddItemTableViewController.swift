@@ -83,7 +83,17 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             header.textLabel?.textColor = .white
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 4 && indexPath.row > 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "stepCell")
+            return cell!
+        } else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -120,19 +130,21 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             
         }
         
-        var ltr: String = String()
-        let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
-        let alphabet: String = "abcdefghijklmnopqrstuvwxyz"
-        for index in 0...numberofStepsINT-2 {
-            let new = alphabet.index(alphabet.startIndex, offsetBy: index)
-            ltr = String(alphabet[new])
-            stepNames.append(Substep(name: "\(ltr). \(labels[index]!.text ?? "")", isComplete: false))
+        if numberofStepsINT > 1 {
+            var ltr: String = String()
+            let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
+            let alphabet: String = "abcdefghijklmnopqrstuvwxyz"
+            for index in 0...numberofStepsINT-2 {
+                let new = alphabet.index(alphabet.startIndex, offsetBy: index)
+                ltr = String(alphabet[new])
+                stepNames.append(Substep(name: "\(ltr). \(labels[index]!.text ?? "")", isComplete: false))
+            }
         }
-//        stepNames.append(Substep(name: "a. \(firstStepLabel.text ?? "")", isComplete: false))
-//        stepNames.append(Substep(name: "a. \(secondStepLabel.text ?? "")", isComplete: false))
-//        stepNames.append("c. \(thirdStepLabel.text ?? "")")
-//        stepNames.append("d. \(fourthStepLabel.text ?? "")")
-
+        //        stepNames.append(Substep(name: "a. \(firstStepLabel.text ?? "")", isComplete: false))
+        //        stepNames.append(Substep(name: "a. \(secondStepLabel.text ?? "")", isComplete: false))
+        //        stepNames.append("c. \(thirdStepLabel.text ?? "")")
+        //        stepNames.append("d. \(fourthStepLabel.text ?? "")")
+        
         item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, subSteps: stepNames)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
@@ -141,27 +153,27 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
     @IBAction func NumofStepsSegControl(_ sender: Any) {
         switch(numberOfSteps.selectedSegmentIndex)
-                {
-                case 0:
-                    numberofStepsINT = 1
-                    break
-                case 1:
-                    numberofStepsINT = 2
-                    break
-                case 2:
-                    numberofStepsINT = 3
-                    break
-                case 3:
-                    numberofStepsINT = 4
-                    break
-                case 4:
-                    numberofStepsINT = 5
-                    break
-                default:
-                    numberofStepsINT = 1
-                    break
-                }
-                tableView.reloadData()
+        {
+        case 0:
+            numberofStepsINT = 1
+            break
+        case 1:
+            numberofStepsINT = 2
+            break
+        case 2:
+            numberofStepsINT = 3
+            break
+        case 3:
+            numberofStepsINT = 4
+            break
+        case 4:
+            numberofStepsINT = 5
+            break
+        default:
+            numberofStepsINT = 1
+            break
+        }
+        tableView.reloadData()
     }
     
     @IBAction func editingChanged(_ sender: Any) {
