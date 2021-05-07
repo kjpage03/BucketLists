@@ -18,6 +18,7 @@
 		1E68190D25F91CA6003FC155 /* BucketListsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68190C25F91CA6003FC155 /* BucketListsUITests.swift */; };
 		1E68192425F92D7E003FC155 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E68192325F92D7E003FC155 /* BucketList.swift */; };
 		1E6D1B66260395C500D5427F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6D1B65260395C500D5427F /* DataController.swift */; };
+		1E73A4342644C42A00B5F243 /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E73A4332644C42A00B5F243 /* StepTableViewCell.swift */; };
 		1E75C11E2639BAC900C9277A /* DeviceDeterminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E75C11D2639BAC900C9277A /* DeviceDeterminator.swift */; };
 		1E75C1262639C0EA00C9277A /* waterSplash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E75C1252639C0EA00C9277A /* waterSplash.mp3 */; };
 		1E77C36D261B554D00073F72 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E77C36C261B554D00073F72 /* MapViewController.swift */; };
@@ -78,6 +79,7 @@
 		1E68190E25F91CA7003FC155 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E68192325F92D7E003FC155 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
 		1E6D1B65260395C500D5427F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1E73A4332644C42A00B5F243 /* StepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		1E75C11D2639BAC900C9277A /* DeviceDeterminator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDeterminator.swift; sourceTree = "<group>"; };
 		1E75C1252639C0EA00C9277A /* waterSplash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waterSplash.mp3; sourceTree = "<group>"; };
 		1E77C36C261B554D00073F72 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				1E9AC5F625FA74770071B59F /* BucketCollectionViewCell.swift */,
 				7C9DABBE2612118200722DC5 /* ImageCollectionViewCell.swift */,
 				309AA52D25FA7B6700F65909 /* ListTableViewCell.swift */,
+				1E73A4332644C42A00B5F243 /* StepTableViewCell.swift */,
 			);
 			path = "TV & CV Cells";
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				30EA90F22602405800D6BF1D /* AddItemTableViewController.swift in Sources */,
 				7C2FF11B260E3C530058454C /* App.swift in Sources */,
 				1E68192425F92D7E003FC155 /* BucketList.swift in Sources */,
+				1E73A4342644C42A00B5F243 /* StepTableViewCell.swift in Sources */,
 				1E6818EB25F91CA6003FC155 /* AppDelegate.swift in Sources */,
 				30933AFE26161DFA00F7A645 /* ImageViewController.swift in Sources */,
 				7CC6589325FA7F9000537BF4 /* ColorPickerViewController.swift in Sources */,

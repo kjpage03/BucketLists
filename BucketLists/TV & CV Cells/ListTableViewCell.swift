@@ -8,34 +8,37 @@
 import UIKit
 
 class ListTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var goalDateLabel: UILabel!
-    @IBOutlet weak var stepOne: UIButton!
-    @IBOutlet weak var stepTwo: UIButton!
-    @IBOutlet weak var stepThree: UIButton!
-    @IBOutlet weak var StepFour: UIButton!
-
+    
+    @IBOutlet var stepOne: UILabel!
+    @IBOutlet var stepTwo: UILabel!
+    @IBOutlet var stepThree: UILabel!
+    @IBOutlet var stepFour: UILabel!
+    
+    @IBOutlet var stepStackView: UIStackView!
+    
     //    override var frame: CGRect {
-//            get {
-//                return super.frame
-//            }
-//            set (newFrame) {
-//                var frame = newFrame
-//                let newWidth = frame.width * 0.90
-//                let space = (frame.width - newWidth) / 2
-//                frame.size.width = newWidth
-//                frame.origin.x += space
-//
-//                super.frame = frame
-//
-//            }
-//        }
-
+    //            get {
+    //                return super.frame
+    //            }
+    //            set (newFrame) {
+    //                var frame = newFrame
+    //                let newWidth = frame.width * 0.90
+    //                let space = (frame.width - newWidth) / 2
+    //                frame.size.width = newWidth
+    //                frame.origin.x += space
+    //
+    //                super.frame = frame
+    //
+    //            }
+    //        }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-//        contentView.layer.borderColor = UIColor.black.cgColor
-//        contentView.layer.borderWidth = 1.0
+        //        contentView.layer.borderColor = UIColor.black.cgColor
+        //        contentView.layer.borderWidth = 1.0
     }
     
     override func layoutSubviews() {
@@ -53,70 +56,48 @@ class ListTableViewCell: UITableViewCell {
         
         //if list.completed == true {
         //backgroundColor = UIColor.green
-//        if color == "green" {
-//            backgroundColor = UIColor.green
-//        } else {
-//            backgroundColor = .white
-//        }
-        switch(list.numofSteps)
-                {
-                case 1:
-
-                    stepOne.isHidden = true
-                    stepTwo.isHidden = true
-                    stepThree.isHidden = true
-                    StepFour.isHidden = true
+        //        if color == "green" {
+        //            backgroundColor = UIColor.green
+        //        } else {
+        //            backgroundColor = .white
+        //        }
+        
+        //Remove all subviews from stack view
+        print(stepStackView.subviews.count)
+        print(stepStackView.arrangedSubviews.count)
+        
+        for subview in stepStackView.arrangedSubviews {
+            subview.removeFromSuperview()
+        }
+        
+        print("HERE")
+        print(stepStackView.arrangedSubviews.count)
+        print(stepStackView.subviews.count)
+        
+        //        stepStackView.frame.size.height = 0
+        
+        //add back as many as needed
+        
+        if let steps = list.subSteps {
+            
+            if steps.count > 0 {
+                for index in 0...steps.count-1 {
+                    let newLabel = UILabel()
                     
-                    break
-                case 2:
-
-                    stepOne.isHidden = false
-                    stepTwo.isHidden = true
-                    stepThree.isHidden = true
-                    StepFour.isHidden = true
+                    if steps[index].isComplete == true {
+                        
+                        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: steps[index].name)
+                        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                        newLabel.attributedText = attributeString
+                    } else {
+                        newLabel.text = steps[index].name
+                    }
                     
-                    stepOne.setTitle(list.stepnames[0], for: .normal)
-                    break
-                case 3:
-                    
-                    stepOne.isHidden = false
-                    stepTwo.isHidden = false
-                    stepThree.isHidden = true
-                    StepFour.isHidden = true
-                    
-                    stepOne.setTitle(list.stepnames[0], for: .normal)
-                    stepTwo.setTitle(list.stepnames[1], for: .normal)
-                    break
-                    
-                case 4:
-                    
-                    stepOne.isHidden = false
-                    stepTwo.isHidden = false
-                    stepThree.isHidden = false
-                    StepFour.isHidden = true
-                    
-                    stepOne.setTitle(list.stepnames[0], for: .normal)
-                    stepTwo.setTitle(list.stepnames[1], for: .normal)
-                    stepThree.setTitle(list.stepnames[2], for: .normal)
-
-                    break
-                 
-                case 5:
-                    
-                    stepOne.isHidden = false
-                    stepTwo.isHidden = false
-                    stepThree.isHidden = false
-                    StepFour.isHidden = false
-                    
-                    stepOne.setTitle(list.stepnames[0], for: .normal)
-                    stepTwo.setTitle(list.stepnames[1], for: .normal)
-                    stepThree.setTitle(list.stepnames[2], for: .normal)
-                    StepFour.setTitle(list.stepnames[3], for: .normal)
-                    break
-                    
-                default:
-                    break
+                    stepStackView.addArrangedSubview(newLabel)
+                    //                stepStackView.frame.size.height += newLabel.frame.height
                 }
+            }
+        }
         
         backgroundColor = color
         
