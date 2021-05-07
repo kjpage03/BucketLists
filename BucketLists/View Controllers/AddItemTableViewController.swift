@@ -7,12 +7,11 @@
 
 import UIKit
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class AddItemTableViewController: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewAccessibilityDelegate {
     
     var item: Item?
     var numberofStepsINT: Int = 1
-    var stepNames: [String] = []
-    var stepsCompleted: [Bool] = []
+    var stepNames: [Substep] = []
     
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextField!
@@ -27,7 +26,11 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var secondStepLabel: UITextField!
     @IBOutlet weak var thirdStepLabel: UITextField!
     @IBOutlet weak var fourthStepLabel: UITextField!
-    
+    @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var stackView: UIStackView!
+    var stepNumber: Int = 0
+    var labels: [UITextField] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,21 +40,52 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         goalSwitch.isOn = false
         datePicker.isHidden = true
         nameLabel.delegate = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
         rightBucket.rotate360Degrees()
         leftBucket.rotate360Degrees()
+        
     }
     
-    //    func startRotating() {
-    //        UIView.animate(withDuration: 1, delay: 0) {
-    //            self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi)
-    //        } completion: { (_) in
-    //            UIView.animate(withDuration: 1) {
-    //                self.rightBucket.transform = self.rightBucket.transform.rotated(by: .pi * 2)
-    //            }
-    //            self.startRotating()
-    //        }
-    //    }
+    //MARK: Picker View Data Source
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        10
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if row == 0 {
+            return "None"
+        } else {
+            return "\(row)"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        stepNumber = row
+        //        tableView.reloadData()
+        for subview in stackView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        if stepNumber > 0 {
+            for _ in 0...stepNumber-1 {
+                let textField = UITextField()
+                textField.placeholder = "Step name"
+                stackView.addArrangedSubview(textField)
+                labels.append(textField)
+//                numberofStepsINT += 1
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    
     
     // MARK: - Table view data source
     
@@ -59,8 +93,30 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         return 4 + numberofStepsINT
     }
     
+    //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //        if section == 4 {
+    //            return 1
+    //        } else {
+    //            return 1
+    //        }
+    //    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0; //Choose your custom row height
+        if indexPath.section == 4 {
+            if indexPath.row != 0 {
+                var height = 48
+                for _ in 0...stepNumber {
+                    height += 40
+                }
+                return CGFloat(height)
+            } else {
+                return 100
+            }
+        } else {
+            return 48
+        }
+        
+        
     }
     
     @IBAction func switchFlipped(_ sender: Any) {
@@ -84,7 +140,6 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             header.textLabel?.textColor = .white
         }
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -120,18 +175,19 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
             goalDate = nil
             
         }
-        stepNames.append(firstStepLabel.text ?? "")
-        stepNames.append(secondStepLabel.text ?? "")
-        stepNames.append(thirdStepLabel.text ?? "")
-        stepNames.append(fourthStepLabel.text ?? "")
         
-        stepsCompleted.append(false)
-        stepsCompleted.append(false)
-        stepsCompleted.append(false)
-        stepsCompleted.append(false)
-
-
-        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, stepnames: stepNames, stepsCompleted: stepsCompleted)
+        if stepNumber > 1 {
+            var ltr: String = String()
+//            let labels = [firstStepLabel, secondStepLabel, thirdStepLabel, fourthStepLabel]
+            let alphabet: String = "abcdefghijklmnopqrstuvwxyz"
+            for index in 0...stepNumber-1 {
+                let new = alphabet.index(alphabet.startIndex, offsetBy: index)
+                ltr = String(alphabet[new])
+                stepNames.append(Substep(name: "\(ltr). \(labels[index].text ?? "")", isComplete: false))
+            }
+        }
+        
+        item = Item(id: id, name: name, description: description, location: nil, goalDate: goalDate, isComplete: false, details: "Write about your experience!", imageArray: [], numofSteps: numberofStepsINT, subSteps: stepNames)
         let destination = segue.destination as! ListTableViewController
         let placeHolderArray: [Bool]? = []
         DataController().saveData(data: placeHolderArray, pathName: destination.bucketLists[destination.indexOfList].id.uuidString)
@@ -139,27 +195,27 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
     @IBAction func NumofStepsSegControl(_ sender: Any) {
         switch(numberOfSteps.selectedSegmentIndex)
-                {
-                case 0:
-                    numberofStepsINT = 1
-                    break
-                case 1:
-                    numberofStepsINT = 2
-                    break
-                case 2:
-                    numberofStepsINT = 3
-                    break
-                case 3:
-                    numberofStepsINT = 4
-                    break
-                case 4:
-                    numberofStepsINT = 5
-                    break
-                default:
-                    numberofStepsINT = 1
-                    break
-                }
-                tableView.reloadData()
+        {
+        case 0:
+            numberofStepsINT = 1
+            break
+        case 1:
+            numberofStepsINT = 2
+            break
+        case 2:
+            numberofStepsINT = 3
+            break
+        case 3:
+            numberofStepsINT = 4
+            break
+        case 4:
+            numberofStepsINT = 5
+            break
+        default:
+            numberofStepsINT = 1
+            break
+        }
+        tableView.reloadData()
     }
     
     @IBAction func editingChanged(_ sender: Any) {

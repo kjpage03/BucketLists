@@ -205,27 +205,41 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let item = bothList[indexPath.section]
-        if item.numofSteps > 1 {
-            switch(item.numofSteps)
-                    {
-                    case 0:
-                        return 48
-                    case 1:
-                        return 48
-                    case 2:
-                        return 120
-                    case 3:
-                        return 158
-                    case 4:
-                        return 168
-                    case 5:
-                        return 188
-                    default:
-                        return 48
-                    }
-                } else {
-                return 48.0;//Choose your custom row height
-                }
+        //        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
+        //        let height = cell.stepStackView.frame.height
+        //        return 48 + height
+        var height = 48
+        
+        if let steps = item.subSteps {
+            for _ in steps {
+                height += 28
+            }
+            return CGFloat(height)
+        } else {
+            return 48
+        }
+        
+//        if item.numofSteps > 1 {
+//            switch(item.numofSteps)
+//            {
+//            case 0:
+//                return 48
+//            case 1:
+//                return 48
+//            case 2:
+//                return 120
+//            case 3:
+//                return 158
+//            case 4:
+//                return 168
+//            case 5:
+//                return 188
+//            default:
+//                return 48
+//            }
+//        } else {
+//            return 48.0;//Choose your custom row height
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -239,8 +253,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
-        
-        
         
         //take a screenshot of the list and share it
         

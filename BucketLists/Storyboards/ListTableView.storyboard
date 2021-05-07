@@ -70,11 +70,11 @@
                                 <rect key="frame" x="20" y="95" width="374" height="726.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="180" id="yoY-CA-9PD" customClass="ListTableViewCell" customModule="BucketLists" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="149" id="yoY-CA-9PD" customClass="ListTableViewCell" customModule="BucketLists" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yoY-CA-9PD" id="jIn-e2-uzm">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Date:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Y4-BE-xYb">
@@ -89,57 +89,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HrD-AG-tq0">
-                                                    <rect key="frame" x="68" y="106" width="276" height="0.0"/>
-                                                    <subviews>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wst-Ql-tPv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="76" height="0.0"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <state key="normal" title="Step One">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mII-GU-drv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="76" height="0.0"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <state key="normal" title="Step Two">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoU-R5-vFC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="76" height="0.0"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <state key="normal" title="Step Three">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2q5-SO-5RZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="76" height="0.0"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <state key="normal" title="Step four">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                    </subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HrD-AG-tq0">
+                                                    <rect key="frame" x="68" y="34" width="276" height="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="1Y4-BE-xYb" firstAttribute="top" secondItem="jIn-e2-uzm" secondAttribute="top" constant="4" id="ApT-q3-opZ"/>
+                                                <constraint firstItem="HrD-AG-tq0" firstAttribute="top" secondItem="DbG-El-uSk" secondAttribute="top" constant="30" id="BdC-4X-lsK"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="HrD-AG-tq0" secondAttribute="trailing" constant="10" id="Oyr-wn-KG8"/>
                                                 <constraint firstAttribute="trailing" secondItem="1Y4-BE-xYb" secondAttribute="trailing" constant="4" id="Wow-BM-tFf"/>
-                                                <constraint firstItem="HrD-AG-tq0" firstAttribute="centerY" secondItem="jIn-e2-uzm" secondAttribute="centerY" constant="16" id="bhZ-96-vzA"/>
                                                 <constraint firstItem="DbG-El-uSk" firstAttribute="top" secondItem="jIn-e2-uzm" secondAttribute="top" constant="4" id="k08-Bh-Azc"/>
                                                 <constraint firstItem="DbG-El-uSk" firstAttribute="leading" secondItem="jIn-e2-uzm" secondAttribute="leading" constant="4" id="rhu-3T-Ylb"/>
                                                 <constraint firstItem="HrD-AG-tq0" firstAttribute="leading" secondItem="jIn-e2-uzm" secondAttribute="leadingMargin" constant="48" id="y1f-bs-JJc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="StepFour" destination="2q5-SO-5RZ" id="LYe-Aw-xho"/>
                                             <outlet property="goalDateLabel" destination="1Y4-BE-xYb" id="xgT-hb-DIe"/>
                                             <outlet property="nameLabel" destination="DbG-El-uSk" id="lCf-93-fEy"/>
-                                            <outlet property="stepOne" destination="wst-Ql-tPv" id="VSu-z1-Waf"/>
-                                            <outlet property="stepThree" destination="KoU-R5-vFC" id="h7U-It-Q05"/>
-                                            <outlet property="stepTwo" destination="mII-GU-drv" id="VUV-6i-gHa"/>
+                                            <outlet property="stepStackView" destination="HrD-AG-tq0" id="vv3-k2-0Av"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -225,9 +192,6 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

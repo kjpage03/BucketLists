@@ -109,7 +109,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="New List +"/>
+                                                <state key="normal" title="New List"/>
                                                 <connections>
                                                     <action selector="newListButtonTapped:" destination="P6U-Vt-NJf" eventType="touchUpInside" id="gma-Mc-cDJ"/>
                                                     <segue destination="1lD-9Q-NQD" kind="show" identifier="CreateVC" id="8di-pS-hJu"/>
