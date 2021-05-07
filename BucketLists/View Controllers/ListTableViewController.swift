@@ -238,16 +238,16 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
         //        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
         //        let height = cell.stepStackView.frame.height
         //        return 48 + height
-//        var height = 48
-//
-//        if let steps = item.subSteps {
-//            for _ in steps {
-//                height += 28
-//            }
-//            return CGFloat(height)
-//        } else {
-//            return 48
-//        }
+        var height = 48
+
+        if let steps = item.subSteps {
+            for _ in steps {
+                height += 28
+            }
+            return CGFloat(height)
+        } else {
+            return 48
+        }
         
 //        if item.numofSteps > 1 {
 //            switch(item.numofSteps)
