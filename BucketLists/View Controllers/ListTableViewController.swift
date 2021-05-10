@@ -148,6 +148,8 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
+        updatePercentLabel()
+        
         switch(segmentedControl.selectedSegmentIndex)
         {
         case 0:
@@ -284,7 +286,6 @@ class ListTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "detailSegue" {
